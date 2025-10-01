@@ -7,17 +7,14 @@ Sitemap: https://globoniks.com/sitemap.xml
 # Crawl-delay
 Crawl-delay: 1
 
-# Disallow admin or private areas (if any)
+# Disallow admin areas (if any)
 Disallow: /admin/
 Disallow: /private/
-Disallow: /temp/
 
-# Allow all search engines
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Slurp
-Allow: /
+# Allow all other content
+Allow: /css/
+Allow: /js/
+Allow: /images/
+Allow: /*.html
+Allow: /*.css
+Allow: /*.js
