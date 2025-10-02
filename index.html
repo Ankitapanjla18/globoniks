@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GLOBONIKS - #1 Software Development Company | MERN Stack Experts | Tech Mentorship</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>GLOBONIKS - #1 Software Development Company | MERN Stack Experts | Tech Mentorship | globoniks.com</title>
     
     <!-- Enhanced SEO Meta Tags -->
     <meta name="description" content="GLOBONIKS - Leading software development company specializing in MERN stack, mobile apps, and tech mentorship. Expert developers in React, Node.js, MongoDB. Transform your business with cutting-edge software solutions. Free consultation available.">
-    <meta name="keywords" content="GLOBONIKS, Globoniks, globoniks, GLOBONIKS software development, GLOBONIKS MERN stack, GLOBONIKS mobile apps, GLOBONIKS tech mentorship, GLOBONIKS React developers, GLOBONIKS Node.js experts, GLOBONIKS MongoDB specialists, GLOBONIKS Express.js, GLOBONIKS software company, GLOBONIKS Punjab, GLOBONIKS Mohali, GLOBONIKS Sector 68, GLOBONIKS Medallion 68, software development company, MERN stack developers, mobile app development, web application development, tech mentorship programs, custom software solutions, React development, Node.js experts, MongoDB specialists, Express.js developers, digital transformation services, software consulting, full-stack development, cross-platform mobile apps, React Native development, Flutter development, business software solutions, enterprise software development, startup software development, software maintenance services, best software development company, top MERN stack developers, premium software solutions">
+    <meta name="keywords" content="GLOBONIKS, Globoniks, globoniks, globonics, GLOBONIKS software development, GLOBONIKS MERN stack, GLOBONIKS mobile apps, GLOBONIKS tech mentorship, GLOBONIKS React developers, GLOBONIKS Node.js experts, GLOBONIKS MongoDB specialists, GLOBONIKS Express.js, GLOBONIKS software company, GLOBONIKS Punjab, GLOBONIKS Mohali, GLOBONIKS Sector 68, GLOBONIKS Medallion 68, globonics software development, globonics MERN stack, globonics mobile apps, globonics tech mentorship, globonics React developers, globonics Node.js experts, globonics MongoDB specialists, globonics Express.js, globonics software company, globonics Punjab, globonics Mohali, software development company, MERN stack developers, mobile app development, web application development, tech mentorship programs, custom software solutions, React development, Node.js experts, MongoDB specialists, Express.js developers, digital transformation services, software consulting, full-stack development, cross-platform mobile apps, React Native development, Flutter development, business software solutions, enterprise software development, startup software development, software maintenance services, best software development company, top MERN stack developers, premium software solutions">
     <meta name="author" content="GLOBONIKS">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta name="googlebot" content="index, follow">
@@ -44,9 +44,10 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://globoniks.com">
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+    <!-- Favicon (consolidated + fixed relative paths) -->
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="G.svg">
+    <link rel="shortcut icon" href="favicon.ico">
     
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
@@ -115,12 +116,7 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://globoniks.com">
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="./full logo.svg">
-    <link rel="icon" type="image/png" sizes="32x32" href="./full logo.svg">
-    <link rel="icon" type="image/png" sizes="16x16" href="./full logo.svg">
-    <link rel="apple-touch-icon" sizes="180x180" href="./full logo.svg">
-    <link rel="shortcut icon" href="./full logo.svg">
+    <!-- Remove duplicate favicon declarations (use the ones above) -->
     
     <!-- Preconnect to external domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -298,6 +294,7 @@
             background: var(--dark-bg);
             overflow-x: hidden;
             scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
         }
 
         /* Improved animated background */
@@ -504,7 +501,7 @@
             background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
             padding-top: calc(var(--header-height) + 3rem); /* Account for fixed header with extra spacing */
             box-sizing: border-box;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         /* Minimize entire hero container on scroll */
@@ -512,7 +509,7 @@
             height: 60vh;
             padding-top: calc(var(--header-height) + 1rem);
             transform: translateY(-40px);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .hero-content {
@@ -536,7 +533,7 @@
             letter-spacing: -0.02em;
             position: relative;
             z-index: 2;
-            transition: all 0.3s ease;
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         /* Minimize hero h1 on scroll */
@@ -544,7 +541,7 @@
             font-size: clamp(1.8rem, 4vw, 3rem);
             margin-bottom: 0.5rem;
             transform: translateY(-20px);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         @keyframes gradientShift {
@@ -562,7 +559,7 @@
             line-height: 1.7;
             position: relative;
             z-index: 1;
-            transition: all 0.3s ease;
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         /* Minimize hero paragraph on scroll */
@@ -571,7 +568,7 @@
             margin-bottom: 1rem;
             opacity: 0.7;
             transform: translateY(-15px);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .hero-buttons {
@@ -646,7 +643,7 @@
             margin-bottom: 3rem;
             padding-top: 0.5rem;
             margin-top: 0.5rem;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             position: relative;
             z-index: 2;
         }
@@ -657,7 +654,7 @@
             padding-top: 0.5rem;
             margin-top: 0.25rem;
             transform: translateY(-20px);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .page-hero .section-subtitle {
@@ -667,10 +664,10 @@
             padding: 0 2rem;
             line-height: 1.6;
             opacity: 0.95;
-            transition: all 0.3s ease;
             position: relative;
             z-index: 2;
             font-weight: 400;
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         /* Minimize page hero subtitle on scroll */
@@ -679,7 +676,7 @@
             margin-bottom: 1rem;
             opacity: 0.7;
             transform: translateY(-15px);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .page-hero .section-subtitle:hover {
@@ -698,7 +695,7 @@
             background-clip: text;
             position: relative;
             z-index: 2;
-            transition: all 0.3s ease;
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         /* Minimize page hero h1 on scroll */
@@ -707,7 +704,7 @@
             margin-bottom: 0.5rem;
             margin-top: 0.5rem;
             transform: translateY(-20px);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .section-title {
@@ -833,7 +830,7 @@
 
         /* Project card specific styling */
         .project-card {
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .project-card:hover {
@@ -862,7 +859,7 @@
 
         /* Mentorship card specific styling */
         .mentorship-card {
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             position: relative;
             overflow: hidden;
         }
@@ -945,17 +942,16 @@
             position: relative;
             z-index: 1;
             max-width: 800px;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        /* Hide paragraphs on scroll */
-        .content-section.hide-paragraphs p {
-            opacity: 0;
-            transform: translateY(-10px);
-            max-height: 0;
-            margin-bottom: 0;
-            overflow: hidden;
-        }
+        /* Disable paragraph hiding on content sections to avoid fluctuation */
+        .content-section.hide-paragraphs > p { opacity: 1; transform: none; max-height: none; margin-bottom: 2rem; overflow: visible; }
+        .content-section.hide-paragraphs .service-card p,
+        .content-section.hide-paragraphs .feature-card p,
+        .content-section.hide-paragraphs .project-card p,
+        .content-section.hide-paragraphs .mentorship-card p,
+        .content-section.hide-paragraphs .stat-card p { opacity: 1; transform: none; max-height: none; margin-bottom: inherit; overflow: visible; }
 
         /* Enhanced contact form */
         .contact-section {
@@ -984,7 +980,7 @@
             padding: 2.5rem;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
             backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .address-card:hover {
@@ -1248,7 +1244,158 @@
             }
         }
 
+        /* Mobile-specific fixes to prevent fluctuation */
         @media (max-width: 768px) {
+            /* Prevent horizontal scrolling and fluctuation */
+            body {
+                overflow-x: hidden;
+                overflow-y: auto;
+                -webkit-text-size-adjust: 100%;
+                -ms-text-size-adjust: 100%;
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                font-size: 16px;
+                line-height: 1.6;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                position: relative;
+                height: auto;
+                min-height: 100vh;
+            }
+            
+            /* Ensure main content can scroll */
+            main {
+                overflow: visible;
+                height: auto;
+                min-height: 100vh;
+            }
+            
+            /* Prevent zoom on input focus */
+            input, textarea, select {
+                font-size: 16px !important;
+                -webkit-text-size-adjust: 100%;
+            }
+            
+            /* Stabilize container widths */
+            .container, .page-content, .hero-content {
+                width: 100%;
+                max-width: 100%;
+                padding-left: 1rem;
+                padding-right: 1rem;
+                box-sizing: border-box;
+            }
+            
+            /* Fix text sizing and prevent zoom */
+            h1, h2, h3, h4, h5, h6, p, span, div {
+                -webkit-text-size-adjust: 100%;
+                -ms-text-size-adjust: 100%;
+                text-size-adjust: 100%;
+                word-wrap: break-word;
+                hyphens: auto;
+                -webkit-hyphens: auto;
+                -ms-hyphens: auto;
+            }
+            
+            /* Stabilize hero section */
+            .hero {
+                min-height: 100vh;
+                height: auto;
+                max-height: none;
+                overflow: visible;
+            }
+            
+            /* Ensure all pages can scroll */
+            .page {
+                overflow: visible;
+                height: auto;
+                min-height: 100vh;
+            }
+            
+            .page-content {
+                overflow: visible;
+                height: auto;
+                min-height: 100vh;
+            }
+            
+            .hero-content {
+                padding: 2rem 1rem;
+                max-width: 100%;
+                box-sizing: border-box;
+            }
+            
+            .hero h1 {
+                font-size: 2rem !important;
+                line-height: 1.2;
+                margin-bottom: 1rem;
+                word-wrap: break-word;
+            }
+            
+            .hero p {
+                font-size: 1rem !important;
+                line-height: 1.5;
+                margin-bottom: 1.5rem;
+                word-wrap: break-word;
+            }
+            
+            /* Stabilize page-hero */
+            .page-hero {
+                padding: 1rem 0.5rem;
+                margin-bottom: 2rem;
+            }
+            
+            .page-hero h1 {
+                font-size: 1.8rem !important;
+                line-height: 1.2;
+                margin-bottom: 0.8rem;
+                word-wrap: break-word;
+            }
+            
+            .page-hero .section-subtitle {
+                font-size: 1rem !important;
+                line-height: 1.4;
+                margin-bottom: 1.5rem;
+                word-wrap: break-word;
+            }
+            
+            /* Fix content sections */
+            .content-section {
+                padding: 1.5rem 0.5rem;
+                margin-bottom: 2rem;
+            }
+            
+            .content-section h2 {
+                font-size: 1.5rem !important;
+                line-height: 1.2;
+                margin-bottom: 1rem;
+                word-wrap: break-word;
+            }
+            
+            .content-section p {
+                font-size: 0.95rem !important;
+                line-height: 1.5;
+                margin-bottom: 1rem;
+                word-wrap: break-word;
+            }
+            
+            /* Fix buttons */
+            .cta-button {
+                font-size: 0.9rem !important;
+                padding: 0.8rem 1.5rem;
+                margin: 0.5rem;
+                white-space: nowrap;
+                -webkit-tap-highlight-color: transparent;
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+            
             .mobile-menu-btn {
                 display: block;
             }
@@ -1355,6 +1502,48 @@
                 padding: 0 1.5rem;
                 max-width: 98%;
                 line-height: 1.6;
+            }
+            
+            /* Extra small mobile fixes for better readability */
+            body {
+                font-size: 14px;
+                line-height: 1.4;
+            }
+            
+            .hero h1 {
+                font-size: 1.6rem !important;
+                line-height: 1.1;
+                margin-bottom: 0.8rem;
+            }
+            
+            .hero p {
+                font-size: 0.9rem !important;
+                line-height: 1.4;
+                margin-bottom: 1.2rem;
+            }
+            
+            .page-hero h1 {
+                font-size: 1.5rem !important;
+                line-height: 1.1;
+                margin-bottom: 0.6rem;
+            }
+            
+            .content-section h2 {
+                font-size: 1.3rem !important;
+                line-height: 1.1;
+                margin-bottom: 0.8rem;
+            }
+            
+            .content-section p {
+                font-size: 0.85rem !important;
+                line-height: 1.4;
+                margin-bottom: 0.8rem;
+            }
+            
+            .cta-button {
+                font-size: 0.8rem !important;
+                padding: 0.7rem 1.2rem;
+                margin: 0.3rem;
             }
 
             .services-grid {
@@ -1517,7 +1706,7 @@
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "GLOBONIKS",
-        "alternateName": "Globoniks",
+        "alternateName": ["Globoniks", "globoniks", "globonics", "Globonics"],
         "description": "Leading software development company specializing in MERN stack, mobile apps, and tech mentorship programs. Expert developers in React, Node.js, MongoDB.",
         "url": "https://globoniks.com",
         "logo": "https://globoniks.com/full-logo.svg",
@@ -1625,7 +1814,7 @@
         <section class="hero" role="banner" id="main-content">
             <div class="hero-content">
                 <h1>GLOBONIKS - Premium Software Solutions</h1>
-                <p>GLOBONIKS delivers cutting-edge software development services including MERN stack applications, React development, Node.js expertise, mobile app development, and revolutionary tech mentorship programs. GLOBONIKS transforms your business with expert developers specializing in MongoDB, Express.js, React, and Node.js technologies. Choose GLOBONIKS for premium software solutions.</p>
+                <p>GLOBONIKS delivers cutting-edge software development services including MERN stack applications, React development, Node.js expertise, mobile app development, and revolutionary tech mentorship programs. We transform your business with expert developers specializing in MongoDB, Express.js, React, and Node.js technologies.</p>
                 <div class="hero-buttons">
                     <button class="cta-button" onclick="showPage('services')" aria-label="Explore our software development services">Explore Services</button>
                     <button class="cta-button secondary" onclick="showPage('contact')" aria-label="Get a free quote for your project">Get Quote</button>
@@ -1711,7 +1900,12 @@
             <p>GLOBONIKS is a leading software development company specializing in MERN stack development, full-stack web applications, mobile app development, custom software solutions, and enterprise software development. Our expert developers use cutting-edge technologies including React.js, Node.js, MongoDB, Express.js, React Native, Flutter, and modern web frameworks to deliver high-performance applications.</p>
             <p>We offer comprehensive software development services including web application development, mobile application development, custom software development, software consulting, digital transformation, cloud migration, API development, database design, UI/UX design, software testing, quality assurance, and ongoing software maintenance and support.</p>
             <p>Our tech mentorship programs provide hands-on learning experiences in MERN stack development, mobile development, full-stack development, software engineering, programming languages, web development, app development, and career advancement in the technology industry.</p>
-            <p>Located in the United States, GLOBONIKS serves clients globally with premium software development solutions, competitive pricing, 24/7 support, and guaranteed quality. We specialize in startup software development, enterprise software solutions, e-commerce development, SaaS applications, and custom business software.</p>
+            <p>Located in Punjab, India, GLOBONIKS serves clients globally with premium software development solutions, competitive pricing, 24/7 support, and guaranteed quality. We specialize in startup software development, enterprise software solutions, e-commerce development, SaaS applications, and custom business software.</p>
+            
+            <!-- SEO Content for Misspellings -->
+            <h2>Looking for GLOBONIKS?</h2>
+            <p>If you're searching for "globonics" software development, you're looking for GLOBONIKS - the leading software development company. We provide premium MERN stack development, mobile app development, and tech mentorship services.</p>
+            <p>GLOBONIKS is located in Medallion 68, Sector 68, Sahibzada Ajit Singh Nagar, Punjab 160062. Our expert developers specialize in MERN stack, mobile applications, custom software solutions, and revolutionary tech mentorship programs.</p>
         </section>
     </main>
 
@@ -1906,7 +2100,7 @@
         <div class="page-content">
             <header class="page-hero">
                 <h1>About GLOBONIKS</h1>
-                <p class="section-subtitle">GLOBONIKS - Innovation meets passion in everything we do</p>
+                <p class="section-subtitle">Innovation meets passion in everything we do</p>
             </header>
 
             <div class="content-section">
@@ -2964,7 +3158,7 @@
                 <a href="#" onclick="showPage('contact')" aria-label="Contact us">Contact</a>
             </nav>
             <p>&copy; 2025 GLOBONIKS. All rights reserved. GLOBONIKS - Transforming businesses through innovative software development and revolutionary tech mentorship. Choose GLOBONIKS for premium software solutions.</p>
-            <p class="sr-only">GLOBONIKS is a premium software development company specializing in MERN stack development, mobile applications, custom software solutions, and tech mentorship programs. GLOBONIKS delivers cutting-edge technology solutions with expert developers in React, Node.js, MongoDB, and Express.js.</p>
+            <p class="sr-only">GLOBONIKS is a premium software development company specializing in MERN stack development, mobile applications, custom software solutions, and tech mentorship programs. If you searched for "globonics", you found GLOBONIKS - the correct spelling of our company name.</p>
         </div>
     </footer>
 
@@ -3116,6 +3310,7 @@
 
         // Enhanced hero section scroll effects
         let scrollTimeout;
+        let isScrolling = false;
         
         function handleScrollEffects() {
             // Only target the active page
@@ -3145,24 +3340,21 @@
                 }
             }
             
-            // Hide paragraphs in content sections on scroll
+            // Do not minimize or hide any content-section text on scroll
             contentSections.forEach(section => {
-                const rect = section.getBoundingClientRect();
-                if (rect.top < 100 && rect.bottom > 100) {
-                    section.classList.add('hide-paragraphs');
-                } else {
-                    section.classList.remove('hide-paragraphs');
-                }
+                section.classList.remove('hide-paragraphs');
             });
         }
         
         window.addEventListener('scroll', function() {
-            // Throttle scroll events for better performance
-            if (scrollTimeout) {
-                clearTimeout(scrollTimeout);
+            // Use requestAnimationFrame for smoother scroll effects
+            if (!isScrolling) {
+                requestAnimationFrame(function() {
+                    handleScrollEffects();
+                    isScrolling = false;
+                });
+                isScrolling = true;
             }
-            
-            scrollTimeout = setTimeout(handleScrollEffects, 10); // 10ms throttle
         });
         
         // Also run on page load and page changes

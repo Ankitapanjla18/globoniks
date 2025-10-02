@@ -20,8 +20,9 @@
         stroke: #fff;
       }
 
+      /* Show the globe inside the G */
       .st3 {
-        display: none;
+        display: inline;
         fill: #616161;
       }
     </style>
