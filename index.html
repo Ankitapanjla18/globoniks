@@ -287,6 +287,20 @@
             box-sizing: border-box;
         }
 
+        /* Remove default outlines from form elements */
+        input:focus, textarea:focus, select:focus, button:focus {
+            outline: none !important;
+            -webkit-outline: none !important;
+            -moz-outline: none !important;
+        }
+
+        /* Ensure form elements don't get white backgrounds or borders */
+        input, textarea, select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+
         body {
             font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
@@ -857,6 +871,102 @@
             border-radius: 1px;
         }
 
+        /* Enhanced project section styling */
+        .content-section {
+            position: relative;
+            margin-bottom: 4rem;
+        }
+
+        .content-section:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            bottom: -2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.3), transparent);
+        }
+
+        .content-section h2 {
+            position: relative;
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(45deg, var(--primary-purple), var(--secondary-purple));
+            border-radius: 2px;
+        }
+
+        /* Project status badge */
+        .project-badge {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: rgba(139, 92, 246, 0.2);
+            border: 1px solid var(--primary-purple);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary-purple);
+            margin-bottom: 1rem;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+
+        .project-badge.live {
+            background: rgba(34, 197, 94, 0.2);
+            border-color: #22c55e;
+            color: #22c55e;
+        }
+
+        .project-badge.enterprise {
+            background: rgba(59, 130, 246, 0.2);
+            border-color: #3b82f6;
+            color: #3b82f6;
+        }
+
+        /* Project action buttons */
+        .project-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: rgba(139, 92, 246, 0.1);
+            border: 2px solid var(--primary-purple);
+            border-radius: 12px;
+            color: var(--primary-purple);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            background: var(--primary-purple);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
+        }
+
+        .project-link svg {
+            width: 18px;
+            height: 18px;
+        }
+
         /* Mentorship card specific styling */
         .mentorship-card {
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -1067,6 +1177,42 @@
             position: relative;
         }
 
+        /* Remove fieldset borders completely */
+        fieldset {
+            border: none !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            border-width: 0 !important;
+            border-style: none !important;
+            border-color: transparent !important;
+            outline: none !important;
+            -webkit-appearance: none !important;
+            -moz-appearance: none !important;
+            appearance: none !important;
+        }
+
+        .contact-form fieldset {
+            border: none !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            border-width: 0 !important;
+            border-style: none !important;
+            border-color: transparent !important;
+            outline: none !important;
+        }
+
+        .contact-form fieldset legend {
+            display: none;
+        }
+
+        /* Override any inline styles on fieldset */
+        fieldset[style] {
+            border: none !important;
+            border-width: 0 !important;
+            border-style: none !important;
+            border-color: transparent !important;
+        }
+
         .contact-form input,
         .contact-form textarea,
         .contact-form select {
@@ -1075,7 +1221,7 @@
             background: transparent;
             border: 2px solid rgba(139, 92, 246, 0.4);
             border-radius: 16px;
-            color: var(--text-light);
+            color: var(--text-light) !important;
             font-size: 1.1rem;
             transition: var(--transition);
             font-family: inherit;
@@ -1085,7 +1231,7 @@
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
-            outline: none;
+            outline: none !important;
             -webkit-tap-highlight-color: transparent;
             -webkit-focus-ring-color: transparent;
         }
@@ -1101,10 +1247,32 @@
         .contact-form input:focus,
         .contact-form textarea:focus,
         .contact-form select:focus {
-            outline: none;
+            outline: none !important;
             border-color: var(--primary-purple);
             box-shadow: 0 0 20px rgba(139, 92, 246, 0.3), 0 0 10px rgba(139, 92, 246, 0.2);
             background: rgba(139, 92, 246, 0.05);
+            color: var(--text-light) !important;
+        }
+
+        .contact-form input:active,
+        .contact-form textarea:active,
+        .contact-form select:active {
+            outline: none !important;
+            border-color: var(--primary-purple);
+            color: var(--text-light) !important;
+        }
+
+        /* Prevent autofill from making fields white */
+        .contact-form input:-webkit-autofill,
+        .contact-form input:-webkit-autofill:hover,
+        .contact-form input:-webkit-autofill:focus,
+        .contact-form input:-webkit-autofill:active {
+            -webkit-text-fill-color: var(--text-light) !important;
+            -webkit-box-shadow: 0 0 0px 1000px rgba(10, 10, 10, 0.9) inset !important;
+            box-shadow: 0 0 0px 1000px rgba(10, 10, 10, 0.9) inset !important;
+            border: 2px solid rgba(139, 92, 246, 0.4) !important;
+            outline: none !important;
+            transition: background-color 5000s ease-in-out 0s;
         }
 
         .contact-form input::placeholder,
@@ -1123,12 +1291,188 @@
             background-position: right 1rem center;
             background-size: 1rem;
             padding-right: 3rem;
+            background-color: rgba(10, 10, 10, 0.9) !important;
         }
 
-        .contact-form option {
-            background: var(--dark-primary);
-            color: var(--text-light);
+        .contact-form select option {
+            background: #0A0A0A !important;
+            color: #ffffff !important;
             border: none;
+            padding: 1rem;
+        }
+
+        .contact-form select option:hover {
+            background: rgba(139, 92, 246, 0.3) !important;
+            color: #ffffff !important;
+        }
+
+        .contact-form select option:checked,
+        .contact-form select option:focus {
+            background: var(--primary-purple) !important;
+            color: #ffffff !important;
+        }
+
+        .contact-form select option:disabled {
+            color: rgba(255, 255, 255, 0.4) !important;
+            font-style: italic;
+            background: #0A0A0A !important;
+        }
+
+        /* Force dark background for select dropdown in various browsers */
+        .contact-form select::-ms-expand {
+            display: none;
+        }
+
+        .contact-form select::-webkit-select-option {
+            background: #0A0A0A !important;
+            color: #ffffff !important;
+        }
+
+        /* Custom Dropdown with Smooth Animations */
+        .custom-dropdown {
+            position: relative;
+            width: 100%;
+        }
+
+        .custom-dropdown-select {
+            width: 100%;
+            padding: 1.4rem 3rem 1.4rem 2rem;
+            background: rgba(10, 10, 10, 0.9);
+            border: 2px solid rgba(139, 92, 246, 0.4);
+            border-radius: 16px;
+            color: var(--text-light) !important;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-family: inherit;
+            outline: none !important;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            box-shadow: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .custom-dropdown-select:hover {
+            border-color: rgba(139, 92, 246, 0.6);
+            background: rgba(139, 92, 246, 0.02);
+            color: var(--text-light) !important;
+        }
+
+        .custom-dropdown-select:focus {
+            border-color: var(--primary-purple);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3), 0 0 10px rgba(139, 92, 246, 0.2);
+            background: rgba(139, 92, 246, 0.05);
+            outline: none !important;
+            color: var(--text-light) !important;
+        }
+
+        .custom-dropdown-select:active {
+            outline: none !important;
+            border-color: var(--primary-purple);
+            color: var(--text-light) !important;
+        }
+
+        .custom-dropdown-select.selected {
+            color: var(--text-light) !important;
+        }
+
+        .custom-dropdown-select.placeholder {
+            color: rgba(255, 255, 255, 0.6) !important;
+        }
+
+        .custom-dropdown-text {
+            color: inherit;
+        }
+
+        .custom-dropdown-arrow {
+            position: absolute;
+            right: 1rem;
+            width: 1rem;
+            height: 1rem;
+            pointer-events: none;
+            transition: transform 0.3s ease;
+        }
+
+        .custom-dropdown.open .custom-dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .custom-dropdown-options {
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 10, 0.98);
+            border: 2px solid rgba(139, 92, 246, 0.4);
+            border-radius: 16px;
+            overflow: hidden;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px) scale(0.95);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            max-height: 0;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(139, 92, 246, 0.2);
+        }
+
+        .custom-dropdown.open .custom-dropdown-options {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+            max-height: 400px;
+        }
+
+        .custom-dropdown-option {
+            padding: 1rem 2rem;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .custom-dropdown-option:last-child {
+            border-bottom: none;
+        }
+
+        .custom-dropdown-option:hover {
+            background: rgba(139, 92, 246, 0.2);
+            color: var(--text-light);
+            padding-left: 2.5rem;
+        }
+
+        .custom-dropdown-option.selected {
+            background: rgba(139, 92, 246, 0.3);
+            color: var(--primary-purple);
+            font-weight: 600;
+        }
+
+        .custom-dropdown-option.disabled {
+            color: rgba(255, 255, 255, 0.4);
+            font-style: italic;
+            cursor: not-allowed;
+        }
+
+        .custom-dropdown-option.disabled:hover {
+            background: transparent;
+            padding-left: 2rem;
+        }
+
+        /* Hide native select but keep it for form submission */
+        .contact-form select.native-select {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+            height: 0;
+            width: 0;
         }
 
         /* Stats and feature cards */
@@ -1678,8 +2022,38 @@
         .contact-form textarea:focus,
         .contact-form select:focus,
         .cta-button:focus {
-            outline: 2px solid var(--primary-purple);
-            outline-offset: 2px;
+            outline: none !important;
+            -webkit-outline: none !important;
+            -moz-outline: none !important;
+        }
+        
+        .custom-dropdown-select:focus {
+            outline: none !important;
+            -webkit-outline: none !important;
+            -moz-outline: none !important;
+        }
+
+        /* Remove all outlines from form elements globally */
+        .contact-form *:focus {
+            outline: none !important;
+            -webkit-outline: none !important;
+            -moz-outline: none !important;
+        }
+
+        /* Ensure text stays white when fields are filled */
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form input[type="tel"],
+        .contact-form textarea {
+            color: var(--text-light) !important;
+        }
+
+        .contact-form input[type="text"]:not(:placeholder-shown),
+        .contact-form input[type="email"]:not(:placeholder-shown),
+        .contact-form input[type="tel"]:not(:placeholder-shown),
+        .contact-form textarea:not(:placeholder-shown) {
+            color: var(--text-light) !important;
+            background: rgba(10, 10, 10, 0.9) !important;
         }
 
         /* Skip link for accessibility */
@@ -2289,19 +2663,170 @@
             </header>
 
             <div class="content-section">
-                <h2>E-Commerce MERN Platform</h2>
-                <p>Complete e-commerce solution built with MERN stack featuring inventory management, payment processing, admin dashboard, and real-time analytics. This project increased our client's online sales by 300% within the first quarter of deployment.</p>
+                <h2>EduMapping - College Placement Management Platform<span class="project-badge live">Live</span></h2>
+                <p>Comprehensive placement service platform for colleges and universities, connecting students with top employers. EduMapping streamlines the entire placement process from job posting to candidate selection, featuring automated matching algorithms, interview scheduling, and comprehensive analytics. The platform is live and actively serving educational institutions, helping colleges improve placement rates and students secure their dream careers.</p>
                 
                 <div class="features-grid">
                     <div class="feature-card">
                         <div class="feature-icon">
                             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                                <path d="M9 9h6v6H9z"></path>
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="8.5" cy="7" r="4"></circle>
+                                <path d="M20 8v6"></path>
+                                <path d="M23 11h-6"></path>
                             </svg>
                         </div>
-                        <h4>Inventory Management</h4>
-                        <p>Real-time inventory tracking with automated stock alerts and supplier integration.</p>
+                        <h4>Student-Employer Matching</h4>
+                        <p>Intelligent algorithm-based matching system connecting qualified students with relevant job opportunities based on skills and preferences.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                        </div>
+                        <h4>Interview Scheduling</h4>
+                        <p>Automated interview scheduling system with calendar integration, reminder notifications, and conflict resolution.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14,2 14,8 20,8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                            </svg>
+                        </div>
+                        <h4>Placement Analytics</h4>
+                        <p>Comprehensive dashboard with real-time placement statistics, success rates, and performance metrics for colleges and administrators.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            </svg>
+                        </div>
+                        <h4>Multi-College Management</h4>
+                        <p>Centralized platform supporting multiple colleges with role-based access control and institutional customization.</p>
+                    </div>
+                </div>
+
+                    <div class="tech-stack">
+                        <span class="tech-badge">MERN Stack</span>
+                        <span class="tech-badge">React</span>
+                        <span class="tech-badge">Node.js</span>
+                        <span class="tech-badge">MongoDB</span>
+                        <span class="tech-badge">Express.js</span>
+                        <span class="tech-badge">JWT Authentication</span>
+                        <span class="tech-badge">RESTful API</span>
+                </div>
+                <div class="project-actions">
+                    <a href="https://edumapping.com" target="_blank" rel="noopener noreferrer" class="project-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15,3 21,3 21,9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                        View Live Site
+                    </a>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>Pharmaceutical Supply Chain & Production Management System<span class="project-badge enterprise">Enterprise</span></h2>
+                <p>End-to-end enterprise solution for pharmaceutical companies managing the complete order-to-delivery lifecycle. This comprehensive platform handles order placement, inventory management, production scheduling, quality control, packaging workflows, and advanced analytics. The system ensures regulatory compliance, batch tracking, and real-time visibility across the entire supply chain, optimizing operations and reducing production costs by up to 35%.</p>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                                <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+                                <path d="M9 14l2 2 4-4"></path>
+                            </svg>
+                        </div>
+                        <h4>Order Management</h4>
+                        <p>Complete order processing system with automated workflows, approval chains, and real-time order tracking from placement to fulfillment.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <path d="M9 9h6v6H9z"></path>
+                                <path d="M9 1v6"></path>
+                                <path d="M9 17v6"></path>
+                                <path d="M15 1v6"></path>
+                                <path d="M15 17v6"></path>
+                                <path d="M1 9h6"></path>
+                                <path d="M17 9h6"></path>
+                            </svg>
+                        </div>
+                        <h4>Production Planning</h4>
+                        <p>Advanced production scheduling with resource allocation, capacity planning, and automated workflow optimization for manufacturing efficiency.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                                <polyline points="3.27,6.96 12,12.01 20.73,6.96"></polyline>
+                                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                            </svg>
+                        </div>
+                        <h4>Quality Control & Compliance</h4>
+                        <p>Integrated quality assurance system with batch tracking, regulatory compliance checks, and comprehensive audit trails for pharmaceutical standards.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 3v18h18"></path>
+                                <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"></path>
+                                <circle cx="18" cy="18" r="3"></circle>
+                            </svg>
+                        </div>
+                        <h4>Advanced Analytics</h4>
+                        <p>Real-time business intelligence with predictive analytics, production metrics, supply chain insights, and customizable reporting dashboards.</p>
+                    </div>
+                </div>
+
+                    <div class="tech-stack">
+                        <span class="tech-badge">React</span>
+                        <span class="tech-badge">Node.js</span>
+                        <span class="tech-badge">PostgreSQL</span>
+                        <span class="tech-badge">Express.js</span>
+                        <span class="tech-badge">Redis</span>
+                        <span class="tech-badge">Docker</span>
+                        <span class="tech-badge">Microservices</span>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>Handcrafted Artisan E-Commerce Platform<span class="project-badge">E-Commerce</span></h2>
+                <p>Specialized e-commerce solution designed exclusively for handcrafted products and artisan marketplaces. This platform empowers crafters and artisans to showcase and sell their unique creations with features including vendor management, custom product galleries, commission-based transactions, and integrated payment processing. The platform supports multiple sellers, handles inventory for handmade items, and provides tools for artisans to manage their online presence, resulting in increased sales and better market reach for independent creators.</p>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                                <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                            </svg>
+                        </div>
+                        <h4>Multi-Vendor Marketplace</h4>
+                        <p>Comprehensive vendor management system allowing multiple artisans to create stores, manage products, and process orders independently.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                                <polyline points="21,15 16,10 5,21"></polyline>
+                            </svg>
+                        </div>
+                        <h4>Product Gallery & Showcase</h4>
+                        <p>Rich media galleries with high-resolution image support, video demonstrations, and detailed product descriptions for showcasing handcrafted items.</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">
@@ -2310,223 +2835,36 @@
                                 <line x1="1" y1="10" x2="23" y2="10"></line>
                             </svg>
                         </div>
-                        <h4>Payment Processing</h4>
-                        <p>Secure payment gateway integration with multiple payment methods and fraud protection.</p>
+                        <h4>Payment & Commission</h4>
+                        <p>Secure payment processing with automated commission calculations, vendor payouts, and financial reporting for marketplace operators.</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">
                             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M3 3v18h18"></path>
-                                <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"></path>
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                             </svg>
                         </div>
-                        <h4>Analytics Dashboard</h4>
-                        <p>Comprehensive analytics with real-time sales tracking and business intelligence.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                            </svg>
-                        </div>
-                        <h4>Admin Dashboard</h4>
-                        <p>Complete admin panel for order management, user administration, and system configuration.</p>
+                        <h4>Artisan Tools</h4>
+                        <p>Dedicated dashboard for artisans with order management, inventory tracking, sales analytics, and customer communication tools.</p>
                     </div>
                 </div>
 
                     <div class="tech-stack">
+                        <span class="tech-badge">MERN Stack</span>
                         <span class="tech-badge">React</span>
-                        <span class="tech-badge">Node.js</span>
                         <span class="tech-badge">MongoDB</span>
-                        <span class="tech-badge">Express.js</span>
                         <span class="tech-badge">Stripe API</span>
+                        <span class="tech-badge">Cloudinary</span>
                         <span class="tech-badge">Redux</span>
-                        <span class="tech-badge">JWT Auth</span>
-                    </div>
                 </div>
+            </div>
 
             <div class="content-section">
-                <h2>Cross-Platform Mobile Task Manager</h2>
-                <p>React Native application for team collaboration and project management with real-time synchronization, offline capabilities, push notifications, and intuitive UI design. Built for seamless cross-platform functionality.</p>
-                
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                                <polyline points="3.27,6.96 12,12.01 20.73,6.96"></polyline>
-                                <line x1="12" y1="22.08" x2="12" y2="12"></line>
-                            </svg>
-                        </div>
-                        <h4>Real-time Sync</h4>
-                        <p>Instant synchronization across all devices with conflict resolution and data consistency.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                <polyline points="14,2 14,8 20,8"></polyline>
-                                <line x1="16" y1="13" x2="8" y2="13"></line>
-                                <line x1="16" y1="17" x2="8" y2="17"></line>
-                                <polyline points="10,9 9,9 8,9"></polyline>
-                            </svg>
-                        </div>
-                        <h4>Offline Capabilities</h4>
-                        <p>Full functionality even without internet connection with automatic sync when online.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                            </svg>
-                        </div>
-                        <h4>Push Notifications</h4>
-                        <p>Smart notification system for task updates, deadlines, and team collaboration alerts.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="3"></circle>
-                                <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1"></path>
-                            </svg>
-                        </div>
-                        <h4>Intuitive UI</h4>
-                        <p>User-friendly interface designed for maximum productivity and ease of use.</p>
-                    </div>
-                </div>
-
-                    <div class="tech-stack">
-                        <span class="tech-badge">React Native</span>
-                        <span class="tech-badge">Firebase</span>
-                        <span class="tech-badge">Redux Toolkit</span>
-                        <span class="tech-badge">AsyncStorage</span>
-                        <span class="tech-badge">Push Notifications</span>
-                    </div>
-                </div>
-
-            <div class="content-section">
-                <h2>Healthcare Management System</h2>
-                <p>Comprehensive healthcare platform for medical clinics with patient records, appointment scheduling, billing integration, telemedicine features, and HIPAA-compliant security. Designed to streamline healthcare operations.</p>
-                
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                <polyline points="14,2 14,8 20,8"></polyline>
-                                <line x1="16" y1="13" x2="8" y2="13"></line>
-                                <line x1="16" y1="17" x2="8" y2="17"></line>
-                                <polyline points="10,9 9,9 8,9"></polyline>
-                            </svg>
-                        </div>
-                        <h4>Patient Records</h4>
-                        <p>Comprehensive digital patient records with medical history and treatment tracking.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <path d="M12 6v6l4 2"></path>
-                            </svg>
-                        </div>
-                        <h4>Appointment Scheduling</h4>
-                        <p>Automated scheduling system with calendar integration and reminder notifications.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                            </svg>
-                        </div>
-                        <h4>HIPAA Compliance</h4>
-                        <p>Full HIPAA compliance with encryption, audit trails, and secure data handling.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M23 4v6h-6"></path>
-                                <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
-                            </svg>
-                        </div>
-                        <h4>Telemedicine</h4>
-                        <p>Integrated video consultation features with WebRTC for remote patient care.</p>
-                    </div>
-                </div>
-
-                    <div class="tech-stack">
-                        <span class="tech-badge">Vue.js</span>
-                        <span class="tech-badge">Python</span>
-                        <span class="tech-badge">Django</span>
-                        <span class="tech-badge">PostgreSQL</span>
-                        <span class="tech-badge">HIPAA Compliance</span>
-                        <span class="tech-badge">WebRTC</span>
-                    </div>
-                </div>
-
-            <div class="content-section">
-                <h2>AI-Powered Business Analytics</h2>
-                <p>Business intelligence dashboard with machine learning capabilities for data analysis, predictive insights, automated reporting, and real-time visualization of key metrics. Transforms raw data into actionable business intelligence.</p>
-                
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M3 3v18h18"></path>
-                                <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"></path>
-                            </svg>
-                        </div>
-                        <h4>Predictive Analytics</h4>
-                        <p>Machine learning models for forecasting trends and predicting business outcomes.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="3"></circle>
-                                <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1"></path>
-                            </svg>
-                        </div>
-                        <h4>Real-time Visualization</h4>
-                        <p>Interactive dashboards with dynamic charts and real-time data updates.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                <polyline points="14,2 14,8 20,8"></polyline>
-                                <line x1="16" y1="13" x2="8" y2="13"></line>
-                                <line x1="16" y1="17" x2="8" y2="17"></line>
-                                <polyline points="10,9 9,9 8,9"></polyline>
-                            </svg>
-                        </div>
-                        <h4>Automated Reporting</h4>
-                        <p>AI-generated reports with insights and recommendations for business optimization.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                                <polyline points="3.27,6.96 12,12.01 20.73,6.96"></polyline>
-                                <line x1="12" y1="22.08" x2="12" y2="12"></line>
-                            </svg>
-                        </div>
-                        <h4>Scalable Infrastructure</h4>
-                        <p>Cloud-native architecture with Docker and Kubernetes for high availability.</p>
-                    </div>
-                </div>
-
-                    <div class="tech-stack">
-                        <span class="tech-badge">Python</span>
-                        <span class="tech-badge">TensorFlow</span>
-                        <span class="tech-badge">React</span>
-                        <span class="tech-badge">D3.js</span>
-                        <span class="tech-badge">Docker</span>
-                        <span class="tech-badge">Kubernetes</span>
-                    </div>
-                </div>
-
-            <div class="content-section">
-                <h2>Real Estate CRM & Mobile App</h2>
-                <p>Custom CRM with companion mobile app for real estate agents featuring lead management, property listings, client communication, virtual tours, and automated follow-up systems. Streamlines the entire real estate workflow.</p>
+                <h2>Direct Sales Agent Management SaaS<span class="project-badge">SaaS Platform</span></h2>
+                <p>Comprehensive Software-as-a-Service platform designed specifically for direct sales organizations and independent sales agents. This cloud-based solution streamlines sales operations with lead management, customer relationship tracking, commission calculations, performance analytics, and team collaboration tools. The platform enables sales teams to manage their entire sales pipeline, track conversions, automate follow-ups, and generate detailed reports, resulting in improved sales productivity and increased revenue for direct sales businesses.</p>
                 
                 <div class="features-grid">
                     <div class="feature-card">
@@ -2539,17 +2877,26 @@
                             </svg>
                         </div>
                         <h4>Lead Management</h4>
-                        <p>Comprehensive lead tracking and nurturing system with automated follow-ups.</p>
+                        <p>Advanced CRM functionality with lead capture, qualification, assignment, and automated nurturing workflows for sales pipeline optimization.</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">
                             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                <circle cx="12" cy="10" r="3"></circle>
+                                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
                             </svg>
                         </div>
-                        <h4>Property Listings</h4>
-                        <p>Advanced property management with photos, virtual tours, and detailed specifications.</p>
+                        <h4>Commission Tracking</h4>
+                        <p>Automated commission calculation system with multi-tier structures, performance-based bonuses, and real-time earnings tracking for sales agents.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 3v18h18"></path>
+                                <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"></path>
+                            </svg>
+                        </div>
+                        <h4>Sales Analytics</h4>
+                        <p>Comprehensive reporting dashboard with sales performance metrics, conversion rates, revenue forecasting, and team performance comparisons.</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">
@@ -2557,28 +2904,19 @@
                                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                             </svg>
                         </div>
-                        <h4>Client Communication</h4>
-                        <p>Integrated messaging system with automated responses and appointment scheduling.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M23 4v6h-6"></path>
-                                <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
-                            </svg>
-                        </div>
-                        <h4>Virtual Tours</h4>
-                        <p>360-degree virtual property tours with interactive features and mobile optimization.</p>
+                        <h4>Team Collaboration</h4>
+                        <p>Built-in communication tools, task management, shared calendars, and team performance dashboards for enhanced sales team coordination.</p>
                     </div>
                 </div>
 
                     <div class="tech-stack">
-                        <span class="tech-badge">Angular</span>
-                        <span class="tech-badge">Flutter</span>
+                        <span class="tech-badge">React</span>
+                        <span class="tech-badge">Node.js</span>
+                        <span class="tech-badge">PostgreSQL</span>
                         <span class="tech-badge">Express.js</span>
-                        <span class="tech-badge">MySQL</span>
-                        <span class="tech-badge">Google Maps API</span>
-                        <span class="tech-badge">SendGrid</span>
+                        <span class="tech-badge">SaaS Architecture</span>
+                        <span class="tech-badge">Stripe Billing</span>
+                        <span class="tech-badge">AWS</span>
                 </div>
             </div>
         </div>
@@ -2982,28 +3320,62 @@
                         <legend class="sr-only">Project Details</legend>
                     <div class="form-group">
                             <label for="service">Service Interest *</label>
-                            <select id="service" name="service" required aria-required="true" aria-describedby="service-help">
-                            <option value="">Select Service Interest *</option>
-                            <option value="mern-stack">MERN Stack Development</option>
-                            <option value="mobile-development">Mobile App Development</option>
-                            <option value="custom-software">Custom Software Development</option>
-                            <option value="software-updates">Software Updates & Maintenance</option>
-                            <option value="mentorship">Tech Mentorship Program</option>
-                            <option value="consultation">Free Consultation</option>
-                        </select>
+                            <div class="custom-dropdown" data-select-id="service">
+                                <select id="service" name="service" class="native-select" required aria-required="true" aria-describedby="service-help">
+                                    <option value="" disabled selected>Please select a service</option>
+                                    <option value="mern-stack">MERN Stack Development</option>
+                                    <option value="mobile-development">Mobile App Development</option>
+                                    <option value="custom-software">Custom Software Development</option>
+                                    <option value="software-updates">Software Updates & Maintenance</option>
+                                    <option value="mentorship">Tech Mentorship Program</option>
+                                    <option value="consultation">Free Consultation</option>
+                                </select>
+                                <div class="custom-dropdown-select placeholder">
+                                    <span class="custom-dropdown-text">Please select a service</span>
+                                    <svg class="custom-dropdown-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="6,9 12,15 18,9"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="custom-dropdown-options">
+                                    <div class="custom-dropdown-option disabled" data-value="">Please select a service</div>
+                                    <div class="custom-dropdown-option" data-value="mern-stack">MERN Stack Development</div>
+                                    <div class="custom-dropdown-option" data-value="mobile-development">Mobile App Development</div>
+                                    <div class="custom-dropdown-option" data-value="custom-software">Custom Software Development</div>
+                                    <div class="custom-dropdown-option" data-value="software-updates">Software Updates & Maintenance</div>
+                                    <div class="custom-dropdown-option" data-value="mentorship">Tech Mentorship Program</div>
+                                    <div class="custom-dropdown-option" data-value="consultation">Free Consultation</div>
+                                </div>
+                            </div>
                             <div id="service-help" class="sr-only">Please select the service you're most interested in</div>
                     </div>
                     <div class="form-group">
                             <label for="budget">Project Budget Range *</label>
-                            <select id="budget" name="budget" required aria-required="true" aria-describedby="budget-help">
-                            <option value="">Project Budget Range *</option>
-                            <option value="under-5k">Under $5,000</option>
-                            <option value="5k-15k">$5,000 - $15,000</option>
-                            <option value="15k-50k">$15,000 - $50,000</option>
-                            <option value="50k-100k">$50,000 - $100,000</option>
-                            <option value="100k-plus">$100,000+</option>
-                            <option value="mentorship-inquiry">Mentorship Inquiry</option>
-                        </select>
+                            <div class="custom-dropdown" data-select-id="budget">
+                                <select id="budget" name="budget" class="native-select" required aria-required="true" aria-describedby="budget-help">
+                                    <option value="" disabled selected>Please select a budget range</option>
+                                    <option value="under-5k">Under $5,000</option>
+                                    <option value="5k-15k">$5,000 - $15,000</option>
+                                    <option value="15k-50k">$15,000 - $50,000</option>
+                                    <option value="50k-100k">$50,000 - $100,000</option>
+                                    <option value="100k-plus">$100,000+</option>
+                                    <option value="mentorship-inquiry">Mentorship Inquiry</option>
+                                </select>
+                                <div class="custom-dropdown-select placeholder">
+                                    <span class="custom-dropdown-text">Please select a budget range</span>
+                                    <svg class="custom-dropdown-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="6,9 12,15 18,9"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="custom-dropdown-options">
+                                    <div class="custom-dropdown-option disabled" data-value="">Please select a budget range</div>
+                                    <div class="custom-dropdown-option" data-value="under-5k">Under $5,000</div>
+                                    <div class="custom-dropdown-option" data-value="5k-15k">$5,000 - $15,000</div>
+                                    <div class="custom-dropdown-option" data-value="15k-50k">$15,000 - $50,000</div>
+                                    <div class="custom-dropdown-option" data-value="50k-100k">$50,000 - $100,000</div>
+                                    <div class="custom-dropdown-option" data-value="100k-plus">$100,000+</div>
+                                    <div class="custom-dropdown-option" data-value="mentorship-inquiry">Mentorship Inquiry</div>
+                                </div>
+                            </div>
                             <div id="budget-help" class="sr-only">Select your estimated budget range for planning purposes</div>
                     </div>
                     <div class="form-group">
@@ -3430,12 +3802,16 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                const href = this.getAttribute('href');
+                // Only proceed if href is not empty and not just '#'
+                if (href && href !== '#' && href.length > 1) {
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
                 }
             });
         });
@@ -3499,6 +3875,126 @@
             });
         }
 
+        // Custom Dropdown with Smooth Animations
+        function initCustomDropdowns() {
+            const customDropdowns = document.querySelectorAll('.custom-dropdown');
+            
+            customDropdowns.forEach(dropdown => {
+                const select = dropdown.querySelector('.native-select');
+                const customSelect = dropdown.querySelector('.custom-dropdown-select');
+                const customText = dropdown.querySelector('.custom-dropdown-text');
+                const options = dropdown.querySelectorAll('.custom-dropdown-option:not(.disabled)');
+                
+                // Update display when native select changes
+                function updateDisplay() {
+                    const selectedOption = select.options[select.selectedIndex];
+                    if (selectedOption && selectedOption.value) {
+                        customText.textContent = selectedOption.text;
+                        customSelect.classList.remove('placeholder');
+                        customSelect.classList.add('selected');
+                        
+                        // Update selected state in options
+                        options.forEach(opt => {
+                            opt.classList.remove('selected');
+                            if (opt.dataset.value === selectedOption.value) {
+                                opt.classList.add('selected');
+                            }
+                        });
+                    } else {
+                        const placeholder = select.querySelector('option[disabled][selected]');
+                        customText.textContent = placeholder ? placeholder.text : 'Please select...';
+                        customSelect.classList.add('placeholder');
+                        customSelect.classList.remove('selected');
+                        options.forEach(opt => opt.classList.remove('selected'));
+                    }
+                }
+                
+                // Toggle dropdown
+                customSelect.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const isOpen = dropdown.classList.contains('open');
+                    
+                    // Close all other dropdowns
+                    customDropdowns.forEach(d => {
+                        if (d !== dropdown) {
+                            d.classList.remove('open');
+                        }
+                    });
+                    
+                    // Toggle current dropdown
+                    dropdown.classList.toggle('open');
+                });
+                
+                // Handle option selection
+                options.forEach(option => {
+                    option.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const value = this.dataset.value;
+                        select.value = value;
+                        select.dispatchEvent(new Event('change', { bubbles: true }));
+                        updateDisplay();
+                        dropdown.classList.remove('open');
+                    });
+                });
+                
+                // Close dropdown when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!dropdown.contains(e.target)) {
+                        dropdown.classList.remove('open');
+                    }
+                });
+                
+                // Keyboard navigation
+                customSelect.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        dropdown.classList.toggle('open');
+                    } else if (e.key === 'Escape') {
+                        dropdown.classList.remove('open');
+                    }
+                });
+                
+                // Handle arrow key navigation in dropdown
+                let currentIndex = -1;
+                dropdown.addEventListener('keydown', function(e) {
+                    if (!dropdown.classList.contains('open')) return;
+                    
+                    if (e.key === 'ArrowDown') {
+                        e.preventDefault();
+                        currentIndex = Math.min(currentIndex + 1, options.length - 1);
+                        options[currentIndex].focus();
+                    } else if (e.key === 'ArrowUp') {
+                        e.preventDefault();
+                        currentIndex = Math.max(currentIndex - 1, 0);
+                        options[currentIndex].focus();
+                    } else if (e.key === 'Enter') {
+                        e.preventDefault();
+                        if (currentIndex >= 0 && options[currentIndex]) {
+                            options[currentIndex].click();
+                        }
+                    }
+                });
+                
+                // Make options focusable
+                options.forEach(option => {
+                    option.setAttribute('tabindex', '0');
+                });
+                
+                // Sync with native select changes
+                select.addEventListener('change', updateDisplay);
+                
+                // Initial display update
+                updateDisplay();
+            });
+        }
+        
+        // Initialize custom dropdowns when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initCustomDropdowns);
+        } else {
+            initCustomDropdowns();
+        }
+
         // Add loading states for better UX
         function addLoadingState(element) {
             element.style.opacity = '0.7';
@@ -3559,8 +4055,11 @@
         const style = document.createElement('style');
         style.textContent = `
             .using-keyboard *:focus {
-                outline: 2px solid var(--primary-purple) !important;
-                outline-offset: 2px;
+                outline: none !important;
+                box-shadow: 0 0 0 2px var(--primary-purple) !important;
+            }
+            .using-keyboard .custom-dropdown-select:focus {
+                box-shadow: 0 0 20px rgba(139, 92, 246, 0.3), 0 0 10px rgba(139, 92, 246, 0.2) !important;
             }
         `;
         document.head.appendChild(style);
