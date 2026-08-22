@@ -7,7 +7,7 @@ export default function BlogPostDetail({ params }: { params: { slug: string } })
   const title = params.slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 
   return (
-    <article className="min-h-screen pt-32 pb-24 bg-background selection:bg-violet-500/30">
+    <article className="min-h-screen pt-32 pb-24 selection:bg-violet-500/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
         <Link 
           href="/blog" 

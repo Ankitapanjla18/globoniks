@@ -12,7 +12,7 @@ const featured = projects.filter((p) => p.liveUrl).slice(0, 3);
 
 export function FeaturedProjectsSection() {
   return (
-    <section className="py-24 bg-background">
+    <section className="py-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
           <div className="max-w-2xl">

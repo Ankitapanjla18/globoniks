@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -25,12 +26,19 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-background border-t border-border mt-20">
+    <footer className="border-t border-border mt-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
           <div className="lg:col-span-2 space-y-6">
-            <Link href="/" className="font-heading font-bold text-2xl tracking-tighter text-foreground">
-              GLOBONIKS<span className="text-violet-600">.</span>
+            <Link href="/" className="flex items-center gap-2 font-heading font-bold text-2xl tracking-tighter text-foreground">
+              <Image
+                src="/logo.svg"
+                alt=""
+                width={40}
+                height={40}
+                className="h-10 w-10 [filter:drop-shadow(0_0_8px_rgba(139,92,246,0.6))]"
+              />
+              GLOBONIKS
             </Link>
             <p className="text-muted-foreground text-sm max-w-sm leading-relaxed">
               We build what others only pitch. Premium MERN stack development and elite tech mentorship based in Punjab, India.

@@ -6,7 +6,7 @@ export default function ServiceDetail({ params }: { params: { service: string } 
   const serviceName = params.service.replace("-", " ");
   
   return (
-    <div className="min-h-screen pt-32 pb-24 bg-background">
+    <div className="min-h-screen pt-32 pb-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
         <Link 
           href="/services" 

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function ProjectsIndex() {
   return (
-    <div className="min-h-screen bg-background pb-24 pt-32">
+    <div className="min-h-screen pb-24 pt-32">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-16 max-w-3xl">
           <h1 className="mb-6 font-heading text-5xl font-black tracking-tight text-foreground md:text-6xl">

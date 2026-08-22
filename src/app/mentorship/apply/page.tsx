@@ -20,7 +20,7 @@ export default function ApplicationForm() {
 
   if (isSubmitted) {
     return (
-      <div className="min-h-screen pt-32 pb-24 bg-background flex flex-col items-center justify-center">
+      <div className="min-h-screen pt-32 pb-24 flex flex-col items-center justify-center">
         <div className="bg-card border border-border rounded-2xl p-12 max-w-lg w-full text-center mx-4">
           <div className="w-16 h-16 bg-green-500/10 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
             <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -40,7 +40,7 @@ export default function ApplicationForm() {
   }
 
   return (
-    <div className="min-h-screen pt-32 pb-24 bg-background">
+    <div className="min-h-screen pt-32 pb-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-2xl">
         <Link 
           href="/mentorship" 

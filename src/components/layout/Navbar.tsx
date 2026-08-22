@@ -1,20 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 
 export function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const navLinks = [
     { name: "Services", href: "/services" },
@@ -25,18 +17,20 @@ export function Navbar() {
   ];
 
   return (
-    <header
-      className={`fixed top-0 w-full z-50 transition-colors duration-300 ${
-        isScrolled
-          ? "bg-background/80 backdrop-blur-md border-b border-border/50"
-          : "bg-transparent"
-      }`}
-    >
+    <header className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-xl border-b border-border shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <div className="flex-shrink-0">
-            <Link href="/" className="font-heading font-bold text-2xl tracking-tighter text-foreground">
-              GLOBONIKS<span className="text-violet-600">.</span>
+            <Link href="/" className="flex items-center gap-2 font-heading font-bold text-2xl tracking-tighter text-foreground">
+              <Image
+                src="/logo.svg"
+                alt=""
+                width={48}
+                height={48}
+                priority
+                className="h-12 w-12 [filter:drop-shadow(0_0_8px_rgba(139,92,246,0.6))]"
+              />
+              GLOBONIKS
             </Link>
           </div>
           
@@ -77,7 +71,7 @@ export function Navbar() {
       </div>
 
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-background border-b border-border">
+        <div className="md:hidden bg-background/95 backdrop-blur-xl border-b border-border">
           <div className="px-4 pt-2 pb-6 space-y-1">
             {navLinks.map((link) => (
               <Link

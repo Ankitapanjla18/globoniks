@@ -55,7 +55,7 @@ export default function ProjectDetail({ params }: Props) {
     : null;
 
   return (
-    <div className="min-h-screen bg-background pb-24 pt-32">
+    <div className="min-h-screen pb-24 pt-32">
       <div className="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <nav aria-label="Breadcrumb" className="mb-12">
           <Link

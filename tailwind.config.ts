@@ -19,7 +19,7 @@ const config = {
     },
     extend: {
       fontFamily: {
-        heading: ["var(--font-bricolage)", "sans-serif"],
+        heading: ["var(--font-inter)", "sans-serif"],
         sans: ["var(--font-inter)", "sans-serif"],
       },
       colors: {

@@ -5,7 +5,7 @@ export default function MentorshipTrackDetail({ params }: { params: { track: str
   const trackName = params.track.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 
   return (
-    <div className="min-h-screen pt-32 pb-24 bg-background">
+    <div className="min-h-screen pt-32 pb-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
         <Link 
           href="/mentorship" 
@@ -71,7 +71,7 @@ export default function MentorshipTrackDetail({ params }: { params: { track: str
           </div>
         </div>
 
-        <div className="bg-[#0A0F1E] border border-violet-500/20 rounded-2xl p-8 lg:p-12 text-center relative overflow-hidden">
+        <div className="bg-card border border-violet-500/20 rounded-2xl p-8 lg:p-12 text-center relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-violet-500/10 rounded-full blur-3xl -z-10" />
           <h3 className="text-2xl font-bold font-heading text-white mb-4">Ready to accelerate your career?</h3>
           <p className="text-violet-200 mb-8 max-w-lg mx-auto">
