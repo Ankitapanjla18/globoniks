@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, ArrowUpRight, Code2, ExternalLink } from "lucide-react";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 export default function ProjectDetail({ params }: { params: { slug: string } }) {
@@ -66,17 +66,10 @@ export default function ProjectDetail({ params }: { params: { slug: string } }) 
                   <p className="text-foreground font-medium">4 Months</p>
                 </div>
                 
-                <div>
-                  <h4 className="text-sm font-medium text-muted-foreground mb-2">Links</h4>
-                  <div className="flex flex-col space-y-3 mt-3">
-                    <a href="#" className="inline-flex items-center text-indigo-500 font-medium hover:text-indigo-400 transition-colors">
-                      <ExternalLink className="w-4 h-4 mr-2" /> Live Application
-                    </a>
-                    <a href="#" className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors">
-                      <Code2 className="w-4 h-4 mr-2" /> Architecture Repo
-                    </a>
-                  </div>
-                </div>
+                {/* "Live Application" and "Architecture Repo" were both
+                    href="#" -- dead links presented as real client work.
+                    Only EduMapping has a live URL. Per-project links come
+                    with the Phase 2 data layer. See NEEDS-INPUT.md. */}
               </div>
             </div>
           </div>

@@ -99,14 +99,8 @@ export function Footer() {
           <p className="text-sm text-muted-foreground">
             &copy; {currentYear} Globoniks. All rights reserved.
           </p>
-          <div className="flex space-x-6">
-            <Link href="/privacy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              Privacy Policy
-            </Link>
-            <Link href="/terms" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              Terms of Service
-            </Link>
-          </div>
+          {/* Privacy Policy and Terms links removed: both routes 404. The
+              pages need real legal copy, not boilerplate. See NEEDS-INPUT.md. */}
         </div>
       </div>
     </footer>

@@ -49,11 +49,8 @@ export default function MentorshipHub() {
         <div className="mt-24 max-w-4xl mx-auto bg-muted/30 border border-border rounded-3xl p-8 md:p-12 text-center">
           <h2 className="text-3xl font-heading font-bold text-foreground mb-4">Pricing & Applications</h2>
           <p className="text-lg text-muted-foreground mb-8">
-            Due to the intensive 1-on-1 nature of our mentorship, cohorts are strictly limited to 10 developers at a time. Pricing details will be provided upon application review, as we offer income share agreements (ISA) and upfront payment tiers.
+            Mentorship is 1-on-1, so cohort places are limited. Pricing details are provided on application review; we offer income share agreements (ISA) and upfront payment tiers.
           </p>
-          <div className="inline-flex items-center text-sm font-medium text-muted-foreground bg-background px-6 py-3 rounded-full border border-border shadow-sm">
-            Current Acceptance Rate: 12%
-          </div>
         </div>
       </div>
     </div>

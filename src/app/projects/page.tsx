@@ -10,7 +10,7 @@ export default function ProjectsIndex() {
   const projects = [
     {
       title: "EduMapping System",
-      description: "A comprehensive education mapping and lifecycle management system handling over 100k student records daily with zero downtime.",
+      description: "A placement management platform for colleges and universities, covering the full lifecycle from job posting through candidate selection.",
       thumbnail: "edumapping-thumb.jpg",
       tags: ["Next.js", "Node.js", "PostgreSQL", "AWS"],
       slug: "edumapping",
@@ -26,7 +26,7 @@ export default function ProjectsIndex() {
     },
     {
       title: "Artisan Marketplace",
-      description: "A hyper-localized e-commerce platform empowering 500+ rural artisans to sell directly to global consumers with automated logistics.",
+      description: "A multi-vendor e-commerce platform for handcrafted goods, with vendor management, commission handling and integrated payments.",
       thumbnail: "artisan-thumb.jpg",
       tags: ["MERN Stack", "Stripe", "Redis"],
       slug: "artisan-marketplace",

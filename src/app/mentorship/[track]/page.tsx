@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, Clock, Calendar, Laptop, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, Calendar, Laptop, CheckCircle2 } from "lucide-react";
 
 export default function MentorshipTrackDetail({ params }: { params: { track: string } }) {
   const trackName = params.track.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
@@ -19,9 +19,8 @@ export default function MentorshipTrackDetail({ params }: { params: { track: str
           <span className="bg-amber-500/10 text-amber-500 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider">
             Mentorship Program
           </span>
-          <span className="flex items-center text-sm text-muted-foreground">
-            <Clock className="w-4 h-4 mr-1.5" /> 12 Weeks
-          </span>
+          {/* Duration was hardcoded to "12 Weeks" on every track, but the
+              tracks run 12, 10 and 8 weeks. Restored per-track in Phase 2. */}
         </div>
 
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-black tracking-tight text-foreground mb-8">
@@ -33,7 +32,9 @@ export default function MentorshipTrackDetail({ params }: { params: { track: str
             <span className="text-muted-foreground text-sm font-medium mb-1 flex items-center">
               <Calendar className="w-4 h-4 mr-2" /> Next Cohort
             </span>
-            <span className="text-foreground font-semibold">Starts in 3 weeks</span>
+            {/* Was the static string "Starts in 3 weeks", which has never
+                been updated and cannot stay true. See NEEDS-INPUT.md. */}
+            <span className="text-foreground font-semibold">Dates on application</span>
           </div>
           <div className="flex flex-col">
             <span className="text-muted-foreground text-sm font-medium mb-1 flex items-center">

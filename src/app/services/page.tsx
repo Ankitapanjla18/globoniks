@@ -24,7 +24,7 @@ export default function ServicesPage() {
     {
       icon: <Wrench size={28} />,
       title: "Maintenance & Support",
-      description: "24/7 dedicated engineering support, infrastructure scaling, and code auditing to keep your stack healthy and secure.",
+      description: "Dedicated engineering support, infrastructure scaling, and code auditing to keep your stack healthy and secure.",
       slug: "maintenance",
     },
   ];

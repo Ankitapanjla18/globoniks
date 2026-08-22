@@ -60,7 +60,7 @@ export default function BlogPostDetail({ params }: { params: { slug: string } })
 
         <div className="prose prose-lg dark:prose-invert max-w-none text-muted-foreground prose-headings:font-heading prose-headings:font-bold prose-a:text-indigo-500 hover:prose-a:text-indigo-400 prose-img:rounded-xl">
           <p className="lead text-xl text-foreground font-medium mb-10">
-            When scaling our latest enterprise application past the 100k Monthly Active Users mark, we encountered significant performance bottlenecks rooted in our deep React component tree and complex Redux store. Here is how we fixed it.
+            As one of our enterprise applications grew, we hit performance bottlenecks rooted in a deep React component tree and a complex Redux store. Here is how we fixed it.
           </p>
           
           <h2 className="text-2xl font-bold font-heading text-foreground mt-12 mb-4">The Boilerplate Problem</h2>
@@ -70,7 +70,7 @@ export default function BlogPostDetail({ params }: { params: { slug: string } })
 
           <h2 className="text-2xl font-bold font-heading text-foreground mt-12 mb-4">Enter Zustand</h2>
           <p>
-            We migrated our core state to Zustand. Not only did we reduce our boilerplate by 60%, but bundle size decreased and concurrent rendering optimizations became trivial to implement. 
+            We migrated our core state to Zustand. Boilerplate dropped sharply, bundle size decreased, and concurrent rendering optimizations became straightforward to implement. 
           </p>
 
           <pre className="bg-muted border border-border rounded-xl p-4 my-8 overflow-x-auto text-sm text-foreground">

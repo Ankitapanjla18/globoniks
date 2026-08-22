@@ -4,7 +4,7 @@ export default function BlogIndex() {
   const posts = [
     {
       title: "Why we abandoned Redux for Zustand in our latest Enterprise App",
-      excerpt: "A deep dive into state management architecture. We compare Redux boilerplate against Zustand's simplicity when scaling a 100k+ MAU tracking dashboard.",
+      excerpt: "A deep dive into state management architecture. We compare Redux boilerplate against Zustand's simplicity on a large tracking dashboard.",
       thumbnail: "zustand-guide.jpg",
       date: "Oct 12, 2024",
       readTime: "8 min read",
@@ -13,7 +13,7 @@ export default function BlogIndex() {
     },
     {
       title: "Building resilient microservices with Node.js and Redis",
-      excerpt: "Event-driven architecture isn't just a buzzword. Learn how we utilize Redis streams to decouple our Express microservices and achieve 99.99% uptime.",
+      excerpt: "Event-driven architecture isn't just a buzzword. Learn how we use Redis streams to decouple Express microservices and improve resilience.",
       thumbnail: "microservices-redis.jpg",
       date: "Sep 28, 2024",
       readTime: "12 min read",
