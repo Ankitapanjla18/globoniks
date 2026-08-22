@@ -1,14 +1,22 @@
 import type { Metadata } from "next";
-import { TeamMemberCard } from "@/components/cards/TeamMemberCard";
 import { WhyUsSection } from "@/components/sections/WhyUsSection";
+import { BUSINESS } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Globoniks is a software development studio founded in 2024 in Mohali, Punjab, building web, mobile and custom software alongside a tech mentorship programme.",
+    "Globoniks is a family-run software studio founded in 2024 in Mohali, Punjab, building web, mobile and custom software alongside a tech mentorship programme.",
   alternates: { canonical: "/about" },
 };
 
+/*
+ * The team grid used to render three placeholder cards -- "[Founder Name]",
+ * and two "[Name]" entries with invented roles ("Head of Mobile Dev",
+ * "Mentorship Director") that corresponded to nobody. Replaced with the real,
+ * confirmed story: family-run, the founder working with their brother.
+ * Named cards return when names, photos and LinkedIn URLs are supplied --
+ * see NEEDS-INPUT.md 1.2.
+ */
 export default function AboutPage() {
   return (
     <div className="min-h-screen pt-32 pb-0">
@@ -22,34 +30,39 @@ export default function AboutPage() {
           </p>
         </div>
 
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-heading font-bold text-center mb-12">Meet the Leadership</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
-            {/* The founder placeholder as requested */}
-            <TeamMemberCard 
-              name="[Founder Name]"
-              role="Founder & Lead Architect"
-              photoPlaceholder={true}
-              linkedInUrl="#"
-            />
-            {/* Additional placeholders for realistic agency look */}
-            <TeamMemberCard 
-              name="[Name]"
-              role="Head of Mobile Dev"
-              photoPlaceholder={true}
-              linkedInUrl="#"
-            />
-            <TeamMemberCard 
-              name="[Name]"
-              role="Mentorship Director"
-              photoPlaceholder={true}
-              linkedInUrl="#"
-            />
-          </div>
+        <div className="max-w-3xl mx-auto">
+          <section
+            aria-labelledby="family-run"
+            className="bg-card border border-border rounded-3xl p-8 md:p-12"
+          >
+            <h2
+              id="family-run"
+              className="text-3xl font-heading font-bold text-foreground mb-6"
+            >
+              A family-run studio.
+            </h2>
+            <div className="space-y-5 text-lg text-muted-foreground leading-relaxed">
+              <p>
+                Globoniks was founded in {BUSINESS.foundingYear} in Mohali,
+                Punjab, and is run by its founder working side by side with
+                their brother. That is not a limitation — it is the point.
+              </p>
+              <p>
+                There is no account layer here and no handoff chain. The
+                people who take your first call are the people who design the
+                architecture, write the code, and answer for it once it is
+                running in production. Every project that ships, ships with
+                our family name behind it.
+              </p>
+              <p>
+                You can see what that produces — the work page links to live
+                products you can open and judge for yourself.
+              </p>
+            </div>
+          </section>
         </div>
       </div>
 
-      {/* Inserted the Why Choose Us section only here, as requested */}
       <WhyUsSection />
     </div>
   );
