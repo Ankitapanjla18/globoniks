@@ -1,72 +1,76 @@
 import Link from "next/link";
-import { ArrowRight, ExternalLink } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { clientLabel, type Project } from "@/data/projects";
 
-interface ProjectCardProps {
-  title: string;
-  description: string;
-  thumbnail: string;
-  tags: string[];
-  slug: string;
-  enterprise?: boolean; // enterprise vs side-project
-}
+/**
+ * There is no real project imagery yet, so the card leads with type and
+ * layout rather than a grey box reading "Image: edumapping-thumb.jpg", which
+ * is what it rendered before. A screenshot slot goes in once we have one.
+ */
+export function ProjectCard({ project }: { project: Project }) {
+  const { slug, title, summary, stack, liveUrl } = project;
+  const client = clientLabel(project.client);
+  const host = liveUrl ? new URL(liveUrl).hostname.replace(/^www\./, "") : null;
 
-export function ProjectCard({
-  title,
-  description,
-  thumbnail,
-  tags,
-  slug,
-  enterprise,
-}: ProjectCardProps) {
   return (
-    <Link href={`/projects/${slug}`} className="group block focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-xl">
-      <div className="bg-card border border-border rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all hover:border-indigo-500/30 flex flex-col h-full">
-        <div className="relative h-60 w-full bg-muted overflow-hidden">
-          {/* Using a placeholder gradient if image fails or isn't provided */}
-          <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500/20 to-amber-500/20 mix-blend-overlay z-10" />
-          <div className="absolute inset-0 bg-muted flex items-center justify-center">
-            {/* Real implementation would use next/image here */}
-            {thumbnail ? (
-              <div className="w-full h-full bg-indigo-900/50 flex items-center justify-center text-muted-foreground">
-                <span className="font-heading font-medium tracking-wide">Image: {thumbnail}</span>
-              </div>
-            ) : (
-              <span className="text-muted-foreground">No image available</span>
-            )}
-          </div>
-          {enterprise && (
-            <div className="absolute top-4 left-4 z-20">
-              <Badge variant="secondary" className="bg-background/90 backdrop-blur-sm text-xs font-semibold uppercase tracking-wider">
-                Enterprise
-              </Badge>
-            </div>
+    <Link
+      href={`/projects/${slug}`}
+      className="group block rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+    >
+      <article className="flex h-full flex-col rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:border-indigo-500/40 hover:shadow-lg">
+        <div className="mb-5 flex items-center gap-3">
+          {host ? (
+            <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-500">
+              <span
+                aria-hidden="true"
+                className="h-1.5 w-1.5 rounded-full bg-emerald-500"
+              />
+              Live
+            </span>
+          ) : (
+            <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+              Case study
+            </span>
+          )}
+          {host && (
+            <span className="truncate font-mono text-xs text-muted-foreground">
+              {host}
+            </span>
           )}
         </div>
-        
-        <div className="p-6 flex flex-col flex-grow">
-          <div className="flex flex-wrap gap-2 mb-4">
-            {tags.map((tag) => (
-              <Badge key={tag} variant="outline" className="text-xs bg-muted/50 text-muted-foreground border-border">
-                {tag}
-              </Badge>
-            ))}
-          </div>
-          
-          <h3 className="text-xl font-heading font-bold mb-2 group-hover:text-indigo-500 transition-colors flex items-center justify-between">
-            {title}
-            <ExternalLink className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
-          </h3>
-          <p className="text-muted-foreground text-sm leading-relaxed mb-6 flex-grow">
-            {description}
+
+        <h3 className="mb-2 font-heading text-xl font-bold text-foreground transition-colors group-hover:text-indigo-500">
+          {title}
+        </h3>
+
+        {client && (
+          <p className="mb-3 text-sm font-medium text-muted-foreground">
+            {client}
           </p>
-          
-          <div className="text-sm font-semibold text-foreground flex items-center mt-auto">
-            View Case Study
-            <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-          </div>
+        )}
+
+        <p className="mb-6 flex-grow text-sm leading-relaxed text-muted-foreground">
+          {summary}
+        </p>
+
+        <div className="mb-6 flex flex-wrap gap-2">
+          {stack.map((tech) => (
+            <Badge
+              key={tech}
+              variant="outline"
+              className="border-border bg-muted/50 text-xs text-muted-foreground"
+            >
+              {tech}
+            </Badge>
+          ))}
         </div>
-      </div>
+
+        <span className="mt-auto flex items-center text-sm font-semibold text-foreground">
+          Read the case study
+          <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+        </span>
+      </article>
     </Link>
   );
 }

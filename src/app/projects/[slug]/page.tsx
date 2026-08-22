@@ -1,89 +1,183 @@
+import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { notFound } from "next/navigation";
+import { ArrowLeft, ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { clientLabel, getProject, projects } from "@/data/projects";
 
-export default function ProjectDetail({ params }: { params: { slug: string } }) {
-  // Simulating fetching data based on slug.
-  const projectName = params.slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+type Props = { params: { slug: string } };
+
+/**
+ * Without this, any slug rendered a 200 with content synthesised from the URL
+ * string -- "/projects/total-nonsense" returned a full case study titled
+ * "Total Nonsense Architecture". That was an unbounded duplicate-content
+ * surface. Now only real projects exist and everything else 404s.
+ */
+export function generateStaticParams() {
+  return projects.map((p) => ({ slug: p.slug }));
+}
+
+export const dynamicParams = false;
+
+export function generateMetadata({ params }: Props): Metadata {
+  const project = getProject(params.slug);
+  if (!project) return {};
+  return {
+    title: `${project.title} — case study`,
+    description: project.summary,
+    alternates: { canonical: `/projects/${project.slug}` },
+    openGraph: {
+      title: `${project.title} — case study | Globoniks`,
+      description: project.summary,
+      url: `/projects/${project.slug}`,
+    },
+  };
+}
+
+function Section({ heading, body }: { heading: string; body: string }) {
+  return (
+    <>
+      <h2 className="mb-4 mt-12 font-heading text-2xl font-bold text-foreground">
+        {heading}
+      </h2>
+      <p>{body}</p>
+    </>
+  );
+}
+
+export default function ProjectDetail({ params }: Props) {
+  const project = getProject(params.slug);
+  if (!project) notFound();
+
+  const client = clientLabel(project.client);
+  const host = project.liveUrl
+    ? new URL(project.liveUrl).hostname.replace(/^www\./, "")
+    : null;
 
   return (
-    <div className="min-h-screen pt-32 pb-24 bg-background">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
-        <Link 
-          href="/projects" 
-          className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-foreground transition-colors mb-12"
-        >
-          <ArrowLeft className="w-4 h-4 mr-2" />
-          Back to Portfolio
-        </Link>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
-          
-          {/* Main Content */}
+    <div className="min-h-screen bg-background pb-24 pt-32">
+      <div className="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+        <nav aria-label="Breadcrumb" className="mb-12">
+          <Link
+            href="/projects"
+            className="inline-flex items-center text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+          >
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Back to our work
+          </Link>
+        </nav>
+
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-3 lg:gap-16">
           <div className="lg:col-span-2">
-            <h1 className="text-4xl md:text-5xl font-heading font-black tracking-tight text-foreground mb-6">
-              {projectName} Architecture
+            <h1 className="mb-6 font-heading text-4xl font-black tracking-tight text-foreground md:text-5xl">
+              {project.title}
             </h1>
-            
-            <div className="prose prose-lg dark:prose-invert max-w-none text-muted-foreground mb-12">
-              <p className="lead text-xl text-foreground font-medium">
-                This case study outlines the technical challenges and architectural decisions made while engineering the {projectName} platform. 
-              </p>
-              
-              <h2 className="text-2xl font-bold font-heading text-foreground mt-12 mb-4">The Challenge</h2>
-              <p>
-                The client required a highly fault-tolerant system capable of processing massive concurrent operations without data loss or downtime. Legacy code was bottlenecking their growth and preventing horizontal scaling.
+
+            <div className="prose prose-lg max-w-none text-muted-foreground dark:prose-invert">
+              <p className="lead text-xl font-medium text-foreground">
+                {project.overview ?? project.summary}
               </p>
 
-              <h2 className="text-2xl font-bold font-heading text-foreground mt-12 mb-4">The Solution</h2>
-              <p>
-                We completely re-architected the monolithic application into scalable microservices using a MERN stack foundation, accelerated by distributed caching and asynchronous message queues. This allowed dynamic scaling during peak loads mapping exactly to infrastructure limits.
-              </p>
+              {/*
+                Sections render only when the content exists. A project with no
+                written challenge or outcome shows a short honest page rather
+                than the generic "we re-architected the monolith into
+                microservices" copy that every case study used to share.
+              */}
+              {project.challenge && (
+                <Section heading="The problem" body={project.challenge} />
+              )}
+              {project.approach && (
+                <Section heading="What we built" body={project.approach} />
+              )}
+              {project.outcome && (
+                <Section heading="Outcome" body={project.outcome} />
+              )}
             </div>
+
+            {project.quote && (
+              <figure className="mt-12 rounded-2xl border border-border bg-muted/20 p-8">
+                <blockquote className="text-lg leading-relaxed text-foreground">
+                  &ldquo;{project.quote.text}&rdquo;
+                </blockquote>
+                <figcaption className="mt-4 text-sm text-muted-foreground">
+                  <span className="font-semibold text-foreground">
+                    {project.quote.name}
+                  </span>
+                  , {project.quote.role}, {project.quote.company}
+                </figcaption>
+              </figure>
+            )}
           </div>
 
-          {/* Sidebar */}
-          <div className="lg:col-span-1">
-            <div className="bg-muted/20 border border-border p-8 rounded-2xl sticky top-32">
-              <h3 className="font-heading font-bold text-lg mb-6 text-foreground border-b border-border pb-4">
-                Project Overview
-              </h3>
-              
-              <div className="space-y-6">
+          <aside className="lg:col-span-1">
+            <div className="sticky top-32 rounded-2xl border border-border bg-muted/20 p-8">
+              <h2 className="mb-6 border-b border-border pb-4 font-heading text-lg font-bold text-foreground">
+                Project overview
+              </h2>
+
+              <dl className="space-y-6">
+                {client && (
+                  <div>
+                    <dt className="mb-2 text-sm font-medium text-muted-foreground">
+                      Client
+                    </dt>
+                    <dd className="font-medium text-foreground">{client}</dd>
+                  </div>
+                )}
+
                 <div>
-                  <h4 className="text-sm font-medium text-muted-foreground mb-2">Tech Stack</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {["React.js", "Node.js", "PostgreSQL", "Redis", "AWS"].map(tag => (
-                      <Badge key={tag} variant="secondary" className="bg-background text-foreground border border-border">
-                        {tag}
+                  <dt className="mb-2 text-sm font-medium text-muted-foreground">
+                    Stack
+                  </dt>
+                  <dd className="flex flex-wrap gap-2">
+                    {project.stack.map((tech) => (
+                      <Badge
+                        key={tech}
+                        variant="secondary"
+                        className="border border-border bg-background text-foreground"
+                      >
+                        {tech}
                       </Badge>
                     ))}
+                  </dd>
+                </div>
+
+                {/* Timeline is omitted unless known. It used to read
+                    "4 Months" on all four case studies. */}
+                {project.timeline && (
+                  <div>
+                    <dt className="mb-2 text-sm font-medium text-muted-foreground">
+                      Timeline
+                    </dt>
+                    <dd className="font-medium text-foreground">
+                      {project.timeline}
+                    </dd>
                   </div>
-                </div>
-                
-                <div>
-                  <h4 className="text-sm font-medium text-muted-foreground mb-2">Timeline</h4>
-                  <p className="text-foreground font-medium">4 Months</p>
-                </div>
-                
-                {/* "Live Application" and "Architecture Repo" were both
-                    href="#" -- dead links presented as real client work.
-                    Only EduMapping has a live URL. Per-project links come
-                    with the Phase 2 data layer. See NEEDS-INPUT.md. */}
-              </div>
+                )}
+
+                {project.liveUrl && (
+                  <div>
+                    <dt className="mb-2 text-sm font-medium text-muted-foreground">
+                      Live site
+                    </dt>
+                    <dd>
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center font-medium text-indigo-500 transition-colors hover:text-indigo-400"
+                      >
+                        <ExternalLink className="mr-2 h-4 w-4 shrink-0" />
+                        {host}
+                      </a>
+                    </dd>
+                  </div>
+                )}
+              </dl>
             </div>
-          </div>
+          </aside>
         </div>
-
-        {/* Full width hero image placeholder */}
-        <div className="mt-16 w-full h-80 md:h-[500px] bg-muted border border-border rounded-3xl flex items-center justify-center overflow-hidden relative group">
-          <div className="absolute inset-0 bg-indigo-500/5 group-hover:bg-indigo-500/10 transition-colors" />
-          <span className="text-muted-foreground font-heading font-medium tracking-widest uppercase">System Dashboard Screenshot</span>
-          <div className="absolute bottom-4 right-4 bg-background/80 backdrop-blur-md px-4 py-2 rounded-lg text-xs font-semibold text-foreground border border-border flex items-center shadow-sm">
-            Mockup <ArrowUpRight className="ml-1 w-3 h-3" />
-          </div>
-        </div>
-
       </div>
     </div>
   );

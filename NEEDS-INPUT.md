@@ -46,33 +46,39 @@ are now roughly two years stale.
 Need per person: **real name, role, photo, LinkedIn URL**. Square-bracket
 placeholders are currently visible in production HTML.
 
-### 1.3 Case studies are generic and interchangeable
+### 1.3 Case studies — now real pages, but thin on detail
 
-`src/app/projects/[slug]/page.tsx` ignores the project data entirely and
-renders the same case study for all four projects — same "Challenge/Solution"
-copy, same hardcoded stack, same hardcoded "Timeline: 4 Months".
+**Update 2026-08-23: rebuilt.** `/projects` and `/projects/[slug]` no longer
+share one generic template. Portfolio data now lives in `src/data/projects.ts`;
+each project renders only the fields it actually has, `generateStaticParams`
+enumerates the five real slugs, and any other slug 404s (was: 200 with
+fabricated content synthesised from the URL). "Artisan Marketplace" was
+removed per your confirmation that it duplicated homekrafted.in.
 
-Per project (EduMapping, Pharma Supply Chain, Artisan Marketplace, SaaS Direct
-Sales) I need:
+Portfolio is now: **Homekrafted, TricityMatch, EduMapping** (all live) plus
+**Pharmaceutical Supply Chain** and **Direct Sales Agent Management** (no
+link, no client name yet).
+
+Still missing per project — nothing below is filled with a guess, the case
+study pages are just shorter than they should be without it:
 
 - **Client name**, or `confidential — [industry], [region]` if under NDA
-- **The problem**, ideally in the client's words
-- **What was built** and the specific technical decisions
-- **Outcome** — a real number if one exists, an honest qualitative outcome if not
-- **Real stack** (currently guessed per project)
-- **Real timeline** (currently "4 Months" for all four)
-- **Screenshots** — there is not one image on the entire site
-- **Client quote** with name, role, company, if obtainable
-- **Live URL and/or repo** — three are now live: `https://edumapping.com`,
-  `https://homekrafted.in`, `https://tricitymatch.com` (see 1.4)
+- **The problem**, ideally in the client's words (`challenge` field, currently unset on all five)
+- **Outcome** — a real number if one exists, an honest qualitative outcome if not (`outcome` field, currently unset on all five)
+- **Confirmed stack** — `stackVerified: false` on EduMapping, Pharma, and Direct Sales in `projects.ts`; their listed stacks are carried over from the archived site and unconfirmed against the actual build
+- **Timeline** — no project currently has one (previously all four wrongly said "4 Months"; now correctly blank rather than wrong)
+- **Screenshots** — still zero images on the entire site
+- **Client quote** — name, role, company, if obtainable
 
 Note: the archived site's EduMapping case study does not match the meta
 description on edumapping.com itself. Worth checking that the live site is
 still the one you built.
 
-### 1.4 Two further live projects — not yet on the site at all
+### 1.4 Homekrafted and TricityMatch — now on the site
 
-Supplied 2026-08-23. Neither appears anywhere in `src/`. Both verified live.
+Supplied 2026-08-23, added to the portfolio the same day. Confirmed: these are
+**not** the same project as the removed "Artisan Marketplace" entry — two
+separate builds.
 
 **homekrafted.in** — multi-vendor marketplace for homemade food and
 handcrafted gifts across Tricity. Next.js, self-hosted on nginx/Ubuntu, ISR
@@ -81,31 +87,29 @@ HTML. Categories, gift hampers, meal subscriptions, corporate/bulk ordering,
 WhatsApp ordering. Named vendors are public on the site: Dadi's Recipe
 (Zirakpur), Home Batch (Sector 15), Cocoa Homemade (Sector 22).
 
-This is currently the strongest provable project in the portfolio. Need:
-- Confirmation Globoniks built it, and what the engagement covered
+This is currently the strongest provable project in the portfolio. Still need:
 - Whether the client can be **named**
 - Whether the public vendor names may be cited as proof
 - Real timeline and team size
 - Any outcome that can be measured (orders, vendors onboarded, GMV) — with a source
 - A quote from the client, if obtainable
 
-Note it duplicates the existing "Artisan Marketplace" entry conceptually.
-Confirm whether these are the same project or two different builds.
-
 **tricitymatch.com** — matrimonial platform for Chandigarh, Mohali and
 Panchkula. "Photo-verified, human-reviewed profiles." Client-rendered React
 SPA behind Cloudflare. Has a full OG tag set and its own og-card.png.
 
-**Before showcasing this one, read the caveat.** The server returns a 9 KB
-shell; the `<h1>` a crawler receives is literally "JavaScript Required". The
-site is not indexable — the same defect Phase 1 just fixed on globoniks.com.
-Featuring it invites a prospect to check and find it. Either fix its rendering
-first (which makes it a *better* case study) or feature it on product merit
-without SEO claims.
+**Before featuring this one more prominently, read the caveat.** The server
+returns a 9 KB shell; the `<h1>` a crawler receives is literally "JavaScript
+Required". The site is not indexable — the same defect Phase 1 just fixed on
+globoniks.com. It is on the site now (product merit, real live link), but a
+technically literate prospect can check in ten seconds and find it isn't
+crawlable. Either fix its rendering (which makes it a *better* case study) or
+keep it as-is and don't make any SEO claim about it.
 
 Its own copy claims "the most trusted matrimonial platform". Do not repeat
-that claim in a Globoniks case study; it is an unsourced superlative of the
-same kind removed from the Globoniks title in Phase 1.
+that claim in the Globoniks case study; it is an unsourced superlative of the
+same kind removed from the Globoniks title in Phase 1. The current case-study
+copy avoids it.
 
 Need: same list as homekrafted, plus a decision on the rendering caveat.
 
@@ -243,19 +247,22 @@ Recorded here so they are not forgotten. No input needed.
 - **Every page shares one `<title>` and description.** No page exports
   `metadata`; no canonicals except the root. This is the single largest
   remaining SEO problem.
-- **Dynamic routes are unbounded.** No `generateStaticParams` and no
-  `notFound()` guard, so `/projects/<anything>`, `/blog/<anything>` and
-  `/mentorship/<anything>` all return 200 with synthesised content. This is an
-  unlimited duplicate-content surface and should be closed before submitting a
-  sitemap.
-- **No images anywhere.** Eight thumbnail filenames are rendered as literal
-  text (`Image: edumapping-thumb.jpg`). No `<img>` or `<Image>` element exists
-  on the site.
+- **Dynamic routes are unbounded — fixed for `/projects/[slug]`, still open for
+  blog and mentorship.** `/projects/<anything>` now 404s via
+  `generateStaticParams` + `dynamicParams = false`. `/blog/<anything>` and
+  `/mentorship/<anything>` still return 200 with synthesised content — same
+  fix needed there.
+- **No images anywhere.** No `<img>` or `<Image>` element exists on the site.
+  Project cards and case studies now lead with type/layout instead of a grey
+  box reading `Image: edumapping-thumb.jpg`, which is a real improvement, but
+  a screenshot slot still needs wiring in once real images exist.
 - **No `sitemap.xml` or `robots.txt`.** `next-sitemap` is installed but never
   runs. I plan to drop it for Next's native `app/sitemap.ts` and `app/robots.ts`.
-- **`/projects` and `/mentorship/apply` are whole-page client components** for
-  small interactive bits, which structurally prevents them from exporting
-  metadata. Needs the interactive part extracted into a child.
+- **`/mentorship/apply` is a whole-page client component** for a small
+  interactive bit, which structurally prevents it from exporting metadata.
+  `/projects` was the same issue and is now fixed — the filter lives in
+  `ProjectFilter.tsx`, a client child, while the page itself is a Server
+  Component with its own metadata. Same pattern applies here.
 - **Mentorship apply form track values don't match the track routes**
   (`mern-stack` vs `mern-track`, `mobile-app` vs `mobile-track`).
 - **Framer Motion sets `opacity:0` inline in the SSR HTML** on the hero,

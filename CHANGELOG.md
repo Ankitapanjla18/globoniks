@@ -285,3 +285,48 @@ Assets `og-card.png` (200, image/png, 25,569 B), `noise.svg` (200) and
 **Not verified, and cannot be from here:** card debuggers (LinkedIn, WhatsApp,
 X), Google's Rich Results Test, and production Lighthouse all require a
 deployed public URL. These need re-checking after deploy.
+
+---
+
+## Portfolio rebuild (2026-08-23)
+
+Two live projects supplied — homekrafted.in and tricitymatch.com — and the
+projects section rebuilt around a data layer.
+
+- **`src/data/projects.ts`** is now the single source for portfolio data. The
+  project list had been copy-pasted byte-identically into two components. Its
+  rule mirrors `site.ts`: unknown fields are omitted, never guessed, and the
+  pages render without them.
+- **Case studies are per-project.** `/projects/[slug]` previously rendered one
+  generic "Challenge/Solution" template for every project, with a hardcoded
+  stack and "Timeline: 4 Months" for all four. Each project now renders only
+  its own verified content; timeline is simply absent until a real one is
+  supplied.
+- **Bogus slugs 404.** `generateStaticParams` + `dynamicParams = false` mean
+  the five real slugs prerender and anything else is a 404. Previously
+  `/projects/total-nonsense-slug` returned HTTP 200 with a case study titled
+  "Total Nonsense Slug Architecture".
+- **`/projects` can now carry metadata.** The page was a whole-page client
+  component for the sake of three filter buttons, which blocked it from
+  exporting `metadata`. The filter moved to `ProjectFilter.tsx` (client child);
+  the page is a Server Component with its own title, description and canonical.
+- **Filter is now honest.** "Enterprise Scale / Startup Velocity" required
+  assigning each project an invented category; the filter is now "All / Live
+  sites", which is verifiable.
+- **"Artisan Marketplace" removed** at your direction as a duplicate of
+  homekrafted.in.
+- **Added Homekrafted and TricityMatch** with live links. Both URLs verified
+  reachable before adding. TricityMatch's case-study copy deliberately makes no
+  SEO/indexability claims (see NEEDS-INPUT.md 1.4 for the caveat) and does not
+  repeat the site's own "most trusted" superlative.
+- **SocialProofBar reworked.** "Trusted by teams at" listed project labels as
+  if they were client names ("Pharma Enterprise", "SaaS Direct Sales"), which
+  proved nothing. It now shows "Live products we've built" — only the three
+  clickable live sites.
+- Homepage featured section now shows the three live projects from the shared
+  data source instead of its own copy-pasted list.
+
+Verification: build clean (17 routes, 5 project pages prerendered as SSG),
+lint clean. Confirmed against a running server: `/projects/total-nonsense-slug`
+→ 404; `/projects/homekrafted` → 200 with per-page title "Homekrafted — case
+study | Globoniks" and 1,275 chars of visible no-JS text.

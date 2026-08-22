@@ -4,35 +4,13 @@ import { ProjectCard } from "@/components/cards/ProjectCard";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { projects } from "@/data/projects";
+
+// Leads with the live, clickable projects -- something a visitor can verify
+// themselves beats a description of a project they can't see.
+const featured = projects.filter((p) => p.liveUrl).slice(0, 3);
 
 export function FeaturedProjectsSection() {
-  const projects = [
-    {
-      title: "EduMapping System",
-      description: "A placement management platform for colleges and universities, covering the full lifecycle from job posting through candidate selection.",
-      thumbnail: "edumapping-thumb.jpg",
-      tags: ["Next.js", "Node.js", "PostgreSQL", "AWS"],
-      slug: "edumapping",
-      enterprise: true,
-    },
-    {
-      title: "Pharma Supply Chain",
-      description: "Real-time tracking application strictly compliant with global pharma regulations, integrating IoT sensors and a unified dashboard.",
-      thumbnail: "pharma-thumb.jpg",
-      tags: ["React Native", "Express", "MongoDB"],
-      slug: "pharma-supply",
-      enterprise: true,
-    },
-    {
-      title: "Artisan Marketplace",
-      description: "A multi-vendor e-commerce platform for handcrafted goods, with vendor management, commission handling and integrated payments.",
-      thumbnail: "artisan-thumb.jpg",
-      tags: ["MERN Stack", "Stripe", "Redis"],
-      slug: "artisan-marketplace",
-      enterprise: false,
-    },
-  ];
-
   return (
     <section className="py-24 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -42,7 +20,7 @@ export function FeaturedProjectsSection() {
               Work that speaks <span className="text-indigo-600">volumes.</span>
             </h2>
             <p className="text-lg text-muted-foreground">
-              We don&apos;t just build apps; we engineer resilient systems architecture. 
+              We don&apos;t just build apps; we engineer resilient systems architecture.
               Here are a few projects that define our engineering standards.
             </p>
           </div>
@@ -58,7 +36,7 @@ export function FeaturedProjectsSection() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
+          {featured.map((project, index) => (
             <motion.div
               key={project.slug}
               initial={{ opacity: 0, y: 20 }}
@@ -66,7 +44,7 @@ export function FeaturedProjectsSection() {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <ProjectCard {...project} />
+              <ProjectCard project={project} />
             </motion.div>
           ))}
         </div>
