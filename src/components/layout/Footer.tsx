@@ -44,15 +44,12 @@ export function Footer() {
               </div>
               <div className="text-[11px] text-muted-foreground pl-6 flex items-center space-x-1">
                 <span>GSTIN:</span>
-                <span className="font-mono text-foreground bg-muted-foreground/10 px-1.5 py-0.5 rounded text-[10px] tracking-wider font-semibold">03czqpa4795r1zj</span>
+                <span className="font-mono text-foreground bg-muted-foreground/10 px-1.5 py-0.5 rounded text-[10px] tracking-wider font-semibold">03CZQPA4795R1ZJ</span>
               </div>
             </div>
-            {/* TODO: Placeholder for Clutch.co widget */}
-            <div className="mt-6 p-4 border border-border rounded-lg bg-muted/30">
-              <p className="text-sm font-medium text-muted-foreground text-center">
-                Clutch.co Widget Placeholder
-              </p>
-            </div>
+            {/* A Clutch.co review widget was stubbed here as visible
+                placeholder text. Removed until there is a real profile
+                to embed. See NEEDS-INPUT.md. */}
           </div>
 
           <div>
