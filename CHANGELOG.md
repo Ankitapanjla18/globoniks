@@ -439,3 +439,58 @@ indexable URLs (apply page correctly excluded). Build and lint clean.
 
 Still requiring a deployed URL: Rich Results Test, share-card debuggers,
 production Lighthouse, and the www-to-apex 301 (host-level).
+
+---
+
+## Personal touch + use-case repositioning (2026-08-23)
+
+### Family-run story (facts from the owner)
+
+- About: the three fabricated team cards ("[Founder Name]" plus two "[Name]"
+  cards with invented roles) are gone. In their place, the confirmed story:
+  family-run, the founder working side by side with their brother, founded
+  2024 in Mohali. No names shown yet at the owner's choice; no headcount or
+  other unconfirmed claims.
+- Contact: one line above the form -- messages land directly with a founder,
+  no sales layer.
+
+### Services repositioned: use-case based, proof-led (owner directive)
+
+"Remove MERN altogether; curate services according to the projects we've
+already handled; make solutions use-case based; expertise should be visible."
+
+- **MERN branding removed sitewide** -- hero subhead, about, contact, footer,
+  audience split, mentorship teaser, both forms' options, three meta
+  descriptions, and the mentorship track itself (now "Full-Stack Web
+  Mastery" at /mentorship/fullstack-track; the old mern-track URL 404s).
+  Technology names (React, Node, MongoDB) remain where they are facts; only
+  the stack-first acronym positioning is gone. Zero MERN occurrences in
+  rendered output, verified across six pages.
+- **New service catalog** (src/data/services.ts), each anchored to delivered
+  work via proofSlugs into the portfolio data:
+  | Service | Proof |
+  |---|---|
+  | Marketplace & E-Commerce Platforms | Homekrafted (live) |
+  | SaaS & Multi-Tenant Platforms | TricityMatch (live), Direct Sales SaaS |
+  | Operations & Compliance Systems | Pharma Supply Chain, EduMapping (live) |
+  | Mobile App Development | TricityMatch + Homekrafted apps (final testing) |
+  | Maintenance & Long-Term Support | the live platforms staying live |
+- **Service pages rebuilt**: use cases ("Built for"), deliverables ("What you
+  receive"), and a "Proof -- work we can show you" section that renders the
+  cited projects with live links and case-study links from the same data
+  that drives the work page, so proof cannot drift from the portfolio.
+- **Compliance made visible honestly**: the Operations & Compliance page
+  carries a compliance note grounded in what was actually delivered (batch
+  tracking, audit trails, regulatory reporting) plus the verifiable
+  GST registration. No certifications invented; see NEEDS-INPUT for making
+  the "we follow compliance" claim more specific.
+- **Services index reframed**: "We sell what we've already shipped."
+- **New fact recorded** (owner, 2026-08-23): companion mobile apps for
+  TricityMatch and Homekrafted are in final testing ahead of launch. Added
+  to both case studies and cited as the proof for the mobile service.
+- Contact form's service dropdown now matches the real catalog.
+
+Verification: build and lint clean; all 27 routes prerender. New service
+and track URLs return 200 with correct titles; old mern-stack/mern-track
+slugs 404; proof links and compliance note confirmed in rendered HTML;
+sitemap carries exactly the new URL set.

@@ -28,7 +28,7 @@ export default function ContactPage() {
                 Let&apos;s talk <span className="text-purple-500">architecture.</span>
               </h1>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Whether you need a complex MERN stack application, a cross-platform mobile app, or a complete system rewrite, our engineers are ready to build it.
+                Whether you need a marketplace, a SaaS platform, a mobile app, or a complete system rewrite, our engineers are ready to build it.
               </p>
               {/* Globoniks is family-run; messages genuinely reach a founder. */}
               <p className="mt-4 text-base text-foreground font-medium">

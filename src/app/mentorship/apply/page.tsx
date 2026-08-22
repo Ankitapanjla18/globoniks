@@ -4,7 +4,7 @@ import { MentorshipApplyForm } from "@/components/forms/MentorshipApplyForm";
 export const metadata: Metadata = {
   title: "Apply for Mentorship",
   description:
-    "Apply to a Globoniks mentorship track: MERN stack, mobile development or leadership & architecture. Applications reviewed within 48 hours.",
+    "Apply to a Globoniks mentorship track: full-stack web, mobile development or leadership & architecture. Applications reviewed within 48 hours.",
   alternates: { canonical: "/mentorship/apply" },
   // An application form has no search value of its own.
   robots: { index: false, follow: true },

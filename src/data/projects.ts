@@ -53,7 +53,7 @@ export const projects: Project[] = [
     overview:
       "Homekrafted brings independent home kitchens and makers onto a single storefront. Vendors keep their own identity and location on the platform, while customers browse by category or occasion, order gift hampers, subscribe to meal plans, or place corporate and bulk orders.",
     approach:
-      "The storefront is server-rendered and incrementally regenerated, so category and product pages are delivered as static HTML and stay fast under load while remaining current as vendors update their listings. Ordering also runs over WhatsApp, which is where much of the customer base already is.",
+      "The storefront is server-rendered and incrementally regenerated, so category and product pages are delivered as static HTML and stay fast under load while remaining current as vendors update their listings. Ordering also runs over WhatsApp, which is where much of the customer base already is. A companion mobile app is in final testing ahead of launch.",
   },
   {
     slug: "tricitymatch",
@@ -64,7 +64,7 @@ export const projects: Project[] = [
     stackVerified: true,
     liveUrl: "https://tricitymatch.com",
     overview:
-      "TricityMatch is a regional matrimonial platform focused on the Chandigarh, Mohali and Panchkula area. Its distinguishing feature is verification: profiles are photo-verified and reviewed by a person rather than published automatically.",
+      "TricityMatch is a regional matrimonial platform focused on the Chandigarh, Mohali and Panchkula area. Its distinguishing feature is verification: profiles are photo-verified and reviewed by a person rather than published automatically. A companion mobile app is in final testing ahead of launch.",
   },
   {
     slug: "edumapping",

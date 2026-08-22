@@ -6,13 +6,13 @@ export function Footer() {
 
   const footerLinks = {
     services: [
-      { name: "MERN Stack Development", href: "/services/mern-stack" },
+      { name: "Marketplace & E-Commerce", href: "/services/marketplace-platforms" },
       { name: "Mobile App Development", href: "/services/mobile-app" },
       { name: "Custom Software", href: "/services/custom-software" },
       { name: "Maintenance & Support", href: "/services/maintenance" },
     ],
     mentorship: [
-      { name: "MERN Stack Track", href: "/mentorship/mern-track" },
+      { name: "Full-Stack Web Track", href: "/mentorship/fullstack-track" },
       { name: "Mobile Development Track", href: "/mentorship/mobile-track" },
       { name: "Leadership & Architecture", href: "/mentorship/leadership" },
       { name: "Apply Now", href: "/mentorship/apply" },
@@ -41,7 +41,7 @@ export function Footer() {
               GLOBONIKS
             </Link>
             <p className="text-muted-foreground text-sm max-w-sm leading-relaxed">
-              We build what others only pitch. Premium MERN stack development and elite tech mentorship based in Punjab, India.
+              We build what others only pitch. Marketplaces, SaaS platforms and business systems — live in production — from Mohali, Punjab.
             </p>
             <div className="p-4 border border-border/60 rounded-xl bg-muted/20 backdrop-blur-sm max-w-xs space-y-2">
               <div className="flex items-center space-x-2 text-xs font-semibold text-foreground/90">

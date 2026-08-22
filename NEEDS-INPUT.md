@@ -35,18 +35,19 @@ I need one of:
 The four listed post titles and dates (Aug–Oct 2024) are also placeholders and
 are now roughly two years stale.
 
-### 1.2 Team members are literal placeholders
+### 1.2 Team section -- placeholders removed 2026-08-23
 
-`src/app/about/page.tsx` renders these to visitors exactly as written:
+The three fake cards are gone ("Head of Mobile Dev" and "Mentorship
+Director" were invented roles corresponding to nobody). About now tells the
+confirmed story: family-run, the founder working with their brother, founded
+2024. Owner chose story-only for now.
 
-| Displayed name | Role |
-|---|---|
-| `[Founder Name]` | Founder & Lead Architect |
-| `[Name]` | Head of Mobile Dev |
-| `[Name]` | Mentorship Director |
-
-Need per person: **real name, role, photo, LinkedIn URL**. Square-bracket
-placeholders are currently visible in production HTML.
+To add named team cards -- recommended before serious outreach (the terms:
+"Anonymous agencies do not get shortlisted") -- send for each of you:
+- Name as it should display
+- Real role
+- Photo
+- LinkedIn URL
 
 ### 1.3 Case studies — now real pages, but thin on detail
 
@@ -132,6 +133,24 @@ Organization schema as an `identifier`. Until then the claim is unverifiable to
 a reader, which for a serious buyer is worse than making no claim.
 
 GSTIN `03CZQPA4795R1ZJ` is fine and needs nothing — normalised to uppercase.
+
+### 2.1b Compliance specifics ("we follow compliance and everything")
+
+The Operations & Compliance service page currently claims only what is
+verifiable: batch tracking / audit trails / regulatory reporting delivered in
+the pharma system, and GST registration. To say more, name the frameworks:
+which regulations did the pharma build satisfy (e.g. specific GxP / audit
+requirements)? Any data-protection posture worth stating (DPDP Act)? Send
+specifics and I will state them; without specifics the site stays general
+rather than inventing certifications.
+
+### 2.1c Mobile apps nearing launch
+
+Recorded from you (2026-08-23): companion apps for TricityMatch and
+Homekrafted are in final testing ahead of launch. Both case studies and the
+Mobile App Development service cite this. When they launch, send the Play
+Store / App Store links and I will replace "in final testing" with the real
+store links -- a stronger proof than any copy.
 
 ### 2.2 Statistics removed — restore any you can source
 

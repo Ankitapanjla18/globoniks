@@ -14,8 +14,8 @@ export type Track = {
 
 export const tracks: Track[] = [
   {
-    slug: "mern-track",
-    title: "MERN Stack Mastery",
+    slug: "fullstack-track",
+    title: "Full-Stack Web Mastery",
     duration: "12 Weeks (Part-time)",
     description:
       "Go beyond basic tutorials. Learn testing, advanced state management, component architecture, and CI/CD pipelines in a production environment.",

@@ -26,7 +26,7 @@ export default function AboutPage() {
             Building software with <span className="text-violet-600">conviction.</span>
           </h1>
           <p className="text-xl text-muted-foreground leading-relaxed">
-            Globoniks was founded on a simple premise: most software agencies produce unmaintainable code. We exist to provide enterprise-grade MERN stack engineering and elite mentorship to shape the next generation of architects.
+            Globoniks was founded on a simple premise: most software agencies produce unmaintainable code. We exist to build production systems businesses can run on — and to mentor the next generation of architects.
           </p>
         </div>
 

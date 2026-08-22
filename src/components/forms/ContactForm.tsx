@@ -54,9 +54,10 @@ export function ContactForm() {
           <label htmlFor="service" className="text-sm font-medium text-foreground">Service Required</label>
           <select required id="service" className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500">
             <option value="">Select a service...</option>
-            <option value="mern">MERN Stack Development</option>
+            <option value="marketplace">Marketplace / E-Commerce Platform</option>
+            <option value="saas">SaaS / Multi-Tenant Platform</option>
+            <option value="operations">Operations & Compliance System</option>
             <option value="mobile">Mobile App Development</option>
-            <option value="custom">Custom Software Architecture</option>
             <option value="maintenance">Maintenance & Support</option>
             <option value="other">Other Inquiry</option>
           </select>

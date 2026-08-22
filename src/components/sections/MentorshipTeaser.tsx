@@ -22,7 +22,7 @@ export function MentorshipTeaser() {
               Level up your engineering career.
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Stop watching generic tutorials. Join our rigorous, mentor-led programs in MERN stack, Mobile Dev, or Software Architecture. We teach you how to build production-grade systems.
+              Stop watching generic tutorials. Join our rigorous, mentor-led programs in full-stack web, mobile development, or software architecture. We teach you how to build production-grade systems.
             </p>
             
             <div className="pt-4 flex flex-col sm:flex-row gap-4">

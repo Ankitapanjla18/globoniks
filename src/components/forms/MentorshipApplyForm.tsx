@@ -85,7 +85,7 @@ export function MentorshipApplyForm() {
             <label htmlFor="track" className="text-sm font-medium text-foreground">Desired Track</label>
             <select required id="track" className="w-full flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500">
               <option value="">Select a mentorship track...</option>
-              <option value="mern-track">MERN Stack Mastery</option>
+              <option value="fullstack-track">Full-Stack Web Mastery</option>
               <option value="mobile-track">Mobile Development</option>
               <option value="leadership">Leadership & Architecture</option>
             </select>

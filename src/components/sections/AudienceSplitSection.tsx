@@ -17,7 +17,7 @@ export function AudienceSplitSection() {
                 </div>
                 <CardTitle className="text-2xl font-heading mb-2">I need software built</CardTitle>
                 <CardDescription className="text-base">
-                  Hire our elite MERN stack and mobile development team to bring your product to life.
+                  Hire the team behind live marketplaces, SaaS platforms and mobile apps to build your product.
                 </CardDescription>
               </CardHeader>
               <CardContent>
