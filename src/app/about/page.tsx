@@ -1,5 +1,13 @@
+import type { Metadata } from "next";
 import { TeamMemberCard } from "@/components/cards/TeamMemberCard";
 import { WhyUsSection } from "@/components/sections/WhyUsSection";
+
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "Globoniks is a software development studio founded in 2024 in Mohali, Punjab, building web, mobile and custom software alongside a tech mentorship programme.",
+  alternates: { canonical: "/about" },
+};
 
 export default function AboutPage() {
   return (

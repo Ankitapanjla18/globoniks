@@ -1,45 +1,15 @@
+import type { Metadata } from "next";
 import { BlogCard } from "@/components/cards/BlogCard";
+import { publishedPosts } from "@/data/posts";
+
+export const metadata: Metadata = {
+  title: "Engineering Blog",
+  description:
+    "Technical articles from the Globoniks engineering team on architecture, state management and building production systems.",
+  alternates: { canonical: "/blog" },
+};
 
 export default function BlogIndex() {
-  const posts = [
-    {
-      title: "Why we abandoned Redux for Zustand in our latest Enterprise App",
-      excerpt: "A deep dive into state management architecture. We compare Redux boilerplate against Zustand's simplicity on a large tracking dashboard.",
-      thumbnail: "zustand-guide.jpg",
-      date: "Oct 12, 2024",
-      readTime: "8 min read",
-      slug: "abandoning-redux-for-zustand",
-      category: "Architecture",
-    },
-    {
-      title: "Building resilient microservices with Node.js and Redis",
-      excerpt: "Event-driven architecture isn't just a buzzword. Learn how we use Redis streams to decouple Express microservices and improve resilience.",
-      thumbnail: "microservices-redis.jpg",
-      date: "Sep 28, 2024",
-      readTime: "12 min read",
-      slug: "resilient-microservices",
-      category: "Backend",
-    },
-    {
-      title: "Is React Native still the king of Cross-Platform?",
-      excerpt: "Flutter is great, but React Native's ecosystem remains unparalleled for teams transitioning from web to mobile. Here's our definitive framework analysis.",
-      thumbnail: "react-native-2024.jpg",
-      date: "Sep 15, 2024",
-      readTime: "6 min read",
-      slug: "react-native-king",
-      category: "Mobile",
-    },
-    {
-      title: "The Junior Developer's guide to passing Senior Engineering Interviews",
-      excerpt: "Stop grinding LeetCode and start designing scalable systems. Our mentorship directors break down what technical recruiters actually look for.",
-      thumbnail: "interview-guide.jpg",
-      date: "Aug 30, 2024",
-      readTime: "10 min read",
-      slug: "senior-engineering-interviews",
-      category: "Mentorship",
-    },
-  ];
-
   return (
     <div className="min-h-screen pt-32 pb-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -53,7 +23,7 @@ export default function BlogIndex() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {posts.map((post) => (
+          {publishedPosts.map((post) => (
             <BlogCard key={post.slug} {...post} />
           ))}
         </div>

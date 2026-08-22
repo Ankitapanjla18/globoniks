@@ -9,11 +9,13 @@ Ordered roughly by how much it blocks. Add answers inline under each item.
 
 ## 1. Blocking — content that is currently fabricated and still live
 
-### 1.1 The entire blog is fabricated
+### 1.1 The blog article is fabricated
 
-`src/app/blog/[slug]/page.tsx` serves **one hardcoded article to every blog
-URL**. `/blog/anything-at-all` returns HTTP 200 with that same article under a
-title derived from the slug.
+**Update 2026-08-23:** the route is now bounded -- only
+`/blog/abandoning-redux-for-zustand` exists (the one post with a body);
+the three title-only stubs are unpublished in `src/data/posts.ts` and 404,
+as does any other slug. The authenticity question below still stands for
+the remaining article.
 
 The article is written in the first person as Globoniks' own engineering
 experience, and is bylined:
@@ -166,11 +168,11 @@ Every track page said "Next Cohort: Starts in 3 weeks" — a static string that
 has never been updated. Replaced with "Dates on application". Give me real
 cohort dates and I will show them.
 
-### 2.5 Mentorship track durations
+### 2.5 Mentorship track durations -- resolved 2026-08-23
 
-Track pages hardcoded "12 Weeks" for every track, but the listing says MERN
-Stack Mastery is 12 weeks, Mobile Development 10, Leadership & Architecture 8.
-Confirm the three durations and I will wire them per track in Phase 2.
+Track detail pages now show the per-track durations from the listing
+(12/10/8 weeks) via src/data/mentorship.ts. If those listing values were
+themselves wrong, correct them there.
 
 ---
 
@@ -244,27 +246,20 @@ Flagged rather than deleted, per your rule.
 
 Recorded here so they are not forgotten. No input needed.
 
-- **Every page shares one `<title>` and description.** No page exports
-  `metadata`; no canonicals except the root. This is the single largest
-  remaining SEO problem.
-- **Dynamic routes are unbounded — fixed for `/projects/[slug]`, still open for
-  blog and mentorship.** `/projects/<anything>` now 404s via
-  `generateStaticParams` + `dynamicParams = false`. `/blog/<anything>` and
-  `/mentorship/<anything>` still return 200 with synthesised content — same
-  fix needed there.
+- **Per-page titles/descriptions/canonicals: done as of 2026-08-23** on every
+  route, verified against a running server.
+- **Dynamic routes: all bounded as of 2026-08-23.** projects, services,
+  mentorship tracks and blog all enumerate from src/data/* and 404 unknown
+  slugs. The blog additionally publishes only the one post that has a body.
 - **No images anywhere.** No `<img>` or `<Image>` element exists on the site.
   Project cards and case studies now lead with type/layout instead of a grey
   box reading `Image: edumapping-thumb.jpg`, which is a real improvement, but
   a screenshot slot still needs wiring in once real images exist.
-- **No `sitemap.xml` or `robots.txt`.** `next-sitemap` is installed but never
-  runs. I plan to drop it for Next's native `app/sitemap.ts` and `app/robots.ts`.
-- **`/mentorship/apply` is a whole-page client component** for a small
-  interactive bit, which structurally prevents it from exporting metadata.
-  `/projects` was the same issue and is now fixed — the filter lives in
-  `ProjectFilter.tsx`, a client child, while the page itself is a Server
-  Component with its own metadata. Same pattern applies here.
-- **Mentorship apply form track values don't match the track routes**
-  (`mern-stack` vs `mern-track`, `mobile-app` vs `mobile-track`).
+- **sitemap.xml and robots.txt: done as of 2026-08-23** via native
+  app/sitemap.ts / app/robots.ts; next-sitemap/next-seo removed.
+- **`/mentorship/apply` split: done as of 2026-08-23** (client form extracted,
+  page carries metadata, marked noindex). Its track options also now match the
+  real track routes.
 - **Framer Motion sets `opacity:0` inline in the SSR HTML** on the hero,
   featured projects and mentorship teaser. Text is indexable, but a JS-disabled
   or JS-failed render shows those blocks blank.

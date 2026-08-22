@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 interface BlogCardProps {
   title: string;
   excerpt: string;
-  thumbnail: string;
+  thumbnail?: string;
   date: string;
   readTime: string;
   slug: string;
@@ -15,7 +15,6 @@ interface BlogCardProps {
 export function BlogCard({
   title,
   excerpt,
-  thumbnail,
   date,
   readTime,
   slug,
@@ -26,8 +25,8 @@ export function BlogCard({
       <div className="bg-card border border-border rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all hover:border-violet-500/30 flex flex-col h-full">
         <div className="relative h-48 w-full bg-muted overflow-hidden">
           <div className="absolute inset-0 bg-violet-900/40 mix-blend-overlay z-10 transition-colors group-hover:bg-violet-500/20" />
-          <div className="absolute inset-0 flex items-center justify-center text-muted-foreground bg-muted">
-            <span className="font-heading font-medium tracking-wide">Image: {thumbnail}</span>
+          <div className="absolute inset-0 flex items-center justify-center bg-muted">
+            <span className="font-heading font-black text-2xl tracking-tight text-violet-500/40 uppercase">{category}</span>
           </div>
           <div className="absolute top-4 left-4 z-20">
             <Badge variant="secondary" className="bg-background/90 backdrop-blur-sm text-xs font-semibold capitalize tracking-wider">

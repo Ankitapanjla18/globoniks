@@ -1,4 +1,12 @@
+import type { Metadata } from "next";
 import { ContactForm } from "@/components/forms/ContactForm";
+
+export const metadata: Metadata = {
+  title: "Contact",
+  description:
+    "Talk to Globoniks about your project. Office in Sector 68, Mohali, Punjab — reach us at info@globoniks.com or +91-9988-909-556.",
+  alternates: { canonical: "/contact" },
+};
 import { StructuredData } from "@/components/seo/StructuredData";
 import {
   ADDRESS_LINES,

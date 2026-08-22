@@ -377,3 +377,65 @@ existing brand colour (#8b5cf6)".
 Verification: build clean (17 routes), lint clean. Served CSS confirmed to
 carry the restored dark palette and `.brand-cta` gradient; rendered homepage
 has 43 violet-class occurrences and zero amber/indigo/navy remnants.
+
+---
+
+## Visual identity + SEO foundation (2026-08-23)
+
+### Old-site identity, restored as-is
+
+Each item ported verbatim from old-site-archive/index.html, not approximated:
+
+- **Logo** -- the real full-logo SVG in navbar and footer with the old purple
+  drop-shadow glow. The interim site had no logo anywhere; the brand was text.
+- **Font** -- Inter only, as the old site had it. Bricolage Grotesque removed.
+- **Floating stars** -- the old particle system (3px purple dots, 0 0 10px
+  glow, 30 mobile / 60 desktop, randomized 4-8s float cycles) ported as
+  FloatingParticles.tsx with the original keyframes; generated post-mount
+  (no hydration mismatch), stilled under prefers-reduced-motion.
+- **Header** -- always-on glassmorphism (95% black, 20px blur, purple-glass
+  border) instead of transparent-until-scroll.
+- Page wrappers/sections dropped redundant solid backgrounds so the star
+  layer shows through, as on the old site. Cards/forms/menus stay solid.
+
+### SEO foundation (document sections 2, 3.1, 3.2)
+
+- **Every route now has its own title, description and canonical.** Before
+  this, one title served all pages. Verified per-route against a running
+  server.
+- **All dynamic routes bounded.** services/[service], mentorship/[track] and
+  blog/[slug] join projects/[slug]: enumerated from src/data/*, prerendered,
+  dynamicParams=false. Any unknown slug 404s. Previously every one of these
+  returned 200 with content synthesised from the URL string.
+- **Data layer completed** -- services.ts, mentorship.ts, posts.ts join
+  projects.ts. Copy migrated, not invented. Mentorship track pages now show
+  their real per-track durations (12/10/8 weeks) from the listing data.
+- **Blog bounded to reality.** Only the one post with an actual body is
+  published; the three title-only stubs are kept in data as published:false
+  instead of serving copies of an unrelated article. Article JSON-LD
+  attributes authorship to the organization, NOT the unverified "Alex Vance"
+  byline (still visible, still flagged in NEEDS-INPUT 1.1).
+- **/sitemap.xml + /robots.txt** via native app/sitemap.ts / app/robots.ts,
+  enumerated from the same data files that gate the routes. Removed
+  next-sitemap and next-seo (installed but never ran) and their config.
+- **Structured data extended** -- Service on each service page,
+  BreadcrumbList on all detail pages, Article on the blog post.
+- /mentorship/apply split (client form into MentorshipApplyForm.tsx) so the
+  route could carry metadata; marked noindex. Its track options fixed to
+  match the real routes (mern-track/mobile-track, were mern-stack/mobile-app).
+- not-found.tsx added for the newly bounded routes.
+- BlogCard no longer renders "Image: zustand-guide.jpg" as visible text for
+  images that never existed; three decorative share buttons that did nothing
+  on click were removed from the article header.
+
+### Verification (all against next start, JavaScript never executed)
+
+27 routes, all prerendered (zero on-demand). Each of the 12 checked routes:
+HTTP 200, exactly one h1, unique title, unique canonical, 1,100-2,300 chars
+of visible no-JS text. /projects/fake-x, /blog/fake-x, /mentorship/fake-x,
+/services/fake-x and the unpublished /blog/resilient-microservices all 404.
+robots.txt references the sitemap; the sitemap lists exactly the 20
+indexable URLs (apply page correctly excluded). Build and lint clean.
+
+Still requiring a deployed URL: Rich Results Test, share-card debuggers,
+production Lighthouse, and the www-to-apex 301 (host-level).

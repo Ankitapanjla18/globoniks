@@ -1,30 +1,15 @@
+import type { Metadata } from "next";
 import { MentorshipTrackCard } from "@/components/cards/MentorshipTrackCard";
+import { tracks } from "@/data/mentorship";
+
+export const metadata: Metadata = {
+  title: "Tech Mentorship",
+  description:
+    "Mentor-led engineering tracks in MERN stack, mobile development and software architecture. 1-on-1, remote, taught by working engineers at Globoniks.",
+  alternates: { canonical: "/mentorship" },
+};
 
 export default function MentorshipHub() {
-  const tracks = [
-    {
-      title: "MERN Stack Mastery",
-      duration: "12 Weeks (Part-time)",
-      description: "Go beyond basic tutorials. Learn testing, advanced state management, component architecture, and CI/CD pipelines in a production environment.",
-      slug: "mern-track",
-      tags: ["React 18", "Next.js", "Node", "MongoDB", "Jest"],
-    },
-    {
-      title: "Mobile Development",
-      duration: "10 Weeks (Part-time)",
-      description: "Build performant native-feeling apps. Master React Native CLI, complex animations, native modules, and app store deployment.",
-      slug: "mobile-track",
-      tags: ["React Native", "Expo", "Redux", "Swift/Java Basics"],
-    },
-    {
-      title: "Leadership & Architecture",
-      duration: "8 Weeks (Part-time)",
-      description: "For mid-level engineers looking to step up. Learn system design, microservices, cloud infrastructure, and technical leadership.",
-      slug: "leadership",
-      tags: ["System Design", "AWS", "Docker", "Agile Management"],
-    },
-  ];
-
   return (
     <div className="min-h-screen pt-32 pb-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
