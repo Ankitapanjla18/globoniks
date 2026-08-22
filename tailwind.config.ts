@@ -56,15 +56,10 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        navy: {
-          900: '#0A0F1E',
-        },
-        indigo: {
-          600: '#4F46E5',
-        },
-        amber: {
-          500: '#F59E0B',
-        }
+        // Brand colors are Tailwind's stock violet-500 (#8B5CF6) and
+        // purple-500 (#A855F7) -- the exact values from the original site's
+        // CSS variables -- so no custom scale is needed. The interim
+        // navy/indigo/amber overrides are gone with the theme they served.
       },
       borderRadius: {
         lg: "var(--radius)",

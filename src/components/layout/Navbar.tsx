@@ -36,7 +36,7 @@ export function Navbar() {
         <div className="flex items-center justify-between h-20">
           <div className="flex-shrink-0">
             <Link href="/" className="font-heading font-bold text-2xl tracking-tighter text-foreground">
-              GLOBONIKS<span className="text-indigo-600">.</span>
+              GLOBONIKS<span className="text-violet-600">.</span>
             </Link>
           </div>
           
@@ -58,7 +58,7 @@ export function Navbar() {
           <div className="hidden md:block">
             <Link
               href="/contact"
-              className="amber-cta px-5 py-2.5 rounded-md text-sm font-semibold inline-flex items-center justify-center"
+              className="brand-cta px-5 py-2.5 rounded-md text-sm font-semibold inline-flex items-center justify-center"
             >
               Get a Quote &rarr;
             </Link>
@@ -92,7 +92,7 @@ export function Navbar() {
             <Link
               href="/contact"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="block mt-4 w-full text-center amber-cta px-5 py-3 rounded-md text-base font-semibold"
+              className="block mt-4 w-full text-center brand-cta px-5 py-3 rounded-md text-base font-semibold"
             >
               Get a Quote
             </Link>

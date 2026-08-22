@@ -34,7 +34,7 @@ export default function ServiceDetail({ params }: { params: { service: string } 
               "Production-grade Security Audits"
             ].map((item, idx) => (
               <div key={idx} className="flex items-start">
-                <CheckCircle2 className="w-6 h-6 text-indigo-500 mr-3 flex-shrink-0" />
+                <CheckCircle2 className="w-6 h-6 text-violet-500 mr-3 flex-shrink-0" />
                 <span className="font-medium text-foreground">{item}</span>
               </div>
             ))}
@@ -45,7 +45,7 @@ export default function ServiceDetail({ params }: { params: { service: string } 
             <p className="mb-8">Discuss your architecture requirements with a senior engineer.</p>
             <Link 
               href="/contact" 
-              className="amber-cta px-8 py-4 rounded-md text-base font-semibold inline-flex"
+              className="brand-cta px-8 py-4 rounded-md text-base font-semibold inline-flex"
             >
               Request a Technical Quote
             </Link>

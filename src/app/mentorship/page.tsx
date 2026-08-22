@@ -29,11 +29,11 @@ export default function MentorshipHub() {
     <div className="min-h-screen pt-32 pb-24 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <div className="inline-flex items-center rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-1.5 text-sm text-amber-500 font-semibold mb-6">
+          <div className="inline-flex items-center rounded-full border border-purple-500/30 bg-purple-500/10 px-4 py-1.5 text-sm text-purple-500 font-semibold mb-6">
             Intensive Developer Training
           </div>
           <h1 className="text-5xl md:text-6xl font-heading font-black tracking-tight text-foreground mb-6">
-            Elite Engineering <span className="text-amber-500">Mentorship.</span>
+            Elite Engineering <span className="text-purple-500">Mentorship.</span>
           </h1>
           <p className="text-xl text-muted-foreground leading-relaxed">
             Stop building trivial side projects. Join our rigorous mentorship cohorts and write production-grade code under the guidance of senior architects.

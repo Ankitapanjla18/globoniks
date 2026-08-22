@@ -20,7 +20,7 @@ export function SocialProofBar() {
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-3 rounded-full border border-border bg-card shadow-sm text-foreground font-medium text-sm sm:text-base hover:border-indigo-500/30 transition-colors"
+              className="px-6 py-3 rounded-full border border-border bg-card shadow-sm text-foreground font-medium text-sm sm:text-base hover:border-violet-500/30 transition-colors"
             >
               {project.title}
             </a>

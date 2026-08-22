@@ -16,9 +16,9 @@ export function ProjectCard({ project }: { project: Project }) {
   return (
     <Link
       href={`/projects/${slug}`}
-      className="group block rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+      className="group block rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
     >
-      <article className="flex h-full flex-col rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:border-indigo-500/40 hover:shadow-lg">
+      <article className="flex h-full flex-col rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:border-violet-500/40 hover:shadow-lg">
         <div className="mb-5 flex items-center gap-3">
           {host ? (
             <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-500">
@@ -40,7 +40,7 @@ export function ProjectCard({ project }: { project: Project }) {
           )}
         </div>
 
-        <h3 className="mb-2 font-heading text-xl font-bold text-foreground transition-colors group-hover:text-indigo-500">
+        <h3 className="mb-2 font-heading text-xl font-bold text-foreground transition-colors group-hover:text-violet-500">
           {title}
         </h3>
 

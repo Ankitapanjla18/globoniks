@@ -16,7 +16,7 @@ export default function MentorshipTrackDetail({ params }: { params: { track: str
         </Link>
         
         <div className="flex items-center space-x-4 mb-4">
-          <span className="bg-amber-500/10 text-amber-500 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider">
+          <span className="bg-purple-500/10 text-purple-500 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider">
             Mentorship Program
           </span>
           {/* Duration was hardcoded to "12 Weeks" on every track, but the
@@ -64,22 +64,22 @@ export default function MentorshipTrackDetail({ params }: { params: { track: str
               "Security best practices"
             ].map((item, idx) => (
               <div key={idx} className="flex items-start bg-muted/20 p-4 rounded-lg border border-border">
-                <CheckCircle2 className="w-5 h-5 text-amber-500 mr-3 flex-shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-5 h-5 text-purple-500 mr-3 flex-shrink-0 mt-0.5" />
                 <span className="text-sm font-medium text-foreground">{item}</span>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="bg-[#0A0F1E] border border-indigo-500/20 rounded-2xl p-8 lg:p-12 text-center relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl -z-10" />
+        <div className="bg-[#0A0F1E] border border-violet-500/20 rounded-2xl p-8 lg:p-12 text-center relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-violet-500/10 rounded-full blur-3xl -z-10" />
           <h3 className="text-2xl font-bold font-heading text-white mb-4">Ready to accelerate your career?</h3>
-          <p className="text-indigo-200 mb-8 max-w-lg mx-auto">
+          <p className="text-violet-200 mb-8 max-w-lg mx-auto">
             Spots are strictly limited to ensure an elite 1-on-1 mentorship experience. Submitting an application does not guarantee acceptance.
           </p>
           <Link 
             href={`/mentorship/apply?track=${params.track}`}
-            className="amber-cta px-8 py-4 rounded-md text-base font-semibold inline-flex items-center shadow-lg shadow-amber-500/20"
+            className="brand-cta px-8 py-4 rounded-md text-base font-semibold inline-flex items-center shadow-lg shadow-purple-500/20"
           >
             Start Your Application
           </Link>

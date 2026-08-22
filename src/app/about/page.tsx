@@ -7,7 +7,7 @@ export default function AboutPage() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-24">
         <div className="max-w-4xl mx-auto text-center mb-16">
           <h1 className="text-5xl md:text-6xl font-heading font-black tracking-tight text-foreground mb-6">
-            Building software with <span className="text-indigo-600">conviction.</span>
+            Building software with <span className="text-violet-600">conviction.</span>
           </h1>
           <p className="text-xl text-muted-foreground leading-relaxed">
             Globoniks was founded on a simple premise: most software agencies produce unmaintainable code. We exist to provide enterprise-grade MERN stack engineering and elite mentorship to shape the next generation of architects.

@@ -17,7 +17,7 @@ export default function ContactPage() {
           <div className="lg:w-5/12 space-y-8">
             <div>
               <h1 className="text-4xl lg:text-5xl font-heading font-black tracking-tight text-foreground mb-6">
-                Let&apos;s talk <span className="text-amber-500">architecture.</span>
+                Let&apos;s talk <span className="text-purple-500">architecture.</span>
               </h1>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 Whether you need a complex MERN stack application, a cross-platform mobile app, or a complete system rewrite, our engineers are ready to build it.
@@ -45,7 +45,7 @@ export default function ContactPage() {
                   href={MAPS_DIRECTIONS_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-3 inline-flex text-sm font-medium text-indigo-500 hover:text-indigo-400 transition-colors"
+                  className="mt-3 inline-flex text-sm font-medium text-violet-500 hover:text-violet-400 transition-colors"
                 >
                   Get directions to the Globoniks office
                 </a>

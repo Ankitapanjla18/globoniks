@@ -16,7 +16,7 @@ export default function ProjectsIndex() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-16 max-w-3xl">
           <h1 className="mb-6 font-heading text-5xl font-black tracking-tight text-foreground md:text-6xl">
-            Our <span className="text-indigo-600">work.</span>
+            Our <span className="text-violet-600">work.</span>
           </h1>
           <p className="text-xl leading-relaxed text-muted-foreground">
             {liveProjects.length} of these are live and running right now — open

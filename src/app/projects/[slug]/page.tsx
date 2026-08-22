@@ -166,7 +166,7 @@ export default function ProjectDetail({ params }: Props) {
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center font-medium text-indigo-500 transition-colors hover:text-indigo-400"
+                        className="inline-flex items-center font-medium text-violet-500 transition-colors hover:text-violet-400"
                       >
                         <ExternalLink className="mr-2 h-4 w-4 shrink-0" />
                         {host}

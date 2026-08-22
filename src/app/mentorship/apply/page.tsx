@@ -31,7 +31,7 @@ export default function ApplicationForm() {
           <p className="text-muted-foreground mb-8">
             Thank you for applying to the Globoniks Mentorship program. Our engineering team will review your application and respond within 48 hours.
           </p>
-          <Link href="/mentorship" className="text-indigo-500 font-medium hover:text-indigo-400 transition-colors">
+          <Link href="/mentorship" className="text-violet-500 font-medium hover:text-violet-400 transition-colors">
             Return to Mentorship Hub
           </Link>
         </div>
@@ -63,27 +63,27 @@ export default function ApplicationForm() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="space-y-2">
               <label htmlFor="firstName" className="text-sm font-medium text-foreground">First Name</label>
-              <input required type="text" id="firstName" className="w-full flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 disabled:cursor-not-allowed disabled:opacity-50" placeholder="John" />
+              <input required type="text" id="firstName" className="w-full flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 disabled:cursor-not-allowed disabled:opacity-50" placeholder="John" />
             </div>
             <div className="space-y-2">
               <label htmlFor="lastName" className="text-sm font-medium text-foreground">Last Name</label>
-              <input required type="text" id="lastName" className="w-full flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 disabled:cursor-not-allowed disabled:opacity-50" placeholder="Doe" />
+              <input required type="text" id="lastName" className="w-full flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 disabled:cursor-not-allowed disabled:opacity-50" placeholder="Doe" />
             </div>
           </div>
 
           <div className="space-y-2">
             <label htmlFor="email" className="text-sm font-medium text-foreground">Email Address</label>
-            <input required type="email" id="email" className="w-full flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500" placeholder="john@example.com" />
+            <input required type="email" id="email" className="w-full flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500" placeholder="john@example.com" />
           </div>
 
           <div className="space-y-2">
             <label htmlFor="github" className="text-sm font-medium text-foreground">GitHub Profile (or Portfolio URL)</label>
-            <input required type="url" id="github" className="w-full flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500" placeholder="https://github.com/johndoe" />
+            <input required type="url" id="github" className="w-full flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500" placeholder="https://github.com/johndoe" />
           </div>
 
           <div className="space-y-2">
             <label htmlFor="track" className="text-sm font-medium text-foreground">Desired Track</label>
-            <select required id="track" className="w-full flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+            <select required id="track" className="w-full flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500">
               <option value="">Select a mentorship track...</option>
               <option value="mern-stack">MERN Stack Mastery</option>
               <option value="mobile-app">Mobile Development</option>
@@ -93,7 +93,7 @@ export default function ApplicationForm() {
 
           <div className="space-y-2">
             <label htmlFor="experience" className="text-sm font-medium text-foreground">Current Experience Level</label>
-            <select required id="experience" className="w-full flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+            <select required id="experience" className="w-full flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500">
                <option value="">Select your experience...</option>
               <option value="beginner">Beginner (1-2 projects)</option>
               <option value="intermediate">Intermediate (1-3 years)</option>
@@ -103,13 +103,13 @@ export default function ApplicationForm() {
 
           <div className="space-y-2">
             <label htmlFor="goals" className="text-sm font-medium text-foreground">What do you want to achieve?</label>
-            <textarea required id="goals" rows={4} className="w-full flex min-h-[80px] rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500" placeholder="Briefly describe your technical goals..."></textarea>
+            <textarea required id="goals" rows={4} className="w-full flex min-h-[80px] rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500" placeholder="Briefly describe your technical goals..."></textarea>
           </div>
 
           <button 
             type="submit" 
             disabled={isSubmitting}
-            className="w-full amber-cta px-8 py-3 rounded-md text-base font-semibold shadow-lg shadow-amber-500/20 flex items-center justify-center disabled:opacity-70 disabled:cursor-not-allowed"
+            className="w-full brand-cta px-8 py-3 rounded-md text-base font-semibold shadow-lg shadow-purple-500/20 flex items-center justify-center disabled:opacity-70 disabled:cursor-not-allowed"
           >
             {isSubmitting ? (
               <><Loader2 className="w-5 h-5 mr-2 animate-spin" /> Submitting...</>

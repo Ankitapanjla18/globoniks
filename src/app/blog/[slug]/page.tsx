@@ -7,7 +7,7 @@ export default function BlogPostDetail({ params }: { params: { slug: string } })
   const title = params.slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 
   return (
-    <article className="min-h-screen pt-32 pb-24 bg-background selection:bg-indigo-500/30">
+    <article className="min-h-screen pt-32 pb-24 bg-background selection:bg-violet-500/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
         <Link 
           href="/blog" 
@@ -19,7 +19,7 @@ export default function BlogPostDetail({ params }: { params: { slug: string } })
         
         <header className="mb-12">
           <div className="flex items-center gap-3 mb-6">
-            <Badge variant="outline" className="border-indigo-500/30 text-indigo-500 bg-indigo-500/10">Architecture</Badge>
+            <Badge variant="outline" className="border-violet-500/30 text-violet-500 bg-violet-500/10">Architecture</Badge>
             <span className="text-muted-foreground text-sm flex items-center">
               <CalendarDays className="w-4 h-4 mr-1.5" /> Oct 12, 2024
             </span>
@@ -58,7 +58,7 @@ export default function BlogPostDetail({ params }: { params: { slug: string } })
           </div>
         </header>
 
-        <div className="prose prose-lg dark:prose-invert max-w-none text-muted-foreground prose-headings:font-heading prose-headings:font-bold prose-a:text-indigo-500 hover:prose-a:text-indigo-400 prose-img:rounded-xl">
+        <div className="prose prose-lg dark:prose-invert max-w-none text-muted-foreground prose-headings:font-heading prose-headings:font-bold prose-a:text-violet-500 hover:prose-a:text-violet-400 prose-img:rounded-xl">
           <p className="lead text-xl text-foreground font-medium mb-10">
             As one of our enterprise applications grew, we hit performance bottlenecks rooted in a deep React component tree and a complex Redux store. Here is how we fixed it.
           </p>

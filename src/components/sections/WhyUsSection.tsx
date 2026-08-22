@@ -3,17 +3,17 @@ import { ShieldCheck, Cpu, Target } from "lucide-react";
 export function WhyUsSection() {
   const features = [
     {
-      icon: <Cpu className="w-8 h-8 text-indigo-500" />,
+      icon: <Cpu className="w-8 h-8 text-violet-500" />,
       title: "Senior Engineering Talent",
       description: "Our core team consists of senior architects and full-stack developers mapping out precise infrastructure before writing a single line of code.",
     },
     {
-      icon: <Target className="w-8 h-8 text-indigo-500" />,
+      icon: <Target className="w-8 h-8 text-violet-500" />,
       title: "Zero Agency Bloat",
       description: "You speak directly to the engineers building your product. No middle-managers playing telephone with your requirements.",
     },
     {
-      icon: <ShieldCheck className="w-8 h-8 text-indigo-500" />,
+      icon: <ShieldCheck className="w-8 h-8 text-violet-500" />,
       title: "Production-Ready Standards",
       description: "We enforce strict testing, robust CI/CD pipelines, and scalable architectures as our baseline, never as an upsell.",
     },
@@ -33,8 +33,8 @@ export function WhyUsSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {features.map((feature, index) => (
-            <div key={index} className="flex flex-col items-center text-center p-6 lg:p-8 rounded-2xl bg-card border border-border hover:border-indigo-500/30 transition-colors shadow-sm">
-              <div className="w-16 h-16 rounded-full bg-indigo-500/10 flex items-center justify-center mb-6">
+            <div key={index} className="flex flex-col items-center text-center p-6 lg:p-8 rounded-2xl bg-card border border-border hover:border-violet-500/30 transition-colors shadow-sm">
+              <div className="w-16 h-16 rounded-full bg-violet-500/10 flex items-center justify-center mb-6">
                 {feature.icon}
               </div>
               <h3 className="text-xl font-semibold text-foreground mb-3">{feature.title}</h3>

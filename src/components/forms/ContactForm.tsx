@@ -37,22 +37,22 @@ export function ContactForm() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div className="space-y-2">
           <label htmlFor="name" className="text-sm font-medium text-foreground">Full Name</label>
-          <input required type="text" id="name" className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500" placeholder="Jane Doe" />
+          <input required type="text" id="name" className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500" placeholder="Jane Doe" />
         </div>
         <div className="space-y-2">
           <label htmlFor="email" className="text-sm font-medium text-foreground">Work Email</label>
-          <input required type="email" id="email" className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500" placeholder="jane@company.com" />
+          <input required type="email" id="email" className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500" placeholder="jane@company.com" />
         </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div className="space-y-2">
           <label htmlFor="company" className="text-sm font-medium text-foreground">Company Name</label>
-          <input type="text" id="company" className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500" placeholder="Acme Corp" />
+          <input type="text" id="company" className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500" placeholder="Acme Corp" />
         </div>
         <div className="space-y-2">
           <label htmlFor="service" className="text-sm font-medium text-foreground">Service Required</label>
-          <select required id="service" className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+          <select required id="service" className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500">
             <option value="">Select a service...</option>
             <option value="mern">MERN Stack Development</option>
             <option value="mobile">Mobile App Development</option>
@@ -65,7 +65,7 @@ export function ContactForm() {
 
       <div className="space-y-2">
         <label htmlFor="budget" className="text-sm font-medium text-foreground">Project Budget Range</label>
-        <select required id="budget" className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+        <select required id="budget" className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500">
             <option value="">Select a range...</option>
             <option value="5k-10k">$5k - $10k</option>
             <option value="10k-50k">$10k - $50k</option>
@@ -76,13 +76,13 @@ export function ContactForm() {
 
       <div className="space-y-2">
         <label htmlFor="message" className="text-sm font-medium text-foreground">Project Details</label>
-        <textarea required id="message" rows={5} className="w-full min-h-[120px] rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500" placeholder="Describe your architecture requirements and goals..."></textarea>
+        <textarea required id="message" rows={5} className="w-full min-h-[120px] rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500" placeholder="Describe your architecture requirements and goals..."></textarea>
       </div>
 
       <button 
         type="submit" 
         disabled={isSubmitting}
-        className="w-full amber-cta px-8 py-3 rounded-md text-base font-semibold shadow-lg shadow-amber-500/20 flex items-center justify-center disabled:opacity-70 disabled:cursor-not-allowed"
+        className="w-full brand-cta px-8 py-3 rounded-md text-base font-semibold shadow-lg shadow-purple-500/20 flex items-center justify-center disabled:opacity-70 disabled:cursor-not-allowed"
       >
         {isSubmitting ? (
           <><Loader2 className="w-5 h-5 mr-2 animate-spin" /> Sending...</>

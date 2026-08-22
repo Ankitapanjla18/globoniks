@@ -18,13 +18,13 @@ export function MentorshipTrackCard({
   tags,
 }: MentorshipTrackCardProps) {
   return (
-    <div className="bg-card border border-border rounded-2xl p-8 flex flex-col h-full hover:border-amber-500/50 hover:shadow-lg transition-all">
+    <div className="bg-card border border-border rounded-2xl p-8 flex flex-col h-full hover:border-purple-500/50 hover:shadow-lg transition-all">
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-2xl font-bold font-heading text-foreground">{title}</h3>
       </div>
       
       <div className="flex items-center text-muted-foreground text-sm mb-6">
-        <Clock className="w-4 h-4 mr-2 text-amber-500" />
+        <Clock className="w-4 h-4 mr-2 text-purple-500" />
         <span className="font-medium">{duration}</span>
       </div>
 
@@ -50,7 +50,7 @@ export function MentorshipTrackCard({
         </Link>
         <Link 
           href={`/mentorship/apply?track=${slug}`}
-          className="flex-1 text-center py-3 px-4 amber-cta rounded-lg text-sm font-semibold shadow-md shadow-amber-500/10"
+          className="flex-1 text-center py-3 px-4 brand-cta rounded-lg text-sm font-semibold shadow-md shadow-purple-500/10"
         >
           Apply for Cohort
         </Link>

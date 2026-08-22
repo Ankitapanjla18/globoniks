@@ -330,3 +330,50 @@ Verification: build clean (17 routes, 5 project pages prerendered as SSG),
 lint clean. Confirmed against a running server: `/projects/total-nonsense-slug`
 → 404; `/projects/homekrafted` → 200 with per-page title "Homekrafted — case
 study | Globoniks" and 1,275 chars of visible no-JS text.
+
+---
+
+## Brand theme restored (2026-08-23)
+
+The interim rewrite had replaced the original brand theme with a
+navy/indigo/amber scheme. Restored the theme from the archived site's own CSS
+variables (`old-site-archive/index.html`, `:root` at line 270):
+
+| Token | Old site (restored) | Interim rewrite (removed) |
+|---|---|---|
+| Background | Black `#000` / `#0A0A0A` / `#111` | Navy `#0A0F1E` |
+| Primary accent | `#8B5CF6` (violet-500) | Indigo `#4F46E5` |
+| Secondary accent | `#A855F7` (purple-500) | Amber `#F59E0B` |
+| Muted text | `#b3b3b3` | Slate blue-grey |
+| Card borders | Purple glass `rgba(139,92,246,.2)` | Grey |
+| CTA | Purple gradient pill + glow | Amber rectangle |
+| Hero H1 | Animated white→purple gradient text | Plain |
+
+Notes:
+
+- The old brand purples are exactly Tailwind's stock `violet-500` and
+  `purple-500`, so no custom color scale was needed; the interim
+  `navy`/`indigo`/`amber` config overrides were removed instead.
+- Amber was never part of the old brand — its only appearance in the archived
+  CSS is a form-button "Sending…" loading state. All amber accents became the
+  secondary brand purple; all indigo became the primary brand violet
+  (mechanical sweep, 25 files).
+- `.amber-cta` became `.brand-cta`: the old `.cta-button` style — 45°
+  `#8B5CF6→#A855F7` gradient pill, purple glow shadow, hover lift, uppercase.
+- Hero H1 got the old animated foreground→purple→white gradient text
+  (`.gradient-text-hero`), built on the foreground token so it stays legible
+  in light mode; disabled under `prefers-reduced-motion`.
+- The hero's `animate-blob` classes had no keyframes defined anywhere — the
+  background mesh was static. Added a slow drift, also reduced-motion-guarded.
+- Light mode never existed on the old site; the light palette was re-tinted to
+  violet-600 accents (4.5:1 on white) so a future theme toggle stays on brand.
+- Dark radius/glass carried centrally through the CSS variables (`--card`,
+  `--border`, `--radius: 1rem`), so all `bg-card border-border` components
+  picked up the theme without per-component edits.
+
+This also satisfies the overhaul brief's Phase 5 constraint: "Keep the
+existing brand colour (#8b5cf6)".
+
+Verification: build clean (17 routes), lint clean. Served CSS confirmed to
+carry the restored dark palette and `.brand-cta` gradient; rendered homepage
+has 43 violet-class occurrences and zero amber/indigo/navy remnants.

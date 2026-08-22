@@ -34,7 +34,7 @@ export default function ServicesPage() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h1 className="text-5xl md:text-6xl font-heading font-black tracking-tight text-foreground mb-6">
-            Engineering excellence as a <span className="text-indigo-600">service.</span>
+            Engineering excellence as a <span className="text-violet-600">service.</span>
           </h1>
           <p className="text-xl text-muted-foreground leading-relaxed">
             From architecture to deployment, we build scalable software systems that drive business growth. No bloated teams, just senior engineers delivering code.
