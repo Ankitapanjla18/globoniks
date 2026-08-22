@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Clock, Code } from "lucide-react";
+import { Clock, Code } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 interface MentorshipTrackCardProps {

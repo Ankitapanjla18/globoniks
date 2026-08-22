@@ -1,5 +1,4 @@
 import { Link as LinkIcon, UserCircle2 } from "lucide-react";
-import Link from "next/link";
 
 interface TeamMemberCardProps {
   name: string;
@@ -41,11 +40,7 @@ export function TeamMemberCard({
         >
           <LinkIcon className="w-5 h-5" />
         </a>
-      ) : (
-        <div className="inline-flex items-center justify-center px-4 py-2 border border-dashed border-border rounded-full text-xs text-muted-foreground bg-muted/30">
-          // TODO: Add LinkedIn URL
-        </div>
-      )}
+      ) : null}
     </div>
   );
 }

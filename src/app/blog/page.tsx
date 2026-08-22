@@ -61,7 +61,8 @@ export default function BlogIndex() {
         <div className="mt-20 border border-border bg-card rounded-2xl p-8 lg:p-12 text-center max-w-3xl mx-auto">
           <h3 className="text-2xl font-bold font-heading mb-4 text-foreground">Subscribe to our engineering newsletter</h3>
           <p className="text-muted-foreground mb-6">Receive one high-quality technical article per month. No spam, just code.</p>
-          <form className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto" onSubmit={(e) => e.preventDefault()}>
+          {/* NEWSLETTER: no mailing-list provider is wired up yet. See NEEDS-INPUT.md. */}
+          <form className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto" method="post" action="/blog">
             <input 
               type="email" 
               placeholder="developer@example.com" 

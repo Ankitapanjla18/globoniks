@@ -1,4 +1,4 @@
-cpuimport type { Metadata } from "next";
+import type { Metadata } from "next";
 import { Inter, Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";

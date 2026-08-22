@@ -41,14 +41,6 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Google Reviews Placeholder */}
-            <div className="pt-8 w-full">
-              <div className="p-6 border border-border bg-muted/20 rounded-xl">
-                 <p className="text-sm font-medium text-muted-foreground text-center">
-                   // TODO: Google Reviews Embed Placeholder
-                 </p>
-              </div>
-            </div>
           </div>
 
           <div className="lg:w-7/12">

@@ -91,7 +91,7 @@ export const useStore = create<BearState>()((set) => ({
 
           <h2 className="text-2xl font-bold font-heading text-foreground mt-12 mb-4">Conclusion</h2>
           <p>
-            Technical debt isn't just bad architectural patterns; it's also choosing tools that slow down your developers. Zustand was the right tool for our use case, allowing us to ship features 30% faster without compromising on state predictability.
+            Technical debt is not just bad architectural patterns; it is also choosing tools that slow down your developers. Zustand was the right tool for our use case, and it let us move faster without compromising on state predictability.
           </p>
         </div>
 
