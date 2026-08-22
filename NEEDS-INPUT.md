@@ -63,11 +63,52 @@ Sales) I need:
 - **Real timeline** (currently "4 Months" for all four)
 - **Screenshots** — there is not one image on the entire site
 - **Client quote** with name, role, company, if obtainable
-- **Live URL and/or repo** — only EduMapping has one (`https://edumapping.com`)
+- **Live URL and/or repo** — three are now live: `https://edumapping.com`,
+  `https://homekrafted.in`, `https://tricitymatch.com` (see 1.4)
 
 Note: the archived site's EduMapping case study does not match the meta
 description on edumapping.com itself. Worth checking that the live site is
 still the one you built.
+
+### 1.4 Two further live projects — not yet on the site at all
+
+Supplied 2026-08-23. Neither appears anywhere in `src/`. Both verified live.
+
+**homekrafted.in** — multi-vendor marketplace for homemade food and
+handcrafted gifts across Tricity. Next.js, self-hosted on nginx/Ubuntu, ISR
+enabled (`x-nextjs-prerender: 1`, 300s stale time), 174 KB of server-rendered
+HTML. Categories, gift hampers, meal subscriptions, corporate/bulk ordering,
+WhatsApp ordering. Named vendors are public on the site: Dadi's Recipe
+(Zirakpur), Home Batch (Sector 15), Cocoa Homemade (Sector 22).
+
+This is currently the strongest provable project in the portfolio. Need:
+- Confirmation Globoniks built it, and what the engagement covered
+- Whether the client can be **named**
+- Whether the public vendor names may be cited as proof
+- Real timeline and team size
+- Any outcome that can be measured (orders, vendors onboarded, GMV) — with a source
+- A quote from the client, if obtainable
+
+Note it duplicates the existing "Artisan Marketplace" entry conceptually.
+Confirm whether these are the same project or two different builds.
+
+**tricitymatch.com** — matrimonial platform for Chandigarh, Mohali and
+Panchkula. "Photo-verified, human-reviewed profiles." Client-rendered React
+SPA behind Cloudflare. Has a full OG tag set and its own og-card.png.
+
+**Before showcasing this one, read the caveat.** The server returns a 9 KB
+shell; the `<h1>` a crawler receives is literally "JavaScript Required". The
+site is not indexable — the same defect Phase 1 just fixed on globoniks.com.
+Featuring it invites a prospect to check and find it. Either fix its rendering
+first (which makes it a *better* case study) or feature it on product merit
+without SEO claims.
+
+Its own copy claims "the most trusted matrimonial platform". Do not repeat
+that claim in a Globoniks case study; it is an unsourced superlative of the
+same kind removed from the Globoniks title in Phase 1.
+
+Need: same list as homekrafted, plus a decision on the rendering caveat.
+
 
 ---
 
