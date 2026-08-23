@@ -126,6 +126,7 @@ export default function ProjectDetail({ params }: Props) {
                   </div>
                 )}
 
+                {project.stack.length > 0 && (
                 <div>
                   <dt className="mb-2 text-sm font-medium text-muted-foreground">
                     Stack
@@ -142,6 +143,7 @@ export default function ProjectDetail({ params }: Props) {
                     ))}
                   </dd>
                 </div>
+                )}
 
                 {/* Timeline is omitted unless known. It used to read
                     "4 Months" on all four case studies. */}

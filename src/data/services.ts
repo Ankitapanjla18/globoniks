@@ -137,3 +137,36 @@ export const services: Service[] = [
 export function getService(slug: string): Service | undefined {
   return services.find((s) => s.slug === slug);
 }
+
+/**
+ * Where the studio is headed. Deliberately a SEPARATE structure from
+ * `services`: services are proof-led ("we sell what we've already shipped"),
+ * and unshipped work must never be presented as a delivered capability.
+ * These render under an explicit "Where we're headed" heading.
+ */
+export const roadmap = {
+  heading: "Where we're headed",
+  intro:
+    "We are moving into applied machine learning and AI, with a clear build preference: automation for B2B — systems that remove manual work rather than add dashboards. The direction is grounded in work already shipped, and we label what is not shipped yet as exactly that.",
+  items: [
+    {
+      title: "Applied ML & prediction products",
+      status: "First product shipped",
+      description:
+        "Our NEET College Predictor estimates admission chances from previous years' rank-to-admission data — the studio's first data-prediction product and the base for deeper ML work.",
+      projectSlug: "neet-college-predictor",
+    },
+    {
+      title: "A marketing co-founder for businesses",
+      status: "Next on the roadmap",
+      description:
+        "An automation tool that runs social media and digital marketing across multiple domains and businesses — the always-on marketing partner a small company cannot yet hire.",
+    },
+    {
+      title: "B2B workflow automation",
+      status: "Open for projects",
+      description:
+        "The same systems discipline behind our operations platforms, aimed at automating repetitive B2B workflows end to end. If your team does it by hand every week, it is a candidate.",
+    },
+  ],
+} as const;

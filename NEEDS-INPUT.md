@@ -116,6 +116,27 @@ copy avoids it.
 
 Need: same list as homekrafted, plus a decision on the rendering caveat.
 
+### 1.5 Tricity Life Insurance and NEET College Predictor (added 2026-08-23)
+
+**tricitylifeinsurance.com** -- verified live, in the portfolio. Need:
+- Can the client be named? The site itself publicly names its mentor
+  (Subhash Panjla); confirm whether to present that as the client
+  relationship on the case study.
+- Engagement scope, timeline, and any measurable outcome (applications
+  generated, etc.) with a source.
+
+**NEET College Predictor** -- in the portfolio without a link. Need:
+- Product name if it has one (currently listed under the descriptive title)
+- Is it live? URL if so -- a live predictor is far stronger proof of the ML
+  direction than a description
+- Actual stack, and what the prediction approach is (so the case study can
+  say something concrete without overclaiming "AI")
+
+**Marketing co-founder tool** -- on the roadmap section as "Next on the
+roadmap". When it has a name and a first shipped capability, send them and
+it graduates from roadmap to portfolio. Do not announce features before
+they exist.
+
 
 ---
 

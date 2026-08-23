@@ -78,6 +78,19 @@ export const projects: Project[] = [
       "EduMapping connects students with employers through their institution. It handles job posting, candidate matching, interview scheduling and placement reporting in one system, so a placement cell can run a hiring cycle without spreadsheets.",
   },
   {
+    slug: "tricity-life-insurance",
+    title: "Tricity Life Insurance",
+    summary:
+      "A mentor-led recruitment platform for LIC insurance careers in the Chandigarh Tricity — guided application paths for agents, development officers and Bima Sakhi.",
+    stack: ["Next.js", "React", "Nginx"],
+    stackVerified: true,
+    liveUrl: "https://www.tricitylifeinsurance.com",
+    overview:
+      "Tricity Life Insurance guides people into LIC careers under a named mentor. The platform presents each career path — agent, development officer, and the women-first Bima Sakhi programme — with the guidance content up front and a WhatsApp-first application flow, meeting applicants where they already are.",
+    approach:
+      "The site is fully server-rendered: every career path page arrives as complete HTML, which matters for a lead-generation platform that lives or dies on search visibility. Application friction is kept deliberately low with a WhatsApp-first flow rather than long forms.",
+  },
+  {
     slug: "pharma-supply",
     title: "Pharmaceutical Supply Chain",
     summary:
@@ -96,6 +109,17 @@ export const projects: Project[] = [
     stackVerified: false,
     overview:
       "A cloud platform for direct sales organisations and independent agents. It covers lead management, customer relationship tracking, commission calculation, performance reporting and team collaboration across multiple tenants.",
+  },
+  {
+    slug: "neet-college-predictor",
+    title: "NEET College Predictor",
+    summary:
+      "A data-driven predictor that estimates medical college admission chances from previous years' NEET ranks and cutoffs.",
+    // Stack and URL pending from the owner -- see NEEDS-INPUT.md.
+    stack: [],
+    stackVerified: false,
+    overview:
+      "A prediction tool for NEET aspirants: given a rank, it estimates realistic college options based on how previous years' ranks mapped to actual admissions. This is the studio's first shipped data-prediction product, and the base for its move into applied ML.",
   },
 ];
 

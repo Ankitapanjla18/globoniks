@@ -494,3 +494,31 @@ Verification: build and lint clean; all 27 routes prerender. New service
 and track URLs return 200 with correct titles; old mern-stack/mern-track
 slugs 404; proof links and compliance note confirmed in rendered HTML;
 sitemap carries exactly the new URL set.
+
+---
+
+## Two more projects + future direction (2026-08-23)
+
+- **Tricity Life Insurance** (tricitylifeinsurance.com) added to the
+  portfolio -- verified live before adding: Next.js self-hosted on
+  nginx/Ubuntu, fully prerendered (10,200 chars of no-JS HTML). A mentor-led
+  LIC recruitment platform for the Chandigarh Tricity with a WhatsApp-first
+  application flow. Fourth live, clickable project; appears automatically in
+  the live pills, the work page and the sitemap.
+- **NEET College Predictor** added: estimates medical college admission
+  chances from previous years' rank-to-admission data. The studio's first
+  shipped data-prediction product. No URL or stack supplied yet -- listed
+  without them rather than guessed (see NEEDS-INPUT); the empty stack is
+  hidden rather than rendered as an empty box (guard added to ProjectCard
+  and the case-study sidebar).
+- **"Where we're headed" section** on the services page, deliberately
+  SEPARATE from the proof-led services so unshipped work is never presented
+  as a delivered capability. Three items with explicit status labels:
+  applied ML & prediction products ("First product shipped", linking the
+  predictor), the marketing co-founder tool ("Next on the roadmap" --
+  automated social media and digital marketing across multiple domains and
+  businesses), and B2B workflow automation ("Open for projects").
+
+Verification: build and lint clean, 30 routes prerendered, both new case
+studies return 200 with correct titles, roadmap section confirmed in
+rendered HTML, sitemap now 23 URLs.

@@ -54,6 +54,7 @@ export function ProjectCard({ project }: { project: Project }) {
           {summary}
         </p>
 
+        {stack.length > 0 && (
         <div className="mb-6 flex flex-wrap gap-2">
           {stack.map((tech) => (
             <Badge
@@ -65,6 +66,7 @@ export function ProjectCard({ project }: { project: Project }) {
             </Badge>
           ))}
         </div>
+        )}
 
         <span className="mt-auto flex items-center text-sm font-semibold text-foreground">
           Read the case study

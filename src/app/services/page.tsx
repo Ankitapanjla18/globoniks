@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { ServiceCard } from "@/components/cards/ServiceCard";
-import { Store, Layers, ShieldCheck, Smartphone, Wrench } from "lucide-react";
-import { services } from "@/data/services";
+import { Store, Layers, ShieldCheck, Smartphone, Wrench, Sparkles, ArrowRight } from "lucide-react";
+import Link from "next/link";
+import { services, roadmap } from "@/data/services";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -45,6 +46,49 @@ export default function ServicesPage() {
             />
           ))}
         </div>
+
+        {/* Future direction -- deliberately separate from the proof-led
+            services above so unshipped work is never presented as a
+            delivered capability. */}
+        <section aria-labelledby="roadmap" className="mt-24 max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center rounded-full border border-purple-500/30 bg-purple-500/10 px-4 py-1.5 text-sm text-purple-500 font-semibold mb-6">
+              <Sparkles className="w-4 h-4 mr-2" />
+              {roadmap.heading}
+            </div>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              {roadmap.intro}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {roadmap.items.map((item) => (
+              <div
+                key={item.title}
+                className="bg-card border border-border rounded-2xl p-6 flex flex-col"
+              >
+                <span className="text-xs font-semibold uppercase tracking-wider text-purple-500 mb-3">
+                  {item.status}
+                </span>
+                <h2 className="font-heading font-bold text-lg text-foreground mb-3">
+                  {item.title}
+                </h2>
+                <p className="text-sm text-muted-foreground leading-relaxed flex-grow">
+                  {item.description}
+                </p>
+                {"projectSlug" in item && item.projectSlug && (
+                  <Link
+                    href={`/projects/${item.projectSlug}`}
+                    className="mt-4 inline-flex items-center text-sm font-medium text-violet-500 hover:text-violet-400 transition-colors"
+                  >
+                    See the project
+                    <ArrowRight className="w-4 h-4 ml-1.5" />
+                  </Link>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
       </div>
     </div>
   );
