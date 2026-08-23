@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -180,6 +181,26 @@ export default function ProjectDetail({ params }: Props) {
             </div>
           </aside>
         </div>
+
+        {project.screenshots && project.screenshots.length > 0 && (
+          <section aria-label="Screenshots" className="mt-16 space-y-8">
+            {project.screenshots.map((shot) => (
+              <figure
+                key={shot.src}
+                className="overflow-hidden rounded-3xl border border-border bg-card"
+              >
+                <Image
+                  src={shot.src}
+                  alt={shot.alt}
+                  width={shot.width}
+                  height={shot.height}
+                  sizes="(max-width: 1024px) 100vw, 1024px"
+                  className="h-auto w-full"
+                />
+              </figure>
+            ))}
+          </section>
+        )}
       </div>
     </div>
   );

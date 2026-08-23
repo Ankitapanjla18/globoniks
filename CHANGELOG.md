@@ -522,3 +522,27 @@ sitemap carries exactly the new URL set.
 Verification: build and lint clean, 30 routes prerendered, both new case
 studies return 200 with correct titles, roadmap section confirmed in
 rendered HTML, sitemap now 23 URLs.
+
+---
+
+## First real imagery: live-site screenshots (2026-08-23)
+
+The site previously contained zero images. It now carries real screenshots
+of the four live products -- captured directly from the running sites with
+headless Edge (Homekrafted via DevTools protocol, to dismiss its location
+modal through the site's own "Skip for now" control first; EduMapping
+retaken to catch its carousel between transitions).
+
+- public/screenshots/*.webp -- 1200x750 WebP, 35-87 KB each.
+- Project cards lead with the screenshot (work page + homepage featured);
+  case-study pages show it full width where the old build rendered a fake
+  "System Dashboard Screenshot" placeholder box.
+- Rendered through next/image with explicit width/height (no layout shift)
+  and lazy loading below the fold, per the document's Core Web Vitals
+  requirements. Descriptive alt text on every image.
+- NDA projects and the internal predictor remain type-led -- no fake
+  imagery.
+
+Verification: build and lint clean; /projects serves all four shots with
+width/height attributes and lazy loading; homepage featured cards carry
+three; WebP served as image/webp.

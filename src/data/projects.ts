@@ -37,13 +37,16 @@ export type Project = {
   approach?: string;
   outcome?: string;
   timeline?: string;
-  screenshots?: { src: string; alt: string }[];
+  screenshots?: { src: string; alt: string; width: number; height: number }[];
   quote?: { text: string; name: string; role: string; company: string };
 };
 
 export const projects: Project[] = [
   {
     slug: "homekrafted",
+    screenshots: [
+      { src: "/screenshots/homekrafted.webp", alt: "Homekrafted storefront: homemade food and handcrafted gifts marketplace for the Tricity", width: 1200, height: 750 },
+    ],
     title: "Homekrafted",
     summary:
       "A multi-vendor marketplace for homemade food and handcrafted gifts, connecting home kitchens across Tricity with customers nationwide.",
@@ -57,6 +60,9 @@ export const projects: Project[] = [
   },
   {
     slug: "tricitymatch",
+    screenshots: [
+      { src: "/screenshots/tricitymatch.webp", alt: "TricityMatch homepage: matrimonial platform for Chandigarh, Mohali and Panchkula with verified profiles", width: 1200, height: 750 },
+    ],
     title: "TricityMatch",
     summary:
       "A matrimonial platform for Chandigarh, Mohali and Panchkula, built around photo-verified and human-reviewed profiles.",
@@ -68,6 +74,9 @@ export const projects: Project[] = [
   },
   {
     slug: "edumapping",
+    screenshots: [
+      { src: "/screenshots/edumapping.webp", alt: "EduMapping homepage: placement platform connecting schools, colleges and employers", width: 1200, height: 750 },
+    ],
     title: "EduMapping",
     summary:
       "A placement management platform for colleges and universities, covering the full lifecycle from job posting through candidate selection.",
@@ -79,6 +88,9 @@ export const projects: Project[] = [
   },
   {
     slug: "tricity-life-insurance",
+    screenshots: [
+      { src: "/screenshots/tricity-life-insurance.webp", alt: "Tricity Life Insurance: mentor-led LIC career guidance platform with WhatsApp-first applications", width: 1200, height: 750 },
+    ],
     title: "Tricity Life Insurance",
     summary:
       "A mentor-led recruitment platform for LIC insurance careers in the Chandigarh Tricity — guided application paths for agents, development officers and Bima Sakhi.",
