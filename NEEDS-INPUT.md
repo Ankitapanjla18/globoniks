@@ -118,19 +118,18 @@ Need: same list as homekrafted, plus a decision on the rendering caveat.
 
 ### 1.5 Tricity Life Insurance and NEET College Predictor (added 2026-08-23)
 
-**tricitylifeinsurance.com** -- verified live, in the portfolio. Need:
-- Can the client be named? The site itself publicly names its mentor
-  (Subhash Panjla); confirm whether to present that as the client
-  relationship on the case study.
-- Engagement scope, timeline, and any measurable outcome (applications
-  generated, etc.) with a source.
+**tricitylifeinsurance.com** -- verified live, in the portfolio.
+Resolved (2026-08-23): client verified, naming and linking allowed -- the
+case study now shows "Subhash Panjla — LIC Career Mentor" as the first
+named client in the portfolio. Still useful: engagement scope, timeline,
+and any measurable outcome (applications generated, etc.) with a source.
 
-**NEET College Predictor** -- in the portfolio without a link. Need:
-- Product name if it has one (currently listed under the descriptive title)
-- Is it live? URL if so -- a live predictor is far stronger proof of the ML
-  direction than a description
+**NEET College Predictor** -- resolved in part (2026-08-23): it is an
+internal tool, no public URL by design; the case study now says so. Still
+useful:
 - Actual stack, and what the prediction approach is (so the case study can
   say something concrete without overclaiming "AI")
+- A screenshot with dummy data would prove it exists without exposing it
 
 **Marketing co-founder tool** -- on the roadmap section as "Next on the
 roadmap". When it has a name and a first shipped capability, send them and
@@ -164,6 +163,40 @@ which regulations did the pharma build satisfy (e.g. specific GxP / audit
 requirements)? Any data-protection posture worth stating (DPDP Act)? Send
 specifics and I will state them; without specifics the site stays general
 rather than inventing certifications.
+
+### 2.1d Client reviews for EduMapping and Homekrafted (offered 2026-08-23)
+
+You offered reviews/feedback from both clients. The site already renders an
+attributed quote on each case study the moment the data exists -- nothing
+needs building. What decides whether a quote builds trust or reads as
+filler is the attribution and the specificity. Send, for each:
+
+1. **The quote, verbatim, in the client's words** -- unpolished beats
+   polished. One concrete detail ("the placement cell stopped using
+   spreadsheets", "vendors onboard themselves now") is worth more than any
+   amount of "great team, highly recommended".
+2. **Name, role, company** -- all three. A quote without a person attached
+   is decoration, not evidence.
+3. **Their permission to publish** -- a one-line WhatsApp/email reply from
+   them saying "fine to publish" is enough; keep it on file.
+
+Stronger variants, if the relationship allows (in order of impact):
+- **A LinkedIn recommendation or post** mentioning Globoniks -- publicly
+  verifiable by anyone, which no on-site quote can be. Link it from the
+  case study.
+- **A Google review** on a Globoniks Business Profile -- third-party
+  verifiable AND feeds the Mohali local-search ranking. (Requires the
+  Google Business Profile from 3.1 -- worth setting up first.)
+- **A 30-second phone video** of the client saying the same thing.
+
+One caution: review stars will NOT appear in Google results for
+testimonials on your own site -- Google dropped "self-serving" review rich
+results in 2019. So we will not add Review/aggregateRating schema; quotes
+go in as visible content, where the humans who matter actually read them.
+
+Once real quotes exist, I would also surface one on the homepage (replacing
+nothing -- adding a short attributed line under the featured work). Only
+with real quotes; never before.
 
 ### 2.1c Mobile apps nearing launch
 

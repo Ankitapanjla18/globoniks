@@ -85,6 +85,8 @@ export const projects: Project[] = [
     stack: ["Next.js", "React", "Nginx"],
     stackVerified: true,
     liveUrl: "https://www.tricitylifeinsurance.com",
+    // Owner confirmed (2026-08-23): client verified, naming and linking allowed.
+    client: { kind: "named", name: "Subhash Panjla — LIC Career Mentor" },
     overview:
       "Tricity Life Insurance guides people into LIC careers under a named mentor. The platform presents each career path — agent, development officer, and the women-first Bima Sakhi programme — with the guidance content up front and a WhatsApp-first application flow, meeting applicants where they already are.",
     approach:
@@ -114,12 +116,13 @@ export const projects: Project[] = [
     slug: "neet-college-predictor",
     title: "NEET College Predictor",
     summary:
-      "A data-driven predictor that estimates medical college admission chances from previous years' NEET ranks and cutoffs.",
-    // Stack and URL pending from the owner -- see NEEDS-INPUT.md.
+      "An internal data-prediction tool that estimates medical college admission chances from previous years' NEET ranks and cutoffs.",
+    // Internal tool (owner, 2026-08-23) -- deliberately no public URL.
+    // Stack still pending; see NEEDS-INPUT.md.
     stack: [],
     stackVerified: false,
     overview:
-      "A prediction tool for NEET aspirants: given a rank, it estimates realistic college options based on how previous years' ranks mapped to actual admissions. This is the studio's first shipped data-prediction product, and the base for its move into applied ML.",
+      "A prediction tool for NEET aspirants: given a rank, it estimates realistic college options based on how previous years' ranks mapped to actual admissions. Built and used as an internal tool, so it is not publicly linked — it is the studio's first shipped data-prediction product and the base for its move into applied ML.",
   },
 ];
 
