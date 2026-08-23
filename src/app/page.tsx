@@ -12,7 +12,7 @@ export default function Home() {
       <StructuredData data={organizationSchema()} />
       <HeroSection 
         headline="We build what others only pitch."
-        subhead="Marketplaces, SaaS platforms and business systems — web and mobile. Built in Punjab, India."
+        subhead="Marketplaces, SaaS platforms and business systems — web and mobile."
         primaryCtaText="Start a project &rarr;"
         primaryCtaLink="/contact"
         secondaryCtaText="Join mentorship"
