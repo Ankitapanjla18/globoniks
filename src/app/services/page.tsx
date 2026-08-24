@@ -35,6 +35,7 @@ export default function ServicesPage() {
           </p>
         </div>
 
+        <h2 className="sr-only">What we build</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 pt-8">
           {services.map((service) => (
             <ServiceCard
@@ -52,10 +53,13 @@ export default function ServicesPage() {
             delivered capability. */}
         <section aria-labelledby="roadmap" className="mt-24 max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <div className="inline-flex items-center rounded-full border border-purple-500/30 bg-purple-500/10 px-4 py-1.5 text-sm text-purple-500 font-semibold mb-6">
+            <h2
+              id="roadmap"
+              className="inline-flex items-center rounded-full border border-purple-500/30 bg-purple-500/10 px-4 py-1.5 text-sm text-purple-500 font-semibold mb-6"
+            >
               <Sparkles className="w-4 h-4 mr-2" />
               {roadmap.heading}
-            </div>
+            </h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
               {roadmap.intro}
             </p>
@@ -70,9 +74,9 @@ export default function ServicesPage() {
                 <span className="text-xs font-semibold uppercase tracking-wider text-purple-500 mb-3">
                   {item.status}
                 </span>
-                <h2 className="font-heading font-bold text-lg text-foreground mb-3">
+                <h3 className="font-heading font-bold text-lg text-foreground mb-3">
                   {item.title}
-                </h2>
+                </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed flex-grow">
                   {item.description}
                 </p>

@@ -1,94 +1,160 @@
 "use client";
 
 import { useState } from "react";
-import { Loader2 } from "lucide-react";
+import { Mail, MessageCircle } from "lucide-react";
+import { BUSINESS } from "@/lib/site";
+
+const WHATSAPP_DIGITS = BUSINESS.telephone.replace(/[^\d]/g, "");
+
+/*
+ * Honest no-backend submission. The previous version faked success: a 1.5s
+ * timer, then "Request Received -- we will respond within 24 hours", while
+ * the message was silently discarded. There is still no server endpoint
+ * (NEEDS-INPUT 3.2), so submit now composes the enquiry into the visitor's
+ * own email app (the address is real and monitored) with WhatsApp as the
+ * alternative path -- the "alternative email/WhatsApp path" the overhaul
+ * brief asks for. When a backend or form service is chosen, this swaps to a
+ * real POST without touching the markup.
+ */
+
+function readForm(form: HTMLFormElement) {
+  const data = new FormData(form);
+  const get = (key: string) => String(data.get(key) ?? "").trim();
+  return {
+    name: get("name"),
+    email: get("email"),
+    company: get("company"),
+    service: get("service"),
+    budget: get("budget"),
+    message: get("message"),
+  };
+}
+
+function composeBody(v: ReturnType<typeof readForm>) {
+  return [
+    `Name: ${v.name}`,
+    `Email: ${v.email}`,
+    v.company && `Company: ${v.company}`,
+    `Service: ${v.service}`,
+    `Budget: ${v.budget}`,
+    "",
+    v.message,
+  ]
+    .filter(Boolean)
+    .join("\n");
+}
 
 export function ContactForm() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [handedOff, setHandedOff] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-    }, 1500);
+    const v = readForm(e.currentTarget);
+    const subject = `Project enquiry — ${v.service || "general"}`;
+    window.location.href = `mailto:${BUSINESS.email}?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(composeBody(v))}`;
+    setHandedOff(true);
   };
 
-  if (isSubmitted) {
-    return (
-      <div className="bg-card border border-border rounded-2xl p-8 lg:p-12 text-center h-full flex flex-col items-center justify-center">
-        <div className="w-16 h-16 bg-green-500/10 text-green-500 rounded-full flex items-center justify-center mb-6">
-          <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-          </svg>
-        </div>
-        <h3 className="text-2xl font-bold font-heading text-foreground mb-4">Request Received</h3>
-        <p className="text-muted-foreground">
-          Thank you for reaching out. A senior engineer will review your requirements and respond within 24 hours.
-        </p>
-      </div>
+  const handleWhatsApp = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const form = e.currentTarget.form;
+    if (!form || !form.reportValidity()) return;
+    const v = readForm(form);
+    window.open(
+      `https://wa.me/${WHATSAPP_DIGITS}?text=${encodeURIComponent(
+        `Project enquiry — ${v.service || "general"}\n\n${composeBody(v)}`
+      )}`,
+      "_blank",
+      "noopener"
     );
-  }
+    setHandedOff(true);
+  };
+
+  const inputCls =
+    "w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500";
 
   return (
-    <form onSubmit={handleSubmit} className="bg-card border border-border rounded-2xl p-8 lg:p-10 space-y-6">
+    <form
+      onSubmit={handleSubmit}
+      className="bg-card border border-border rounded-2xl p-8 lg:p-10 space-y-6"
+    >
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div className="space-y-2">
           <label htmlFor="name" className="text-sm font-medium text-foreground">Full Name</label>
-          <input required type="text" id="name" className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500" placeholder="Jane Doe" />
+          <input required type="text" id="name" name="name" className={inputCls} placeholder="Jane Doe" />
         </div>
         <div className="space-y-2">
           <label htmlFor="email" className="text-sm font-medium text-foreground">Work Email</label>
-          <input required type="email" id="email" className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500" placeholder="jane@company.com" />
+          <input required type="email" id="email" name="email" className={inputCls} placeholder="jane@company.com" />
         </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div className="space-y-2">
           <label htmlFor="company" className="text-sm font-medium text-foreground">Company Name</label>
-          <input type="text" id="company" className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500" placeholder="Acme Corp" />
+          <input type="text" id="company" name="company" className={inputCls} placeholder="Acme Corp" />
         </div>
         <div className="space-y-2">
           <label htmlFor="service" className="text-sm font-medium text-foreground">Service Required</label>
-          <select required id="service" className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500">
+          <select required id="service" name="service" className={inputCls}>
             <option value="">Select a service...</option>
-            <option value="marketplace">Marketplace / E-Commerce Platform</option>
-            <option value="saas">SaaS / Multi-Tenant Platform</option>
-            <option value="operations">Operations & Compliance System</option>
-            <option value="mobile">Mobile App Development</option>
-            <option value="maintenance">Maintenance & Support</option>
-            <option value="other">Other Inquiry</option>
+            <option value="Marketplace / E-Commerce Platform">Marketplace / E-Commerce Platform</option>
+            <option value="SaaS / Multi-Tenant Platform">SaaS / Multi-Tenant Platform</option>
+            <option value="Operations & Compliance System">Operations &amp; Compliance System</option>
+            <option value="Mobile App Development">Mobile App Development</option>
+            <option value="Maintenance & Support">Maintenance &amp; Support</option>
+            <option value="Other">Other Inquiry</option>
           </select>
         </div>
       </div>
 
       <div className="space-y-2">
         <label htmlFor="budget" className="text-sm font-medium text-foreground">Project Budget Range</label>
-        <select required id="budget" className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500">
-            <option value="">Select a range...</option>
-            <option value="5k-10k">$5k - $10k</option>
-            <option value="10k-50k">$10k - $50k</option>
-            <option value="50k+">$50k+</option>
-            <option value="consulting">Just Consulting</option>
+        <select required id="budget" name="budget" className={inputCls}>
+          <option value="">Select a range...</option>
+          <option value="$5k - $10k">$5k - $10k</option>
+          <option value="$10k - $50k">$10k - $50k</option>
+          <option value="$50k+">$50k+</option>
+          <option value="Just Consulting">Just Consulting</option>
         </select>
       </div>
 
       <div className="space-y-2">
         <label htmlFor="message" className="text-sm font-medium text-foreground">Project Details</label>
-        <textarea required id="message" rows={5} className="w-full min-h-[120px] rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500" placeholder="Describe your architecture requirements and goals..."></textarea>
+        <textarea required id="message" name="message" rows={5} className="w-full min-h-[120px] rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500" placeholder="Describe your requirements and goals..."></textarea>
       </div>
 
-      <button 
-        type="submit" 
-        disabled={isSubmitting}
-        className="w-full brand-cta px-8 py-3 rounded-md text-base font-semibold shadow-lg shadow-purple-500/20 flex items-center justify-center disabled:opacity-70 disabled:cursor-not-allowed"
-      >
-        {isSubmitting ? (
-          <><Loader2 className="w-5 h-5 mr-2 animate-spin" /> Sending...</>
-        ) : "Request Technical Quote"}
-      </button>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <button
+          type="submit"
+          className="brand-cta px-8 py-3 rounded-full text-base font-semibold flex items-center justify-center"
+        >
+          <Mail className="w-5 h-5 mr-2" /> Send via Email
+        </button>
+        <button
+          type="button"
+          onClick={handleWhatsApp}
+          className="px-8 py-3 rounded-full text-base font-semibold border border-border text-foreground hover:bg-muted transition-colors flex items-center justify-center"
+        >
+          <MessageCircle className="w-5 h-5 mr-2" /> Send via WhatsApp
+        </button>
+      </div>
+
+      {handedOff && (
+        <p className="text-sm text-muted-foreground text-center" role="status">
+          Your email or WhatsApp app should have opened with the message ready
+          to send — it reaches us once you hit send there. If nothing opened,
+          write to {BUSINESS.email} directly.
+        </p>
+      )}
+
+      <noscript>
+        <p className="text-sm text-muted-foreground text-center">
+          This form needs JavaScript. Without it, email us at {BUSINESS.email}{" "}
+          or call {BUSINESS.telephone}.
+        </p>
+      </noscript>
     </form>
   );
 }

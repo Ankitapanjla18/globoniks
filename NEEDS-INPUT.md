@@ -9,7 +9,13 @@ Ordered roughly by how much it blocks. Add answers inline under each item.
 
 ## 1. Blocking — content that is currently fabricated and still live
 
-### 1.1 The blog article is fabricated
+### 1.1 Blog -- removed entirely (2026-08-24)
+
+Owner decision: blog section removed for now. All blog URLs 404; content
+recoverable from git history. When real articles with real authors exist,
+the section returns. Original concern kept below for the record.
+
+### (was 1.1) The blog article was fabricated
 
 **Update 2026-08-23:** the route is now bounded -- only
 `/blog/abandoning-redux-for-zustand` exists (the one post with a body);
@@ -264,16 +270,20 @@ Confirm which are real, and send any others (Instagram, Clutch, Google Business
 Profile). A Google Business Profile in particular matters a lot for the Mohali
 local search you are targeting.
 
-### 3.2 Both forms submit nowhere
+### 3.2 Forms -- honest interim shipped (2026-08-24), backend still wanted
 
-Neither the contact form nor the mentorship application form has a backend.
-There is no API route in the app. Submissions are silently lost today.
+The fake success states are gone. Submit now composes the message into the
+visitor's own email app (mailto to info@globoniks.com), with a WhatsApp
+option on the contact form. This genuinely delivers, but a real backend or
+form service (API route, Formspree, Web3Forms, or CRM) would capture
+submissions without depending on the visitor's mail client -- decision
+still yours.
 
-Need a decision: an API route emailing `info@globoniks.com`, or a third-party
-form service (Formspree, Web3Forms), or a CRM endpoint.
+**Confirm: is +91-9988-909-556 WhatsApp-enabled?** The contact form's
+WhatsApp button opens wa.me with that number. If WhatsApp lives on a
+different number, say which.
 
-The newsletter signup on `/blog` has no mailing-list provider either — same
-question, or approval to remove it.
+(The blog newsletter question is moot -- the blog is removed.)
 
 ### 3.3 Analytics and verification (Phase 3)
 

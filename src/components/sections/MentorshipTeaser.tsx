@@ -16,7 +16,7 @@ export function MentorshipTeaser() {
           
           <div className="lg:w-1/2 space-y-6">
             <div className="inline-flex items-center rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-1 text-sm text-purple-500 font-medium mb-2">
-              <Terminal className="w-4 h-4 mr-2" /> Cohort starting soon
+              <Terminal className="w-4 h-4 mr-2" /> Applications open
             </div>
             <h2 className="text-3xl md:text-5xl font-heading font-black tracking-tight text-foreground">
               Level up your engineering career.

@@ -24,6 +24,7 @@ export default function ProjectsIndex() {
           </p>
         </div>
 
+        <h2 className="sr-only">All projects</h2>
         <ProjectFilter projects={projects} />
       </div>
     </div>

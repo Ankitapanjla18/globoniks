@@ -4,7 +4,9 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { StructuredData } from "@/components/seo/StructuredData";
 import { clientLabel, getProject, projects } from "@/data/projects";
+import { breadcrumbSchema } from "@/lib/site";
 
 type Props = { params: { slug: string } };
 
@@ -57,6 +59,13 @@ export default function ProjectDetail({ params }: Props) {
 
   return (
     <div className="min-h-screen pb-24 pt-32">
+      <StructuredData
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Our work", path: "/projects" },
+          { name: project.title, path: `/projects/${project.slug}` },
+        ])}
+      />
       <div className="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <nav aria-label="Breadcrumb" className="mb-12">
           <Link

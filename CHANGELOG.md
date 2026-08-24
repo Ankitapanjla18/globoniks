@@ -546,3 +546,79 @@ retaken to catch its carousel between transitions).
 Verification: build and lint clean; /projects serves all four shots with
 width/height attributes and lazy loading; homepage featured cards carry
 three; WebP served as image/webp.
+
+---
+
+## Publish readiness (2026-08-24)
+
+### Blog removed
+
+Owner decision. One article under an unverified byline plus three stubs --
+routes, data, links and sitemap entries all removed; every blog URL 404s.
+Recoverable from git history when real articles exist.
+
+### Forms made honest -- the last publish blocker
+
+Both forms previously FAKED success: a 1.5s timer, then "Request Received
+-- we will respond within 24 hours", while the message was silently
+discarded. There is still no backend (owner decision pending, NEEDS-INPUT
+3.2), so submit now composes the message into the visitor's own email app
+(info@globoniks.com is real and monitored), with a WhatsApp alternative on
+the contact form -- the alternative path the overhaul brief asks for. The
+status text says exactly what happened ("it reaches us once you hit send
+there"). noscript fallbacks added. Swaps to a real POST when a backend is
+chosen, without touching the markup.
+
+### Final audit fixes
+
+- Heading hierarchy: card titles rendered h3 directly under the page h1 on
+  four index pages; added section-level h2s (visually hidden where the
+  design has no room for one). The roadmap section also referenced
+  aria-labelledby="roadmap" with no such id -- its badge is now a real h2.
+  Lighthouse accessibility: 100 on every page tested.
+- Project case studies were missing BreadcrumbList JSON-LD; added.
+- "Cohort starting soon" (a static string that cannot stay true) is now
+  "Applications open".
+- TeamMemberCard deleted -- unused since the placeholder team cards were
+  replaced by the family-run story.
+- package.json renamed from the scaffold's "temp-app" to
+  "globoniks-website"; README rewritten from create-next-app boilerplate;
+  sharp installed for production image optimization under next start.
+
+### Audit results (against next start, JS never executed)
+
+- 22 routes: every one returns 200 with exactly one h1, a canonical, a
+  unique title, and 900-2,700 chars of visible no-JS text. All prerendered.
+- 404s verified: /blog and all post URLs, all bogus slugs, the old
+  mern-stack/mern-track URLs, /privacy, /terms.
+- Sitemap: 21 URLs (apply page correctly noindexed and excluded), no blog.
+  robots.txt references it.
+- Rendered-output greps: zero MERN, zero placeholder strings, zero dead
+  links, zero fabricated-stat strings, zero "Alex Vance".
+- JSON-LD: ProfessionalService (home, contact), Service + BreadcrumbList
+  (service pages), BreadcrumbList (case studies, tracks).
+- Images: every one has alt text and explicit dimensions; screenshots lazy
+  load; WebP 35-87 KB.
+- Lighthouse (local, mobile, headless Edge): accessibility 100,
+  best-practices 100, SEO 100 on every page tested. Performance swung
+  74-98 across runs of the SAME build on this development machine --
+  local perf numbers are noise; measure on the production host. The two
+  flags that recur locally: LCP ~3s and 270-550ms total blocking time
+  (hydration + motion). If production scores land below 90, the first
+  levers are reducing the particle count and deferring framer-motion.
+
+### Deploy checklist (the parts only the host can do)
+
+1. Deploy: npm run build && npm start behind nginx (sharp is installed),
+   or any Node host. Every route is static -- CDN-cacheable.
+2. 301 www.globoniks.com -> globoniks.com at the DNS/host level.
+   Canonicals already point at the apex.
+3. After DNS: verify Search Console + Bing (tokens pending, NEEDS-INPUT
+   3.3), submit /sitemap.xml.
+4. Validate share cards against the live URL: LinkedIn Post Inspector,
+   an actual WhatsApp share, X card validator.
+5. Google Rich Results Test on /, /contact, one service page.
+6. Lighthouse on the production URL -- the number that actually counts.
+7. Analytics: still uninstalled pending the GA4-vs-Plausible decision
+   (NEEDS-INPUT 3.3). The acceptance-criteria item "analytics installed
+   and verified" is deliberately unmet until you choose.
