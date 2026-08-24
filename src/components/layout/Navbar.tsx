@@ -13,7 +13,6 @@ export function Navbar() {
     { name: "Mentorship", href: "/mentorship" },
     { name: "Projects", href: "/projects" },
     { name: "About", href: "/about" },
-    { name: "Blog", href: "/blog" },
   ];
 
   return (

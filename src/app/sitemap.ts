@@ -3,7 +3,6 @@ import { SITE_URL } from "@/lib/site";
 import { projects } from "@/data/projects";
 import { services } from "@/data/services";
 import { tracks } from "@/data/mentorship";
-import { publishedPosts } from "@/data/posts";
 
 /**
  * Native App Router sitemap (served at /sitemap.xml). Replaces next-sitemap,
@@ -22,7 +21,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/about", priority: 0.7 },
     { path: "/contact", priority: 0.8 },
     { path: "/mentorship", priority: 0.7 },
-    { path: "/blog", priority: 0.5 },
   ];
 
   return [
@@ -45,11 +43,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${SITE_URL}/mentorship/${t.slug}`,
       lastModified,
       priority: 0.6,
-    })),
-    ...publishedPosts.map((p) => ({
-      url: `${SITE_URL}/blog/${p.slug}`,
-      lastModified: new Date(p.isoDate),
-      priority: 0.5,
     })),
   ];
 }
