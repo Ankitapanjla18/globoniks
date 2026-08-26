@@ -20,11 +20,11 @@ export function generateMetadata({ params }: Props): Metadata {
   return {
     title: `${track.title} — Mentorship Track`,
     description: track.description,
-    alternates: { canonical: `/mentorship/${track.slug}` },
+    alternates: { canonical: `/mentorship/${track.slug}/` },
     openGraph: {
       title: `${track.title} — Mentorship Track | Globoniks`,
       description: track.description,
-      url: `/mentorship/${track.slug}`,
+      url: `/mentorship/${track.slug}/`,
     },
   };
 }

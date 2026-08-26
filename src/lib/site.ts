@@ -77,7 +77,7 @@ export function organizationSchema() {
     alternateName: BUSINESS.alternateNames,
     url: SITE_URL,
     logo: `${SITE_URL}/logo.png`,
-    image: `${SITE_URL}/opengraph-image`,
+    image: `${SITE_URL}/og-card.png`,
     foundingDate: String(BUSINESS.foundingYear),
     address: {
       "@type": "PostalAddress",
@@ -119,7 +119,7 @@ export function breadcrumbSchema(items: { name: string; path: string }[]) {
       "@type": "ListItem",
       position: i + 1,
       name: item.name,
-      item: `${SITE_URL}${item.path}`,
+      item: item.path === "/" ? SITE_URL : `${SITE_URL}${item.path}/`,
     })),
   };
 }

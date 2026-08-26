@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "About",
   description:
     "Globoniks is a family-run software studio founded in 2024 in Mohali, Punjab, building web, mobile and custom software alongside a tech mentorship programme.",
-  alternates: { canonical: "/about" },
+  alternates: { canonical: "/about/" },
 };
 
 /*

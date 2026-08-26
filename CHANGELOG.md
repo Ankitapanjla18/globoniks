@@ -671,3 +671,41 @@ Verification: build and lint clean; all five checked case studies render
 the three sections with no-JS text; logos serve on cards and sidebars;
 zero screenshot references; names and footer links confirmed in rendered
 HTML.
+
+---
+
+## Static export for Render (2026-08-27)
+
+The site deploys on the existing Render Static Site service -- which was
+still serving old-site-archive and cannot run a Node server. Since every
+route is prerendered anyway, the app now builds as a static export
+(output: 'export'): `next build` emits `out/` with one directory-plus-
+index.html per route, robots.txt and sitemap.xml included.
+
+- `trailingSlash: true` so every static host serves the routes without
+  pretty-URL support; canonicals, og:urls, the sitemap and breadcrumb
+  schema all updated to the same trailing-slash URLs (done now, before any
+  Search Console submission, so nothing is ever indexed under a different
+  form). Root stays `https://globoniks.com`.
+- Images unoptimized (the optimizer endpoint needs a server; all assets
+  are pre-sized SVG/WebP/PNG).
+- Fixed a stale Organization-schema image pointing at the removed
+  /opengraph-image route; now /og-card.png.
+
+Verified against a plain `python -m http.server` on `out/`: all routes
+serve with matching canonicals, sitemap has 21 trailing-slash URLs,
+robots.txt references it.
+
+### Render dashboard settings (the answer to "what needs to change")
+
+| Field | Old (archived site) | New |
+|---|---|---|
+| Branch | main | main (unchanged) |
+| Root Directory | old-site-archive | **(empty -- clear it)** |
+| Build Command | (none) | **npm ci && npm run build** |
+| Publish Directory | old-site-archive/. | **out** |
+
+Also in Render: add env var NODE_VERSION=20 (build needs modern Node);
+custom domains globoniks.com (primary) + www.globoniks.com -- Render then
+301s www to the primary, which closes the canonical-host item; a rewrite
+rule /* -> /404.html (404 type) keeps unknown paths on the branded page.

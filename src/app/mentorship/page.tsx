@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Tech Mentorship",
   description:
     "Mentor-led engineering tracks in full-stack web, mobile development and software architecture. 1-on-1, remote, taught by working engineers at Globoniks.",
-  alternates: { canonical: "/mentorship" },
+  alternates: { canonical: "/mentorship/" },
 };
 
 export default function MentorshipHub() {

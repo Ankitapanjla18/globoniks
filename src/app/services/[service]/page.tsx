@@ -21,11 +21,11 @@ export function generateMetadata({ params }: Props): Metadata {
   return {
     title: service.title,
     description: service.description,
-    alternates: { canonical: `/services/${service.slug}` },
+    alternates: { canonical: `/services/${service.slug}/` },
     openGraph: {
       title: `${service.title} | Globoniks`,
       description: service.description,
-      url: `/services/${service.slug}`,
+      url: `/services/${service.slug}/`,
     },
   };
 }
@@ -45,7 +45,7 @@ export default function ServiceDetail({ params }: Props) {
     "@type": "Service",
     name: service.title,
     description: service.description,
-    url: `${SITE_URL}/services/${service.slug}`,
+    url: `${SITE_URL}/services/${service.slug}/`,
     provider: { "@id": `${SITE_URL}/#organization` },
     areaServed: "IN",
   };

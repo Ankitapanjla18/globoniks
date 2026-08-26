@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: `Software we have built: ${liveProjects
     .map((p) => p.title)
     .join(", ")} and more. Web, mobile and custom systems from Globoniks, Mohali.`,
-  alternates: { canonical: "/projects" },
+  alternates: { canonical: "/projects/" },
 };
 
 export default function ProjectsIndex() {

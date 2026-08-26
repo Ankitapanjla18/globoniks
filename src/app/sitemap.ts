@@ -25,22 +25,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     ...statics.map((s) => ({
-      url: `${SITE_URL}${s.path}`,
+      url: s.path ? `${SITE_URL}${s.path}/` : SITE_URL,
       lastModified,
       priority: s.priority,
     })),
     ...services.map((s) => ({
-      url: `${SITE_URL}/services/${s.slug}`,
+      url: `${SITE_URL}/services/${s.slug}/`,
       lastModified,
       priority: 0.8,
     })),
     ...projects.map((p) => ({
-      url: `${SITE_URL}/projects/${p.slug}`,
+      url: `${SITE_URL}/projects/${p.slug}/`,
       lastModified,
       priority: 0.7,
     })),
     ...tracks.map((t) => ({
-      url: `${SITE_URL}/mentorship/${t.slug}`,
+      url: `${SITE_URL}/mentorship/${t.slug}/`,
       lastModified,
       priority: 0.6,
     })),

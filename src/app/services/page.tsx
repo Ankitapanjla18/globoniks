@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "Services",
   description:
     "Use-case-based software services backed by shipped work: marketplaces, SaaS platforms, operations & compliance systems, mobile apps and long-term support.",
-  alternates: { canonical: "/services" },
+  alternates: { canonical: "/services/" },
 };
 
 // Icons stay in the component so the data file remains serializable.

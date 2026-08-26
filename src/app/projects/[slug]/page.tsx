@@ -28,11 +28,11 @@ export function generateMetadata({ params }: Props): Metadata {
   return {
     title: `${project.title} — case study`,
     description: project.summary,
-    alternates: { canonical: `/projects/${project.slug}` },
+    alternates: { canonical: `/projects/${project.slug}/` },
     openGraph: {
       title: `${project.title} — case study | Globoniks`,
       description: project.summary,
-      url: `/projects/${project.slug}`,
+      url: `/projects/${project.slug}/`,
     },
   };
 }
