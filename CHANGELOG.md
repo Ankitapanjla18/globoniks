@@ -634,3 +634,40 @@ treatment; the Organization schema gains its founder. Saksham's card
 deliberately shows no role -- none was stated, and an invented title is how
 the old site ended up with a "Mentorship Director" who didn't exist.
 Photos and LinkedIn URLs still pending (NEEDS-INPUT 1.2).
+
+---
+
+## Detailed case studies, logos, name corrections (2026-08-27)
+
+Owner directives in this pass: display name is "Ankita" (not Ankita
+Panjla); Ankita handles client relations, Saksham handles development
+(designation chosen as directed: Lead Developer); no articles for now (blog
+stays removed); contact emails where useful; detailed SEO-friendly case
+studies for every project; product logos instead of UI screenshots, since
+the live sites are under maintenance and screenshots would go stale.
+
+- **Names**: About story and team cards now read Ankita (Founder &
+  Director — Client Relations) and Saksham Panjla (Lead Developer), with
+  the split stated plainly: "Ankita owns every client relationship, Saksham
+  owns the code." Founder in the Organization schema updated to "Ankita".
+- **Footer** gains actionable mailto/tel contact links on every page.
+- **Case studies**: every one of the seven projects now has a full
+  problem / what-we-built / outcome case study (case-study pages now carry
+  1,700-2,600 chars of no-JS text, up from ~900-1,300). Sections support
+  multiple paragraphs. Sources: features observed directly on the live
+  sites, the archived site's own descriptions, and owner-stated facts --
+  no invented metrics, no invented client words. NDA projects state
+  plainly that client details are published only with client sign-off.
+- **Logos replace screenshots**: real brand SVGs pulled from the live
+  sites for Homekrafted, EduMapping and TricityMatch (the three the owner
+  named), previewed on the dark theme before wiring. Cards show a logo
+  band; case-study sidebars show the mark. The screenshot files and their
+  wiring are removed (one capture had exposed a vendor's personal email
+  address in a product grid -- worth remembering if screenshots return
+  after maintenance ends). Tricity Life Insurance has no logo asset on its
+  site and stays type-led.
+
+Verification: build and lint clean; all five checked case studies render
+the three sections with no-JS text; logos serve on cards and sidebars;
+zero screenshot references; names and footer links confirmed in rendered
+HTML.

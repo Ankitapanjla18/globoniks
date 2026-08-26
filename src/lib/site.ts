@@ -42,8 +42,8 @@ export const BUSINESS = {
  * so those fields are simply absent until supplied.
  */
 export const TEAM = [
-  { name: "Ankita Panjla", role: "Founder & Director", initials: "AP" },
-  { name: "Saksham Panjla", initials: "SP" },
+  { name: "Ankita", role: "Founder & Director — Client Relations", initials: "A" },
+  { name: "Saksham Panjla", role: "Lead Developer", initials: "SP" },
 ] as const;
 
 export const ADDRESS_LINES = [
@@ -96,7 +96,7 @@ export function organizationSchema() {
     email: BUSINESS.email,
     founder: {
       "@type": "Person",
-      name: "Ankita Panjla",
+      name: "Ankita",
       jobTitle: "Founder & Director",
     },
     contactPoint: {

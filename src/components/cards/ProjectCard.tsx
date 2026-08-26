@@ -5,13 +5,13 @@ import { Badge } from "@/components/ui/badge";
 import { clientLabel, type Project } from "@/data/projects";
 
 /**
- * Cards lead with a real screenshot of the live product where one exists
- * (captured from the running sites), and fall back to type-led layout where
- * none does -- never a grey placeholder box.
+ * Cards lead with the product's own brand mark where one exists (owner
+ * direction: logos rather than UI screenshots, since the live sites are
+ * under maintenance), and fall back to type-led layout where none does --
+ * never a grey placeholder box.
  */
 export function ProjectCard({ project }: { project: Project }) {
-  const { slug, title, summary, stack, liveUrl } = project;
-  const shot = project.screenshots?.[0];
+  const { slug, title, summary, stack, liveUrl, logo } = project;
   const client = clientLabel(project.client);
   const host = liveUrl ? new URL(liveUrl).hostname.replace(/^www\./, "") : null;
 
@@ -21,15 +21,15 @@ export function ProjectCard({ project }: { project: Project }) {
       className="group block rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
     >
       <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:border-violet-500/40 hover:shadow-lg">
-        {shot && (
-          <div className="relative border-b border-border">
+        {logo && (
+          <div className="flex h-36 items-center justify-center border-b border-border bg-muted/20 p-6">
             <Image
-              src={shot.src}
-              alt={shot.alt}
-              width={shot.width}
-              height={shot.height}
-              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              className="h-auto w-full"
+              src={logo.src}
+              alt={logo.alt}
+              width={160}
+              height={80}
+              unoptimized
+              className="max-h-20 w-auto"
             />
           </div>
         )}

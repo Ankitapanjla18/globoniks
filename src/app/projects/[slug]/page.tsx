@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { StructuredData } from "@/components/seo/StructuredData";
-import { clientLabel, getProject, projects } from "@/data/projects";
+import { clientLabel, getProject, projects, type Prose } from "@/data/projects";
 import { breadcrumbSchema } from "@/lib/site";
 
 type Props = { params: { slug: string } };
@@ -37,13 +37,16 @@ export function generateMetadata({ params }: Props): Metadata {
   };
 }
 
-function Section({ heading, body }: { heading: string; body: string }) {
+function Section({ heading, body }: { heading: string; body: Prose }) {
+  const paragraphs = Array.isArray(body) ? body : [body];
   return (
     <>
       <h2 className="mb-4 mt-12 font-heading text-2xl font-bold text-foreground">
         {heading}
       </h2>
-      <p>{body}</p>
+      {paragraphs.map((text) => (
+        <p key={text.slice(0, 40)}>{text}</p>
+      ))}
     </>
   );
 }
@@ -122,6 +125,18 @@ export default function ProjectDetail({ params }: Props) {
 
           <aside className="lg:col-span-1">
             <div className="sticky top-32 rounded-2xl border border-border bg-muted/20 p-8">
+              {project.logo && (
+                <div className="mb-6 flex items-center justify-center rounded-xl border border-border bg-muted/20 p-5">
+                  <Image
+                    src={project.logo.src}
+                    alt={project.logo.alt}
+                    width={140}
+                    height={70}
+                    unoptimized
+                    className="max-h-16 w-auto"
+                  />
+                </div>
+              )}
               <h2 className="mb-6 border-b border-border pb-4 font-heading text-lg font-bold text-foreground">
                 Project overview
               </h2>
@@ -191,25 +206,6 @@ export default function ProjectDetail({ params }: Props) {
           </aside>
         </div>
 
-        {project.screenshots && project.screenshots.length > 0 && (
-          <section aria-label="Screenshots" className="mt-16 space-y-8">
-            {project.screenshots.map((shot) => (
-              <figure
-                key={shot.src}
-                className="overflow-hidden rounded-3xl border border-border bg-card"
-              >
-                <Image
-                  src={shot.src}
-                  alt={shot.alt}
-                  width={shot.width}
-                  height={shot.height}
-                  sizes="(max-width: 1024px) 100vw, 1024px"
-                  className="h-auto w-full"
-                />
-              </figure>
-            ))}
-          </section>
-        )}
       </div>
     </div>
   );

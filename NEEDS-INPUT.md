@@ -41,18 +41,12 @@ I need one of:
 The four listed post titles and dates (Aug–Oct 2024) are also placeholders and
 are now roughly two years stale.
 
-### 1.2 Team -- names live as of 2026-08-27
+### 1.2 Team -- resolved 2026-08-27
 
-About now names both of you: **Ankita Panjla — Founder & Director** and
-**Saksham Panjla**, in the story and on two team cards, with the founder in
-the Organization schema. (Surname for Ankita inferred from the shared
-family name -- correct it if wrong.)
-
-Still pending:
-- **Saksham's role/title** -- his card shows no role rather than an
-  invented one
-- **Photos** for both (cards show initials until then)
-- **LinkedIn URLs** for both -- the last step of the credibility layer
+**Ankita — Founder & Director, Client Relations** and **Saksham Panjla —
+Lead Developer** (designation chosen at owner's "give him any designation").
+Still pending: photos for both (cards show initials) and LinkedIn URLs --
+the last step of the credibility layer.
 
 ### 1.3 Case studies — now real pages, but thin on detail
 
@@ -135,6 +129,13 @@ useful:
 - Actual stack, and what the prediction approach is (so the case study can
   say something concrete without overclaiming "AI")
 - A screenshot with dummy data would prove it exists without exposing it
+
+Note (2026-08-27): live-site screenshots were captured and then removed at
+the owner's direction (sites under maintenance; logos used instead). When
+maintenance ends, say the word and fresh screenshots go back in -- one
+caution on file: the Homekrafted gifts grid publicly renders a vendor's
+personal email address as a vendor name; any future capture must avoid or
+mask it.
 
 **Marketing co-founder tool** -- on the roadmap section as "Next on the
 roadmap". When it has a name and a first shipped capability, send them and

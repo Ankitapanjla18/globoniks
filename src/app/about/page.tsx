@@ -5,7 +5,7 @@ import { BUSINESS, TEAM } from "@/lib/site";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Globoniks is a family-run software studio founded in 2024 in Mohali, Punjab by Ankita Panjla, building web, mobile and custom software alongside a tech mentorship programme.",
+    "Globoniks is a family-run software studio founded in 2024 in Mohali, Punjab, building web, mobile and custom software alongside a tech mentorship programme.",
   alternates: { canonical: "/about" },
 };
 
@@ -44,16 +44,16 @@ export default function AboutPage() {
             <div className="space-y-5 text-lg text-muted-foreground leading-relaxed">
               <p>
                 Globoniks was founded in {BUSINESS.foundingYear} in Mohali,
-                Punjab by Ankita Panjla, who runs it side by side with
-                brother Saksham Panjla. Two people, one name on the door —
-                that is not a limitation, it is the point.
+                Punjab by Ankita, who runs it side by side with brother
+                Saksham Panjla. Two people, one name on the door — that is
+                not a limitation, it is the point.
               </p>
               <p>
-                There is no account layer here and no handoff chain. The
-                people who take your first call are the people who design the
-                architecture, write the code, and answer for it once it is
-                running in production. Every project that ships, ships with
-                our family name behind it.
+                The split is simple: Ankita owns every client
+                relationship, Saksham owns the code. There is no account
+                layer and no handoff chain — the person you talk to and the
+                person who builds your system sit at the same table, and
+                every project that ships carries our family name.
               </p>
               <p>
                 You can see what that produces — the work page links to live

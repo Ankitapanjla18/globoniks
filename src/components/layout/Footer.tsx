@@ -54,9 +54,15 @@ export function Footer() {
                 <span className="font-mono text-foreground bg-muted-foreground/10 px-1.5 py-0.5 rounded text-[10px] tracking-wider font-semibold">03CZQPA4795R1ZJ</span>
               </div>
             </div>
-            {/* A Clutch.co review widget was stubbed here as visible
-                placeholder text. Removed until there is a real profile
-                to embed. See NEEDS-INPUT.md. */}
+            <p className="text-sm text-muted-foreground">
+              <a href="mailto:info@globoniks.com" className="hover:text-foreground transition-colors">
+                info@globoniks.com
+              </a>
+              <br />
+              <a href="tel:+919988909556" className="hover:text-foreground transition-colors">
+                +91-9988-909-556
+              </a>
+            </p>
           </div>
 
           <div>
