@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { WhyUsSection } from "@/components/sections/WhyUsSection";
-import { BUSINESS } from "@/lib/site";
+import { BUSINESS, TEAM } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Globoniks is a family-run software studio founded in 2024 in Mohali, Punjab, building web, mobile and custom software alongside a tech mentorship programme.",
+    "Globoniks is a family-run software studio founded in 2024 in Mohali, Punjab by Ankita Panjla, building web, mobile and custom software alongside a tech mentorship programme.",
   alternates: { canonical: "/about" },
 };
 
@@ -44,8 +44,9 @@ export default function AboutPage() {
             <div className="space-y-5 text-lg text-muted-foreground leading-relaxed">
               <p>
                 Globoniks was founded in {BUSINESS.foundingYear} in Mohali,
-                Punjab, and is run by its founder working side by side with
-                their brother. That is not a limitation — it is the point.
+                Punjab by Ankita Panjla, who runs it side by side with
+                brother Saksham Panjla. Two people, one name on the door —
+                that is not a limitation, it is the point.
               </p>
               <p>
                 There is no account layer here and no handoff chain. The
@@ -58,6 +59,32 @@ export default function AboutPage() {
                 You can see what that produces — the work page links to live
                 products you can open and judge for yourself.
               </p>
+            </div>
+
+            <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {TEAM.map((person) => (
+                <div
+                  key={person.name}
+                  className="flex items-center gap-4 rounded-2xl border border-border bg-muted/20 p-5"
+                >
+                  <span
+                    aria-hidden="true"
+                    className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-violet-500/15 font-heading text-lg font-bold text-violet-400"
+                  >
+                    {person.initials}
+                  </span>
+                  <div>
+                    <p className="font-heading font-bold text-foreground">
+                      {person.name}
+                    </p>
+                    {"role" in person && person.role && (
+                      <p className="text-sm text-muted-foreground">
+                        {person.role}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              ))}
             </div>
           </section>
         </div>

@@ -36,6 +36,16 @@ export const BUSINESS = {
   gstin: "03CZQPA4795R1ZJ",
 } as const;
 
+/**
+ * The team. Names supplied by the owner (2026-08-27). Saksham's role, both
+ * photos and LinkedIn URLs are still pending -- see NEEDS-INPUT.md 1.2 --
+ * so those fields are simply absent until supplied.
+ */
+export const TEAM = [
+  { name: "Ankita Panjla", role: "Founder & Director", initials: "AP" },
+  { name: "Saksham Panjla", initials: "SP" },
+] as const;
+
 export const ADDRESS_LINES = [
   BUSINESS.streetAddress,
   `${BUSINESS.localityOfficial} (${BUSINESS.locality}), ${BUSINESS.region} ${BUSINESS.postalCode}`,
@@ -84,6 +94,11 @@ export function organizationSchema() {
     },
     telephone: BUSINESS.telephone,
     email: BUSINESS.email,
+    founder: {
+      "@type": "Person",
+      name: "Ankita Panjla",
+      jobTitle: "Founder & Director",
+    },
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "sales",

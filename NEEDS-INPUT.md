@@ -41,19 +41,18 @@ I need one of:
 The four listed post titles and dates (Aug–Oct 2024) are also placeholders and
 are now roughly two years stale.
 
-### 1.2 Team section -- placeholders removed 2026-08-23
+### 1.2 Team -- names live as of 2026-08-27
 
-The three fake cards are gone ("Head of Mobile Dev" and "Mentorship
-Director" were invented roles corresponding to nobody). About now tells the
-confirmed story: family-run, the founder working with their brother, founded
-2024. Owner chose story-only for now.
+About now names both of you: **Ankita Panjla — Founder & Director** and
+**Saksham Panjla**, in the story and on two team cards, with the founder in
+the Organization schema. (Surname for Ankita inferred from the shared
+family name -- correct it if wrong.)
 
-To add named team cards -- recommended before serious outreach (the terms:
-"Anonymous agencies do not get shortlisted") -- send for each of you:
-- Name as it should display
-- Real role
-- Photo
-- LinkedIn URL
+Still pending:
+- **Saksham's role/title** -- his card shows no role rather than an
+  invented one
+- **Photos** for both (cards show initials until then)
+- **LinkedIn URLs** for both -- the last step of the credibility layer
 
 ### 1.3 Case studies — now real pages, but thin on detail
 

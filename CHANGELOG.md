@@ -622,3 +622,15 @@ chosen, without touching the markup.
 7. Analytics: still uninstalled pending the GA4-vs-Plausible decision
    (NEEDS-INPUT 3.3). The acceptance-criteria item "analytics installed
    and verified" is deliberately unmet until you choose.
+
+---
+
+## Team named (2026-08-27)
+
+Owner supplied the names: Ankita Panjla (Founder & Director -- owner's
+wording "director/sole prop") and Saksham Panjla. About page story now
+names both; a two-card team grid replaces the anonymous story-only
+treatment; the Organization schema gains its founder. Saksham's card
+deliberately shows no role -- none was stated, and an invented title is how
+the old site ended up with a "Mentorship Director" who didn't exist.
+Photos and LinkedIn URLs still pending (NEEDS-INPUT 1.2).
