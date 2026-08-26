@@ -82,18 +82,18 @@ export function ContactForm() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div className="space-y-2">
           <label htmlFor="name" className="text-sm font-medium text-foreground">Full Name</label>
-          <input required type="text" id="name" name="name" className={inputCls} placeholder="Jane Doe" />
+          <input required type="text" id="name" name="name" className={inputCls} placeholder="Your name" />
         </div>
         <div className="space-y-2">
           <label htmlFor="email" className="text-sm font-medium text-foreground">Work Email</label>
-          <input required type="email" id="email" name="email" className={inputCls} placeholder="jane@company.com" />
+          <input required type="email" id="email" name="email" className={inputCls} placeholder="you@company.com" />
         </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div className="space-y-2">
           <label htmlFor="company" className="text-sm font-medium text-foreground">Company Name</label>
-          <input type="text" id="company" name="company" className={inputCls} placeholder="Acme Corp" />
+          <input type="text" id="company" name="company" className={inputCls} placeholder="Your company" />
         </div>
         <div className="space-y-2">
           <label htmlFor="service" className="text-sm font-medium text-foreground">Service Required</label>

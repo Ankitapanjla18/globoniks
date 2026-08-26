@@ -62,22 +62,22 @@ export function MentorshipApplyForm() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="space-y-2">
               <label htmlFor="firstName" className="text-sm font-medium text-foreground">First Name</label>
-              <input required type="text" id="firstName" name="firstName" className={inputCls} placeholder="Jane" />
+              <input required type="text" id="firstName" name="firstName" className={inputCls} placeholder="First name" />
             </div>
             <div className="space-y-2">
               <label htmlFor="lastName" className="text-sm font-medium text-foreground">Last Name</label>
-              <input required type="text" id="lastName" name="lastName" className={inputCls} placeholder="Doe" />
+              <input required type="text" id="lastName" name="lastName" className={inputCls} placeholder="Last name" />
             </div>
           </div>
 
           <div className="space-y-2">
             <label htmlFor="email" className="text-sm font-medium text-foreground">Email Address</label>
-            <input required type="email" id="email" name="email" className={inputCls} placeholder="jane@example.com" />
+            <input required type="email" id="email" name="email" className={inputCls} placeholder="you@example.com" />
           </div>
 
           <div className="space-y-2">
             <label htmlFor="github" className="text-sm font-medium text-foreground">GitHub Profile (or Portfolio URL)</label>
-            <input required type="url" id="github" name="github" className={inputCls} placeholder="https://github.com/janedoe" />
+            <input required type="url" id="github" name="github" className={inputCls} placeholder="https://github.com/username" />
           </div>
 
           <div className="space-y-2">
