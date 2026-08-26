@@ -5,7 +5,7 @@ import { BUSINESS, TEAM } from "@/lib/site";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Globoniks is a family-run software studio founded in 2024 in Mohali, Punjab, building web, mobile and custom software alongside a tech mentorship programme.",
+    "Globoniks is a founder-led software studio in Mohali, Punjab, established in 2024, building web, mobile and custom software alongside a tech mentorship programme.",
   alternates: { canonical: "/about/" },
 };
 
@@ -13,7 +13,9 @@ export const metadata: Metadata = {
  * The team grid used to render three placeholder cards -- "[Founder Name]",
  * and two "[Name]" entries with invented roles ("Head of Mobile Dev",
  * "Mentorship Director") that corresponded to nobody. Replaced with the real,
- * confirmed story: family-run, the founder working with their brother.
+ * confirmed story: a deliberately small, founder-led studio. (Owner note
+ * 2026-08-27: the earlier copy leaned too hard on the family angle; the
+ * framing is now studio-first.)
  * Named cards return when names, photos and LinkedIn URLs are supplied --
  * see NEEDS-INPUT.md 1.2.
  */
@@ -32,28 +34,27 @@ export default function AboutPage() {
 
         <div className="max-w-3xl mx-auto">
           <section
-            aria-labelledby="family-run"
+            aria-labelledby="the-studio"
             className="bg-card border border-border rounded-3xl p-8 md:p-12"
           >
             <h2
-              id="family-run"
+              id="the-studio"
               className="text-3xl font-heading font-bold text-foreground mb-6"
             >
-              A family-run studio.
+              Small by design.
             </h2>
             <div className="space-y-5 text-lg text-muted-foreground leading-relaxed">
               <p>
                 Globoniks was founded in {BUSINESS.foundingYear} in Mohali,
-                Punjab by Ankita, who runs it side by side with brother
-                Saksham Panjla. Two people, one name on the door — that is
-                not a limitation, it is the point.
+                Punjab. The studio is deliberately small, with clear
+                ownership: Ankita runs every client relationship, and
+                Saksham Panjla leads development.
               </p>
               <p>
-                The split is simple: Ankita owns every client
-                relationship, Saksham owns the code. There is no account
-                layer and no handoff chain — the person you talk to and the
-                person who builds your system sit at the same table, and
-                every project that ships carries our family name.
+                That structure is the product. There is no account layer
+                and no handoff chain — scope, architecture and delivery all
+                answer to the two names below, and the person you talk to
+                sits at the same table as the person building your system.
               </p>
               <p>
                 You can see what that produces — the work page links to live

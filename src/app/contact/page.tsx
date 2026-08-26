@@ -30,7 +30,7 @@ export default function ContactPage() {
               <p className="text-lg text-muted-foreground leading-relaxed">
                 Whether you need a marketplace, a SaaS platform, a mobile app, or a complete system rewrite, our engineers are ready to build it.
               </p>
-              {/* Globoniks is family-run; messages genuinely reach a founder. */}
+              {/* Founder-led studio; messages genuinely reach a founder. */}
               <p className="mt-4 text-base text-foreground font-medium">
                 Your message lands directly with a founder — no sales layer,
                 no ticket queue.
