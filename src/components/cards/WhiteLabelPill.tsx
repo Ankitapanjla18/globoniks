@@ -7,7 +7,7 @@ import { whiteLabelLabel } from "@/data/projects";
 export function WhiteLabelPill({ stage }: { stage: "offered" | "planned" }) {
   const chrome =
     stage === "offered"
-      ? "border-violet-500/30 bg-violet-500/10 text-violet-500"
+      ? "border-violet-500/30 bg-violet-500/10 text-violet-700 dark:text-violet-300"
       : "border-border bg-muted/50 text-muted-foreground";
   return (
     <span

@@ -5,7 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { FloatingParticles } from "@/components/sections/FloatingParticles";
+import { Starfield } from "@/components/sections/Starfield";
 import { SITE_URL, BUSINESS } from "@/lib/site";
 
 // The old site used Inter alone -- headings included (weight 800/900). The
@@ -94,7 +94,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <FloatingParticles />
+          <Starfield />
           <div className="relative flex min-h-screen flex-col">
             <Navbar />
             <main className="flex-1">{children}</main>

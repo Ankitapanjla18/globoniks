@@ -55,15 +55,20 @@ export function Footer() {
                 <span className="font-mono text-foreground bg-muted-foreground/10 px-1.5 py-0.5 rounded text-[10px] tracking-wider font-semibold">03CZQPA4795R1ZJ</span>
               </div>
             </div>
-            <p className="text-sm text-muted-foreground">
-              <a href="mailto:info@globoniks.com" className="hover:text-foreground transition-colors">
-                info@globoniks.com
-              </a>
-              <br />
-              <a href="tel:+919988909556" className="hover:text-foreground transition-colors">
-                +91-9988-909-556
-              </a>
-            </p>
+            {/* Block-level links with padding: inline links in a <p> failed
+                the touch-target-size audit. */}
+            <ul className="text-sm text-muted-foreground space-y-1">
+              <li>
+                <a href="mailto:info@globoniks.com" className="inline-block py-1.5 hover:text-foreground transition-colors">
+                  info@globoniks.com
+                </a>
+              </li>
+              <li>
+                <a href="tel:+919988909556" className="inline-block py-1.5 hover:text-foreground transition-colors">
+                  +91-9988-909-556
+                </a>
+              </li>
+            </ul>
           </div>
 
           <div>

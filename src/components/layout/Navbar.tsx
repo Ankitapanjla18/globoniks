@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
+import { triggerRipple } from "@/components/sections/Starfield";
 
 export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -20,7 +21,12 @@ export function Navbar() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <div className="flex-shrink-0">
-            <Link href="/" className="flex items-center gap-2 font-heading font-bold text-2xl tracking-tighter text-foreground">
+            <Link
+              href="/"
+              onClick={(e) => triggerRipple(e.clientX, e.clientY)}
+              title="Click me"
+              className="flex items-center gap-2 font-heading font-bold text-2xl tracking-tighter text-foreground"
+            >
               <Image
                 src="/logo.svg"
                 alt=""

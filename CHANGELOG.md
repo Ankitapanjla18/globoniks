@@ -837,3 +837,49 @@ Owner confirmed a reply within one working day. Stated in the contact
 intro, the contact meta description and the post-send note -- the
 response-time expectation the overhaul brief asked for, now with a real
 commitment behind it.
+
+---
+
+## Signature element: the living starfield (2026-08-30)
+
+Owner asked for one dramatic UI element that shows craft and can
+surprise. Chosen: the old site's floating stars, grown up -- one canvas
+replacing sixty animated DOM spans.
+
+- **Ambient**: a drifting, twinkling field of brand-purple stars.
+- **Constellations**: stars near the cursor link with faint lines and lean
+  toward it.
+- **The surprise**: clicking the logo (or pressing "g") sends a shockwave
+  through the field -- an expanding ring that throws the stars outward
+  before they settle.
+
+What was tried and dropped: a first cut had the stars fly together and
+spell GLOBONIKS on the first visit. It never became legible -- 500-900
+stars over nine letters reads as a glittering band, not a word -- and it
+was the most expensive part. Cut rather than shipped half-working.
+
+Performance was the real work here, and the numbers were bad before they
+were good. The first cut scored 36-40 on mobile Lighthouse (a 10 s main
+thread block): a perpetual canvas loop is the classic way to wreck Core
+Web Vitals, and Lighthouse's mobile emulation does not even report a
+coarse pointer, so a touch check alone cannot gate it. Final policy:
+nothing paints until load + idle (then the field fades in); small screens
+and touch get a static field drawn once; otherwise DPR 1, sprite-based
+drawing, 10 fps at rest rising to 30 fps only while the pointer moves or
+a ripple runs, paused when scrolled away or hidden; reduced-motion gets a
+static field. Verified apples-to-apples on a gzip static server with the
+machine quiet: home mobile 93 (TBT 90 ms), home desktop 99 (TBT 0 ms),
+about mobile 97. A first cold run of the same build read 60; Lighthouse
+on a workstation is noisy, and the second run is the representative one.
+
+Also in this pass:
+- **Seam fix** (owner feedback): the hard border between the hero and the
+  audience-split section is gone; a radial purple glow bleeds from the
+  hero into section two instead.
+- **Hero blobs animate only at md+**: re-rasterising three 128px-blurred
+  layers every frame is measurable on phones; static on small screens.
+- **Footer contact links** are block-level with padding: inline links in a
+  paragraph failed the touch-target audit.
+- **GROWTH-ROADMAP.md** added (also published as an artifact page): the
+  buyer's checklist, prioritised site/business features, and per-project
+  visibility moves for international and larger clients.
