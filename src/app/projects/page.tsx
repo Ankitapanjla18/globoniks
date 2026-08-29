@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
 import { projects, liveProjects } from "@/data/projects";
+import Link from "next/link";
 import { ProjectFilter } from "@/components/sections/ProjectFilter";
 
 export const metadata: Metadata = {
   title: "Our work",
+  // Array order is editorial; capped to the first three live titles so the
+  // description stays under ~160 chars now that there are more than four.
   description: `Software we have built: ${liveProjects
+    .slice(0, 3)
     .map((p) => p.title)
     .join(", ")} and more. Web, mobile and custom systems from Globoniks, Mohali.`,
   alternates: { canonical: "/projects/" },
@@ -21,6 +25,13 @@ export default function ProjectsIndex() {
           <p className="text-xl leading-relaxed text-muted-foreground">
             {liveProjects.length} of these are live and running right now — open
             them and judge the work for yourself.
+          </p>
+          <p className="mt-4 text-base text-muted-foreground">
+            Our own platforms, offered under your name, are on the{" "}
+            <Link href="/products/" className="font-medium text-violet-500 hover:text-violet-400 transition-colors">
+              products page
+            </Link>
+            .
           </p>
         </div>
 

@@ -2,6 +2,7 @@ import { HeroSection } from "@/components/sections/HeroSection";
 import { AudienceSplitSection } from "@/components/sections/AudienceSplitSection";
 import { SocialProofBar } from "@/components/sections/SocialProofBar";
 import { FeaturedProjectsSection } from "@/components/sections/FeaturedProjectsSection";
+import { ProductsStrip } from "@/components/sections/ProductsStrip";
 import { MentorshipTeaser } from "@/components/sections/MentorshipTeaser";
 import { StructuredData } from "@/components/seo/StructuredData";
 import { organizationSchema } from "@/lib/site";
@@ -21,6 +22,7 @@ export default function Home() {
       <AudienceSplitSection />
       <SocialProofBar />
       <FeaturedProjectsSection />
+      <ProductsStrip />
       <MentorshipTeaser />
     </div>
   );

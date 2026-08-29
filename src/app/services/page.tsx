@@ -3,6 +3,8 @@ import { ServiceCard } from "@/components/cards/ServiceCard";
 import { Store, Layers, ShieldCheck, Smartphone, Wrench, Sparkles, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { services, roadmap } from "@/data/services";
+import { capabilities } from "@/data/capabilities";
+import { getProject } from "@/data/projects";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -47,6 +49,47 @@ export default function ServicesPage() {
             />
           ))}
         </div>
+
+        {/* Capabilities: a scannable list for prospects skimming the site.
+            Framed explicitly as things we build, not case studies; items that
+            have shipped link to the proof. Owner trims the list -- NEEDS-INPUT 2.6. */}
+        <section aria-labelledby="capabilities" className="mt-24 max-w-5xl mx-auto">
+          <h2
+            id="capabilities"
+            className="text-3xl font-heading font-bold text-foreground mb-4 text-center"
+          >
+            What we build — at a glance
+          </h2>
+          <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-10">
+            Capabilities, not case studies: the things we build into projects.
+            Where we have already shipped one, it links to the proof.
+          </p>
+          <ul className="flex flex-wrap justify-center gap-3">
+            {capabilities.map((c) => {
+              const proof = c.proofSlug ? getProject(c.proofSlug) : undefined;
+              const cls =
+                "inline-flex items-center rounded-full border px-4 py-2 text-sm font-medium transition-colors";
+              return (
+                <li key={c.label}>
+                  {proof ? (
+                    <Link
+                      href={`/projects/${proof.slug}/`}
+                      className={`${cls} border-violet-500/30 bg-violet-500/5 text-foreground hover:border-violet-500/60`}
+                      title={`Shipped in ${proof.title}`}
+                    >
+                      {c.label}
+                      <span className="ml-2 text-xs text-violet-400">→ {proof.title}</span>
+                    </Link>
+                  ) : (
+                    <span className={`${cls} border-border bg-muted/30 text-muted-foreground`}>
+                      {c.label}
+                    </span>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+        </section>
 
         {/* Future direction -- deliberately separate from the proof-led
             services above so unshipped work is never presented as a

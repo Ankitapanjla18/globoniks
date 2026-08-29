@@ -709,3 +709,58 @@ Also in Render: add env var NODE_VERSION=20 (build needs modern Node);
 custom domains globoniks.com (primary) + www.globoniks.com -- Render then
 301s www to the primary, which closes the canonical-host item; a rewrite
 rule /* -> /404.html (404 type) keeps unknown paths on the branded page.
+
+---
+
+## Products section: white-label platforms (2026-08-29)
+
+Owner asked for a separate section for Globoniks-owned platforms available
+for white-labelling, distinct from client case studies, and confirmed
+Globoniks owns the pharma codebase (white-label planned, not offered).
+
+- **Two new products, both verified live before adding**: Globoniks Schools
+  (school.globoniks.com -- multi-tenant school management, running as a demo
+  school tenant) and the Jewellery E-Commerce Platform (a demo storefront on
+  Render). Case studies written only from observed screens and modules; the
+  demo-tenant / demo-storefront framing is stated in the copy. No logos: the
+  Schools PWA icon is a generic placeholder and jewellery has none.
+- **Data model**: `whiteLabel?: { stage: "offered" | "planned", audience,
+  pitch, modules? }` on Project. Presence is the claim "we offer this"; the
+  stage exists so intent (pharma) never renders like availability (Schools,
+  Jewellery). Flipping the stage updates every surface.
+- **/products/** page (own metadata, breadcrumb schema): offered products,
+  an "On the roadmap" group for planned ones, and a CTA. Product cards link
+  to the case study as the detail page -- no duplicate product URLs. Added
+  to nav, footer and sitemap.
+- **Case-study pages**: violet white-label callout (heading by stage, pitch,
+  module pills, contact link), "Offered as" sidebar row, and -- for all
+  projects -- a bottom CTA, which case studies had never had.
+- **Cards**: stage-aware `WhiteLabelPill` on project cards and on service
+  proof cards, alongside the existing LIVE / Case study state.
+- **Homepage**: new "Our products, under your name" strip after the featured
+  client work; the featured client row is unchanged. The live-products bar
+  gains the new live entries automatically.
+- **Capabilities** (owner asked whether listing features like WhatsApp
+  automation and chatbots helps skimmers -- yes, if honest): "What we build
+  -- at a glance" on /services, 14 pills from src/data/capabilities.ts,
+  framed explicitly as capabilities not case studies; nine link to the
+  shipped proof, five are plain offers. Owner trims (NEEDS-INPUT 2.1f).
+- **Pharma**: `whiteLabel` with stage "planned"; every other field
+  byte-identical. Pitch's subject is Globoniks and the platform it built;
+  the client is never mentioned; no "licensed"/"resold" wording anywhere.
+- **Contact form** gains a "White-Label Product" option.
+- **Fixed a leftover defect**: the footer still linked /services/mobile-app
+  and /services/custom-software -- slugs retired in the repositioning, so
+  both were 404s on every page. Footer now lists the real five services.
+- `/projects` meta description capped to the first three live titles (a
+  sixth live project would have pushed it past SERP truncation).
+
+Verification against the static export served by a plain http.server:
+all nine checked routes 200 with exactly one h1 and a matching
+trailing-slash canonical; `/products/nope/` 404s; the Schools case study
+carries the callout, module pills, sidebar row and CTA in no-JS HTML;
+pharma renders the planned heading and muted pill with no client mention
+in the pitch; the products page shows the offered cards and the roadmap
+group; capabilities render with proof links; nav/footer carry Products;
+the dead footer slugs are gone; sitemap lists /products/ and both new case
+studies; zero hits for licens/resold/TODO/placeholder across out/.

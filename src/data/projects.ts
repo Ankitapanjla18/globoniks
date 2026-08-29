@@ -49,6 +49,22 @@ export type Project = {
   outcome?: Prose;
   timeline?: string;
   quote?: { text: string; name: string; role: string; company: string };
+  /**
+   * Set only on platforms Globoniks owns and can offer to new customers under
+   * their own name. Presence IS the claim "we offer this" -- never set on
+   * client work unless the studio has confirmed it holds the rights. Pharma:
+   * ownership confirmed by the owner 2026-08-29; stage "planned".
+   */
+  whiteLabel?: {
+    /** offered = built, running, enquiries open now. planned = stated intent. */
+    stage: "offered" | "planned";
+    /** Plural noun: "schools", "jewellers". Used in pills and CTA copy. */
+    audience: string;
+    /** One or two honest sentences matching the stage. Rendered verbatim. */
+    pitch: string;
+    /** Module names exactly as observed on the product. Rendered as pills. */
+    modules?: string[];
+  };
 };
 
 export const projects: Project[] = [
@@ -136,6 +152,84 @@ export const projects: Project[] = [
       "The platform is live at tricitylifeinsurance.com with the guided career paths and WhatsApp application flow in operation.",
   },
   {
+    slug: "globoniks-schools",
+    title: "Globoniks Schools",
+    summary:
+      "Our own multi-tenant school management system for students, teachers and parents — attendance, fees, exams, notices and portals — built to be offered to schools under their own name.",
+    // Observed: React SPA served by nginx. Backend/hosting pending -- NEEDS-INPUT 1.6.
+    stack: ["React", "Nginx"],
+    stackVerified: true,
+    liveUrl: "https://school.globoniks.com",
+    // Own product: no client. No logo -- the PWA icon is a generic placeholder.
+    overview:
+      "Globoniks Schools is the studio's own school management platform. The public site runs as a demo school tenant — “G Schools” — showing the system exactly as a school would present it: a news ticker, quick access to Admissions, the Student Portal, the Parent Portal and Notices, a Latest News section, and a login for every role. It is the platform we offer to schools under their own name.",
+    challenge:
+      "A school has three audiences — students, teachers and parents — and the systems that serve them usually live in separate tools: attendance in one place, fees in another, exam results in a third, announcements on a notice board. Every school needs the same set of modules, which is exactly the case for building the platform once, multi-tenant, and giving each school its own instance rather than its own project.",
+    approach: [
+      "The platform covers the modules a school actually runs on: Student Management, Teacher Management, Attendance Tracking, Fee Management, Exams & Marks, Homework & Assignments, and Communication — school-wide announcements and direct messaging between parents and teachers — alongside Admissions, Notices and school news. Access is role-based across Admin, Teacher, Parent and Student, and each school operates as its own tenant on shared infrastructure.",
+      "It ships as a React single-page application served by nginx, installable on a phone as a progressive web app from the site's own install prompt — no app-store release needed for a school to put it on parents' home screens.",
+    ],
+    outcome:
+      "Built and running at school.globoniks.com as a demo school tenant with the modules above in place. It is the platform we offer to schools under their own name; the first school deployments will be listed here once they are live.",
+    whiteLabel: {
+      stage: "offered",
+      audience: "schools",
+      pitch:
+        "Globoniks Schools is built and running. We offer it to schools under their own name — your school's own tenant on the platform, with the student, teacher and parent portals and the modules below, deployed and supported by the team that built it.",
+      modules: [
+        "Student Management",
+        "Teacher Management",
+        "Attendance Tracking",
+        "Fee Management",
+        "Exams & Marks",
+        "Homework & Assignments",
+        "Communication",
+        "Role-Based Access",
+        "Admissions",
+        "Notices",
+        "Student Portal",
+        "Parent Portal",
+      ],
+    },
+  },
+  {
+    slug: "jewellery-ecommerce",
+    title: "Jewellery E-Commerce Platform",
+    summary:
+      "A fine-jewellery storefront platform — catalogue by category, collections, wishlist, cart and accounts, with an editorial homepage — built to be offered to jewellers under their own brand.",
+    // Observed: React single-page app. Backend/hosting pending -- NEEDS-INPUT 1.7.
+    stack: ["React"],
+    stackVerified: true,
+    // Demo storefront deployment; a proper domain is pending (NEEDS-INPUT 1.7).
+    liveUrl: "https://luxury-ecommerce-frontend.onrender.com",
+    overview:
+      "A jewellery e-commerce platform running as a demo storefront under the demo brand “ECOM Fine Jewelry”. The demo shows the full shopper journey a jeweller would get under their own name: an editorial homepage, curated departments, collections filtered by category, product pages, wishlist, cart and customer login, plus a bespoke-commissions section.",
+    challenge:
+      "Fine jewellery sells on presentation as much as on product: a storefront has to feel like a maison, not a marketplace, while still doing the unglamorous work — categories, collections, wishlists, carts, accounts. Most jewellers face a choice between a generic template that undersells the pieces and a from-scratch build they cannot justify.",
+    approach: [
+      "The platform gives a jeweller the editorial storefront and the commerce machinery together. Shoppers browse departments and collections — rings, necklaces, earrings, bracelets — filter by category, open product pages, save pieces to a wishlist, and check out through a cart with a customer account. A bespoke section handles concierge-led commissions, and the homepage is built as an editorial layer over the catalogue rather than a grid of products.",
+      "It is a React single-page application, deployed here as a demo storefront so the whole journey can be walked through before a jeweller commits to their own instance.",
+    ],
+    outcome:
+      "Built and running as a demo storefront. It is the platform we offer to jewellers under their own brand; the first branded deployments will be listed here once they are live.",
+    whiteLabel: {
+      stage: "offered",
+      audience: "jewellers",
+      pitch:
+        "The storefront is built and running as a demo. We offer it to jewellers under their own brand — your catalogue, your name, the same shopper journey — deployed and supported by the team that built it.",
+      modules: [
+        "Editorial homepage",
+        "Departments & collections",
+        "Category filtering",
+        "Product pages",
+        "Wishlist",
+        "Cart & checkout",
+        "Customer accounts",
+        "Bespoke commissions",
+      ],
+    },
+  },
+  {
     slug: "pharma-supply",
     title: "Pharmaceutical Supply Chain",
     summary:
@@ -150,6 +244,13 @@ export const projects: Project[] = [
       "The system manages the complete order-to-delivery lifecycle — order placement, inventory, production scheduling, quality-control workflows, packaging and reporting — with batch tracking designed in from the schema up, so that a compliance review queries records instead of reconstructing them.",
     outcome:
       "Delivered as an enterprise system for a pharmaceutical manufacturer. The client is under confidentiality; scale and measured outcomes are published only with client sign-off.",
+    // Owner confirmed 2026-08-29 that Globoniks owns this codebase.
+    whiteLabel: {
+      stage: "planned",
+      audience: "pharmaceutical manufacturers",
+      pitch:
+        "The order-to-delivery platform Globoniks built here — batch tracking, quality-control workflows, production scheduling and reporting — is one we plan to offer to other pharmaceutical manufacturers under their own name. That offer is on our roadmap rather than ready today; if it is relevant to you, tell us and we will say exactly where it stands.",
+    },
   },
   {
     slug: "saas-direct-sales",
@@ -192,6 +293,13 @@ export function getProject(slug: string): Project | undefined {
 
 /** Projects a prospect can click through to and verify for themselves. */
 export const liveProjects = projects.filter((p) => p.liveUrl);
+
+/** Platforms the studio can put under a customer's own name (the Products section). */
+export const whiteLabelProjects = projects.filter((p) => p.whiteLabel);
+
+export function whiteLabelLabel(stage: "offered" | "planned"): string {
+  return stage === "offered" ? "White-label" : "White-label planned";
+}
 
 /** Renders a client as display text, or null when we cannot name one. */
 export function clientLabel(client?: ProjectClient): string | null {

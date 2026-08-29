@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { StructuredData } from "@/components/seo/StructuredData";
-import { clientLabel, getProject, projects, type Prose } from "@/data/projects";
+import { clientLabel, getProject, projects, whiteLabelLabel, type Prose } from "@/data/projects";
 import { breadcrumbSchema } from "@/lib/site";
 
 type Props = { params: { slug: string } };
@@ -108,6 +108,48 @@ export default function ProjectDetail({ params }: Props) {
               )}
             </div>
 
+            {project.whiteLabel && (
+              <aside
+                aria-labelledby="white-label"
+                className="mt-12 rounded-2xl border border-violet-500/30 bg-violet-500/5 p-8"
+              >
+                <h2
+                  id="white-label"
+                  className="mb-4 font-heading text-2xl font-bold text-foreground"
+                >
+                  {project.whiteLabel.stage === "offered"
+                    ? `Available as a white-label platform for ${project.whiteLabel.audience}`
+                    : `Planned as a white-label platform for ${project.whiteLabel.audience}`}
+                </h2>
+                <p className="text-lg leading-relaxed text-muted-foreground">
+                  {project.whiteLabel.pitch}
+                </p>
+                {project.whiteLabel.modules && project.whiteLabel.modules.length > 0 && (
+                  <ul className="mt-6 flex flex-wrap gap-2" aria-label="Included modules">
+                    {project.whiteLabel.modules.map((m) => (
+                      <li key={m}>
+                        <Badge
+                          variant="outline"
+                          className="border-border bg-muted/50 text-xs text-muted-foreground"
+                        >
+                          {m}
+                        </Badge>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                <Link
+                  href="/contact/"
+                  className="mt-6 inline-flex items-center font-semibold text-violet-500 transition-colors hover:text-violet-400"
+                >
+                  {project.whiteLabel.stage === "offered"
+                    ? "Talk to us about a white-label deployment"
+                    : "Register interest"}
+                  <ArrowLeft className="ml-2 h-4 w-4 rotate-180" />
+                </Link>
+              </aside>
+            )}
+
             {project.quote && (
               <figure className="mt-12 rounded-2xl border border-border bg-muted/20 p-8">
                 <blockquote className="text-lg leading-relaxed text-foreground">
@@ -201,11 +243,42 @@ export default function ProjectDetail({ params }: Props) {
                     </dd>
                   </div>
                 )}
+
+                {project.whiteLabel && (
+                  <div>
+                    <dt className="mb-2 text-sm font-medium text-muted-foreground">
+                      Offered as
+                    </dt>
+                    <dd className="font-medium text-foreground">
+                      {whiteLabelLabel(project.whiteLabel.stage)} · for{" "}
+                      {project.whiteLabel.audience}
+                    </dd>
+                  </div>
+                )}
               </dl>
             </div>
           </aside>
         </div>
 
+        {/* Case studies had no conversion path at all before this. */}
+        <div className="mt-16 rounded-2xl border border-border bg-muted/30 p-8 text-center lg:p-12">
+          <h2 className="mb-4 font-heading text-2xl font-bold text-foreground">
+            {project.whiteLabel?.stage === "offered"
+              ? "Want this running under your own name?"
+              : "Have a project like this?"}
+          </h2>
+          <p className="mb-8 text-muted-foreground">
+            Describe it to us — your message lands directly with a founder.
+          </p>
+          <Link
+            href="/contact/"
+            className="brand-cta inline-flex rounded-full px-8 py-4 text-base font-semibold"
+          >
+            {project.whiteLabel?.stage === "offered"
+              ? "Ask about a white-label deployment"
+              : "Request a Technical Quote"}
+          </Link>
+        </div>
       </div>
     </div>
   );

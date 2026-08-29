@@ -7,8 +7,9 @@ export function Footer() {
   const footerLinks = {
     services: [
       { name: "Marketplace & E-Commerce", href: "/services/marketplace-platforms" },
-      { name: "Mobile App Development", href: "/services/mobile-app" },
-      { name: "Custom Software", href: "/services/custom-software" },
+      { name: "SaaS & Multi-Tenant", href: "/services/saas-platforms" },
+      { name: "Operations & Compliance", href: "/services/operations-compliance" },
+      { name: "Mobile App Development", href: "/services/mobile-apps" },
       { name: "Maintenance & Support", href: "/services/maintenance" },
     ],
     mentorship: [
@@ -20,6 +21,7 @@ export function Footer() {
     company: [
       { name: "About Us", href: "/about" },
       { name: "Our Projects", href: "/projects" },
+      { name: "Products", href: "/products" },
       { name: "Contact & Quote", href: "/contact" },
     ],
   };

@@ -143,6 +143,38 @@ it graduates from roadmap to portfolio. Do not announce features before
 they exist.
 
 
+### 1.6 Globoniks Schools (added 2026-08-29) -- on the Products page
+
+Verified live at school.globoniks.com (React SPA on nginx; PWA). The public
+site is a demo school tenant ("G Schools"); the case study and product card
+say so. Copy uses only the modules and screens observed on the site. Need:
+- **Logo**: the PWA icon is a generic blue "ES" square, so the product has no
+  logo on the site. Send a real mark and it goes on the card and case study.
+  (Is "ES" a legacy name? Worth knowing.)
+- Backend / database / hosting stack (only React + nginx are stated).
+- Origin: why it was built, and whether any real school runs on it yet.
+- What "white-label" includes in practice: own domain? school branding/theme?
+  the mobile install? Currently phrased as "your school's own tenant".
+- Demo credentials, if prospects should be able to log in and click around.
+- First school deployments, when live -- they replace "will be listed here".
+
+### 1.7 Jewellery E-Commerce Platform (added 2026-08-29) -- on the Products page
+
+Verified live at luxury-ecommerce-frontend.onrender.com (React SPA behind
+Cloudflare on Render). It runs as a demo storefront under the placeholder
+brand "ECOM Fine Jewelry"; the copy says so. Need:
+- **A product name** -- it is listed under the descriptive title "Jewellery
+  E-Commerce Platform" because none was given.
+- **A proper domain** for the demo. The onrender.com free-tier URL spins down
+  when idle, so a prospect's first click can take 30-60 seconds to load;
+  that undercuts the "live" badge. A subdomain like jewellery.globoniks.com
+  on the same box as Schools would fix it.
+- Backend / payments: the demo shows cart, wishlist and accounts; whether a
+  real payment gateway is integrated is not stated anywhere, so the copy
+  does not claim it. Confirm and it goes in.
+- Logo, if a product mark exists.
+
+
 ---
 
 ## 2. Claims awaiting evidence
@@ -203,6 +235,25 @@ go in as visible content, where the humans who matter actually read them.
 Once real quotes exist, I would also surface one on the homepage (replacing
 nothing -- adding a short attributed line under the featured work). Only
 with real quotes; never before.
+
+### 2.1e Pharma white-label -- ownership confirmed 2026-08-29
+
+You confirmed Globoniks owns the pharma platform codebase. It is presented as
+"White-label planned" (muted pill, "Planned as a white-label platform for
+pharmaceutical manufacturers", "Register interest" link) -- never as
+available, and the pitch never mentions the client. When you are ready to
+take enquiries, flip `stage: "planned"` to `"offered"` in projects.ts and
+every surface updates. Reminder: the NDA outcome line still applies.
+
+### 2.1f Capabilities list -- trim or extend (added 2026-08-29)
+
+The services page now has "What we build -- at a glance": 14 capability
+pills in src/data/capabilities.ts, framed explicitly as things we build,
+not case studies. Nine link to a shipped project as proof; five are plain
+offers you said you can deliver (chatbots & conversational assistants,
+automated reporting & dashboards, B2B workflow automation, mobile apps,
+plus the general WhatsApp item). Remove anything you would not want a
+prospect to ask for tomorrow; add anything missing.
 
 ### 2.1c Mobile apps nearing launch
 

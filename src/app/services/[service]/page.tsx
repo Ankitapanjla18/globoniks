@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowRight, CheckCircle2, ExternalLink, ShieldCheck } from "
 import { StructuredData } from "@/components/seo/StructuredData";
 import { getService, services } from "@/data/services";
 import { getProject } from "@/data/projects";
+import { WhiteLabelPill } from "@/components/cards/WhiteLabelPill";
 import { breadcrumbSchema, SITE_URL } from "@/lib/site";
 
 type Props = { params: { service: string } };
@@ -142,6 +143,9 @@ export default function ServiceDetail({ params }: Props) {
                           />
                           Live
                         </span>
+                      )}
+                      {project.whiteLabel && (
+                        <WhiteLabelPill stage={project.whiteLabel.stage} />
                       )}
                     </div>
                     <p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-grow">

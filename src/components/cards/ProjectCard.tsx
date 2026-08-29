@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { clientLabel, type Project } from "@/data/projects";
+import { WhiteLabelPill } from "@/components/cards/WhiteLabelPill";
 
 /**
  * Cards lead with the product's own brand mark where one exists (owner
@@ -49,10 +50,11 @@ export function ProjectCard({ project }: { project: Project }) {
             </span>
           )}
           {host && (
-            <span className="truncate font-mono text-xs text-muted-foreground">
+            <span className="min-w-0 truncate font-mono text-xs text-muted-foreground">
               {host}
             </span>
           )}
+          {project.whiteLabel && <WhiteLabelPill stage={project.whiteLabel.stage} />}
         </div>
 
         <h3 className="mb-2 font-heading text-xl font-bold text-foreground transition-colors group-hover:text-violet-500">

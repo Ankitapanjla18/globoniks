@@ -101,6 +101,7 @@ export function ContactForm() {
             <option value="">Select a service...</option>
             <option value="Marketplace / E-Commerce Platform">Marketplace / E-Commerce Platform</option>
             <option value="SaaS / Multi-Tenant Platform">SaaS / Multi-Tenant Platform</option>
+            <option value="White-Label Product">White-Label Product (Schools / Jewellery / Pharma)</option>
             <option value="Operations & Compliance System">Operations &amp; Compliance System</option>
             <option value="Mobile App Development">Mobile App Development</option>
             <option value="Maintenance & Support">Maintenance &amp; Support</option>
