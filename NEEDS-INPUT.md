@@ -148,9 +148,12 @@ they exist.
 Verified live at school.globoniks.com (React SPA on nginx; PWA). The public
 site is a demo school tenant ("G Schools"); the case study and product card
 say so. Copy uses only the modules and screens observed on the site. Need:
-- **Logo**: the PWA icon is a generic blue "ES" square, so the product has no
-  logo on the site. Send a real mark and it goes on the card and case study.
-  (Is "ES" a legacy name? Worth knowing.)
+- **Logo -- interim one generated 2026-08-30** at your request: brand-violet
+  mark with a mortarboard + stacked wordmark, in two variants in
+  `public/logos/` (dark-site version, and `-light` for the app's own white
+  UI). Regenerate with `python scripts/generate-schools-logo.py`; replace both
+  files when a designed mark exists. The app's PWA icon is still the generic
+  "ES" square -- swap it for the light variant when convenient.
 - Backend / database / hosting stack (only React + nginx are stated).
 - Origin: why it was built, and whether any real school runs on it yet.
 - What "white-label" includes in practice: own domain? school branding/theme?
@@ -165,10 +168,11 @@ Cloudflare on Render). It runs as a demo storefront under the placeholder
 brand "ECOM Fine Jewelry"; the copy says so. Need:
 - **A product name** -- it is listed under the descriptive title "Jewellery
   E-Commerce Platform" because none was given.
-- **A proper domain** for the demo. The onrender.com free-tier URL spins down
-  when idle, so a prospect's first click can take 30-60 seconds to load;
-  that undercuts the "live" badge. A subdomain like jewellery.globoniks.com
-  on the same box as Schools would fix it.
+- **A proper domain** for the demo -- you confirmed (2026-08-30) both Schools
+  and the jewellery demo are moving to a server + subdomain. When the new
+  URLs exist, update `liveUrl` on both entries in `src/data/projects.ts`;
+  nothing else needs touching. Until then the onrender.com URL stays (it
+  spins down when idle, so first loads can take 30-60 s).
 - Backend / payments: the demo shows cart, wishlist and accounts; whether a
   real payment gateway is integrated is not stated anywhere, so the copy
   does not claim it. Confirm and it goes in.

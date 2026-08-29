@@ -160,7 +160,9 @@ export const projects: Project[] = [
     stack: ["React", "Nginx"],
     stackVerified: true,
     liveUrl: "https://school.globoniks.com",
-    // Own product: no client. No logo -- the PWA icon is a generic placeholder.
+    // Own product: no client. Interim logo generated 2026-08-30
+    // (scripts/generate-schools-logo.py); replace when a designed mark exists.
+    logo: { src: "/logos/globoniks-schools.png", alt: "Globoniks Schools logo" },
     overview:
       "Globoniks Schools is the studio's own school management platform. The public site runs as a demo school tenant — “G Schools” — showing the system exactly as a school would present it: a news ticker, quick access to Admissions, the Student Portal, the Parent Portal and Notices, a Latest News section, and a login for every role. It is the platform we offer to schools under their own name.",
     challenge:

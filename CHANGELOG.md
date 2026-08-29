@@ -764,3 +764,16 @@ in the pitch; the products page shows the offered cards and the roadmap
 group; capabilities render with proof links; nav/footer carry Products;
 the dead footer slugs are gone; sitemap lists /products/ and both new case
 studies; zero hits for licens/resold/TODO/placeholder across out/.
+
+---
+
+## Globoniks Schools logo (2026-08-30)
+
+Interim logo generated at the owner's request so the product is not the
+only one without a mark: brand-violet rounded square with a mortarboard,
+stacked "Globoniks / SCHOOLS" wordmark. Two variants from
+scripts/generate-schools-logo.py -- the dark-site version wired into the
+product card, homepage strip and case-study sidebar, and a light-background
+version for the app's own UI. Replace both files when a designed mark
+exists. Jewellery keeps its onrender.com URL until the owner moves both
+products to a server + subdomain (NEEDS-INPUT 1.7).
