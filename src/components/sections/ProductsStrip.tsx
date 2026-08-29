@@ -1,11 +1,13 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { ProductCard } from "@/components/cards/ProductCard";
+import { ProductRow } from "@/components/cards/ProductRow";
 import { whiteLabelProjects } from "@/data/projects";
 
 /** Homepage strip: the studio's own platforms, offered under a customer's name. */
 export function ProductsStrip() {
-  const products = whiteLabelProjects.slice(0, 3);
+  const products = whiteLabelProjects
+    .filter((p) => p.whiteLabel?.stage === "offered")
+    .slice(0, 3);
   if (products.length === 0) return null;
 
   return (
@@ -23,18 +25,18 @@ export function ProductsStrip() {
           </div>
           <div className="mt-6 md:mt-0">
             <Link
-              href="/products/"
+              href="/projects/#products"
               className="inline-flex items-center text-violet-500 font-semibold hover:text-violet-400 transition-colors"
             >
-              All products
+              See all work
               <ArrowRight className="w-5 h-5 ml-2" />
             </Link>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="space-y-4">
           {products.map((p) => (
-            <ProductCard key={p.slug} project={p} />
+            <ProductRow key={p.slug} project={p} />
           ))}
         </div>
       </div>

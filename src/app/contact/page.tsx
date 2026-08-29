@@ -1,12 +1,5 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/forms/ContactForm";
-
-export const metadata: Metadata = {
-  title: "Contact",
-  description:
-    "Talk to Globoniks about your project. Office in Sector 68, Mohali, Punjab — reach us at info@globoniks.com or +91-9988-909-556.",
-  alternates: { canonical: "/contact/" },
-};
 import { StructuredData } from "@/components/seo/StructuredData";
 import {
   ADDRESS_LINES,
@@ -15,93 +8,106 @@ import {
   organizationSchema,
 } from "@/lib/site";
 
+export const metadata: Metadata = {
+  title: "Contact",
+  description:
+    "Tell Globoniks what you're building. Office in Sector 68, Mohali, Punjab — info@globoniks.com or +91-9988-909-556. You'll hear back from a founder.",
+  alternates: { canonical: "/contact/" },
+};
+
+/*
+ * Calmer contact page (owner feedback 2026-08-30: the old one felt pushy).
+ * One short form, one primary action, plain-language alternatives, no
+ * budget gate and no "quote" framing. The form still composes into the
+ * visitor's own email or WhatsApp app -- there is no backend yet
+ * (NEEDS-INPUT 3.2).
+ */
 export default function ContactPage() {
+  const waDigits = BUSINESS.telephone.replace(/[^\d]/g, "");
+  const telHref = `tel:${BUSINESS.telephone.replace(/[^+\d]/g, "")}`;
+  const label =
+    "mb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground";
+
   return (
     <div className="min-h-screen pt-32 pb-24">
       <StructuredData data={organizationSchema()} />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-14 max-w-2xl">
+            <h1 className="mb-5 font-heading text-4xl font-black tracking-tight text-foreground lg:text-5xl">
+              Tell us what you&apos;re <span className="text-violet-600">building.</span>
+            </h1>
+            <p className="text-lg leading-relaxed text-muted-foreground">
+              A few lines is enough. You&apos;ll hear back from Ankita — not a
+              sales team — and the first conversation is just that: a
+              conversation.
+            </p>
+          </div>
 
-        <div className="flex flex-col lg:flex-row gap-16 max-w-6xl mx-auto">
-          <div className="lg:w-5/12 space-y-8">
-            <div>
-              <h1 className="text-4xl lg:text-5xl font-heading font-black tracking-tight text-foreground mb-6">
-                Let&apos;s talk <span className="text-purple-500">architecture.</span>
-              </h1>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Whether you need a marketplace, a SaaS platform, a mobile app, or a complete system rewrite, our engineers are ready to build it.
-              </p>
-              {/* Founder-led studio; messages genuinely reach a founder. */}
-              <p className="mt-4 text-base text-foreground font-medium">
-                Your message lands directly with a founder — no sales layer,
-                no ticket queue.
-              </p>
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
+            <div className="lg:col-span-7">
+              <ContactForm />
             </div>
 
-            <div className="space-y-6 pt-6 border-t border-border">
+            <aside className="space-y-10 lg:col-span-5 lg:pl-6">
               <div>
-                <h2 className="font-semibold text-foreground">Office</h2>
-                <address className="text-muted-foreground mt-1 text-sm not-italic leading-relaxed">
+                <h2 className={label}>Prefer to just message?</h2>
+                <ul className="space-y-2 text-foreground">
+                  <li>
+                    <a
+                      href={`https://wa.me/${waDigits}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="transition-colors hover:text-violet-400"
+                    >
+                      WhatsApp · {BUSINESS.telephone}
+                    </a>
+                  </li>
+                  <li>
+                    <a href={`mailto:${BUSINESS.email}`} className="transition-colors hover:text-violet-400">
+                      {BUSINESS.email}
+                    </a>
+                  </li>
+                  <li>
+                    <a href={telHref} className="transition-colors hover:text-violet-400">
+                      Call · {BUSINESS.telephone}
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h2 className={label}>Office</h2>
+                <address className="not-italic leading-relaxed text-muted-foreground">
                   {ADDRESS_LINES.map((line) => (
                     <span key={line} className="block">
                       {line}
                     </span>
                   ))}
                 </address>
-                {/*
-                  The archived site embedded a Google Map whose URL contained
-                  fabricated tokens ("!1d3429.1234567890123", "4v1234567890123"),
-                  so it rendered an error frame. A directions link built from the
-                  real coordinates does the same job with none of the page weight
-                  a third-party iframe adds to Core Web Vitals.
-                */}
                 <a
                   href={MAPS_DIRECTIONS_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-3 inline-flex text-sm font-medium text-violet-500 hover:text-violet-400 transition-colors"
+                  className="mt-3 inline-flex text-sm font-medium text-violet-500 transition-colors hover:text-violet-400"
                 >
-                  Get directions to the Globoniks office
+                  Get directions
                 </a>
               </div>
 
               <div>
-                <h2 className="font-semibold text-foreground">Direct contact</h2>
-                <p className="text-muted-foreground mt-1 text-sm leading-relaxed">
-                  <a
-                    href={`mailto:${BUSINESS.email}`}
-                    className="hover:text-foreground transition-colors"
-                  >
-                    {BUSINESS.email}
-                  </a>
-                  <br />
-                  <a
-                    href={`tel:${BUSINESS.telephone.replace(/[^+\d]/g, "")}`}
-                    className="hover:text-foreground transition-colors"
-                  >
-                    {BUSINESS.telephone}
-                  </a>
-                </p>
-              </div>
-
-              <div>
-                <h2 className="font-semibold text-foreground">Company credentials</h2>
-                <p className="text-muted-foreground mt-1 text-sm leading-relaxed">
-                  {/* ISO claim retained pending certificate number and issuing
-                      registrar. See NEEDS-INPUT.md. */}
+                <h2 className={label}>Registered</h2>
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  {/* ISO claim retained pending certificate number and
+                      issuing registrar. See NEEDS-INPUT.md. */}
                   ISO 9001:2015 Certified Company
                   <br />
-                  GSTIN: {BUSINESS.gstin}
+                  GSTIN {BUSINESS.gstin}
                 </p>
               </div>
-            </div>
-
-          </div>
-
-          <div className="lg:w-7/12">
-            <ContactForm />
+            </aside>
           </div>
         </div>
-
       </div>
     </div>
   );

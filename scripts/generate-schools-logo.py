@@ -5,6 +5,8 @@ mortarboard, with a stacked wordmark. Two variants:
   public/logos/globoniks-schools.png        light text, for the dark site
   public/logos/globoniks-schools-light.png  dark text, for light backgrounds
                                             (the product's own UI, documents)
+  public/logos/globoniks-schools-mark.png   the square mark alone, for small
+                                            tiles (product rows, app icon)
 
 Interim mark, generated 2026-08-30 at the owner's request so the product is
 not the only one without a logo; replace both files with a designed mark
@@ -82,3 +84,8 @@ if __name__ == "__main__":
     os.makedirs(base, exist_ok=True)
     render(WHITE, LILAC, os.path.join(base, "globoniks-schools.png"))
     render(NAVY, DEEP, os.path.join(base, "globoniks-schools-light.png"))
+    sq = Image.new("RGBA", (256, 256), (0, 0, 0, 0))
+    mark(ImageDraw.Draw(sq), 8, 8, 240)
+    out = os.path.join(base, "globoniks-schools-mark.png")
+    sq.save(out, "PNG", optimize=True)
+    print("wrote", out, os.path.getsize(out) // 1024, "KB")

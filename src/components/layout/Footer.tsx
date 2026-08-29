@@ -20,9 +20,8 @@ export function Footer() {
     ],
     company: [
       { name: "About Us", href: "/about" },
-      { name: "Our Projects", href: "/projects" },
-      { name: "Products", href: "/products" },
-      { name: "Contact & Quote", href: "/contact" },
+      { name: "Work — projects & products", href: "/projects" },
+      { name: "Contact", href: "/contact" },
     ],
   };
 

@@ -107,7 +107,7 @@ export function MentorshipApplyForm() {
 
           <button
             type="submit"
-            className="w-full brand-cta px-8 py-3 rounded-full text-base font-semibold flex items-center justify-center"
+            className="inline-flex w-full items-center justify-center rounded-full bg-violet-500 px-7 py-3 text-sm font-semibold text-white transition-colors hover:bg-violet-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             <Mail className="w-5 h-5 mr-2" /> Send Application via Email
           </button>

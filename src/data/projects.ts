@@ -39,8 +39,10 @@ export type Project = {
   stackVerified: boolean;
   liveUrl?: string;
   client?: ProjectClient;
-  /** The product's own brand mark, served from public/logos/. */
-  logo?: { src: string; alt: string };
+  /** The product's own brand mark, served from public/logos/. `mark` is an
+   *  optional square-only variant for small tiles (rows), where a wide
+   *  wordmark would be illegible. */
+  logo?: { src: string; alt: string; mark?: string };
   /** Longer opening paragraph for the case-study page. */
   overview?: string;
   /** Case-study body. Omitted sections are not rendered at all. */
@@ -162,7 +164,11 @@ export const projects: Project[] = [
     liveUrl: "https://school.globoniks.com",
     // Own product: no client. Interim logo generated 2026-08-30
     // (scripts/generate-schools-logo.py); replace when a designed mark exists.
-    logo: { src: "/logos/globoniks-schools.png", alt: "Globoniks Schools logo" },
+    logo: {
+      src: "/logos/globoniks-schools.png",
+      alt: "Globoniks Schools logo",
+      mark: "/logos/globoniks-schools-mark.png",
+    },
     overview:
       "Globoniks Schools is the studio's own school management platform. The public site runs as a demo school tenant — “G Schools” — showing the system exactly as a school would present it: a news ticker, quick access to Admissions, the Student Portal, the Parent Portal and Notices, a Latest News section, and a login for every role. It is the platform we offer to schools under their own name.",
     challenge:

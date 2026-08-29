@@ -189,7 +189,7 @@ export default function ServiceDetail({ params }: Props) {
             href="/contact"
             className="brand-cta px-8 py-4 rounded-full text-base font-semibold inline-flex"
           >
-            Request a Technical Quote
+            Talk to us
           </Link>
         </div>
       </div>

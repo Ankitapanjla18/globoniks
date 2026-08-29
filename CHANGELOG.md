@@ -777,3 +777,54 @@ product card, homepage strip and case-study sidebar, and a light-background
 version for the app's own UI. Replace both files when a designed mark
 exists. Jewellery keeps its onrender.com URL until the owner moves both
 products to a server + subdomain (NEEDS-INPUT 1.7).
+
+---
+
+## Audit pass: Work page merge, calmer contact (2026-08-30)
+
+Owner asked for an inconsistency audit, for Products to be clubbed into
+one section with client projects (a separate grid of logo-less product
+cards read thin), and for a less pushy contact section in line with
+current practice.
+
+### Work page: one page, two strips
+- /products/ removed; /projects/ ("Our work") now carries two strips:
+  **Client projects** (the card grid, logos where they exist) and **Our
+  products, under your name** (single-column rows -- rows give the copy and
+  module pills room a card would waste on an empty image band). The
+  planned pharma product stays in the client strip where its case study
+  belongs, with its "White-label planned" pill; the products strip points
+  to it under "Planned next", so no row appears twice.
+- Homepage products strip uses the same rows and links to /projects/#products.
+- The All/Live filter is retired (six client cards do not need one; the LIVE
+  badge already says it) -- the page is now a pure Server Component.
+- Nav: Products removed, "Projects" is now "Work"; footer "Work -- projects &
+  products", "Contact & Quote" is now "Contact". Sitemap back to 23 URLs.
+
+### Contact: shorter, calmer
+- Headline "Tell us what you're building." with a plain intro: you hear
+  back from Ankita, not a sales team.
+- Form cut to four fields -- name, email, what you're looking for (with a
+  "not sure yet" option), a few lines -- one solid "Send message" button,
+  WhatsApp as a text-link alternative. The required budget dropdown with
+  dollar bands, the company field and all "quote" language are gone.
+- Sidebar reorganised: message channels first (WhatsApp, email, call),
+  then office + directions, then registration.
+- The mentorship application keeps its fields but gets the same calm
+  button. Still no backend: submission composes into the visitor's own
+  email/WhatsApp app (NEEDS-INPUT 3.2).
+
+### Consistency fixes from the audit
+- CTA language unified: "Request a Technical Quote" (services, case
+  studies) and "Get a Quote" (nav) become "Talk to us" / "Let's talk".
+  Uppercase gradient pill kept for the nav and hero only; forms use a
+  calm solid button.
+- "Read the case study" / "Case study" unified to "Case study".
+- Verified every internal link on the homepage resolves to a built page
+  (the retired-slug footer links found last pass stay fixed).
+
+Verification: static export served locally -- nine routes 200 with one h1
+and matching canonicals, /products/ 404s as intended, /projects/ heading
+order h1 > h2 > h3 across both strips, contact page carries the new form
+and no budget/quote wording, zero stale CTA strings across out/, sitemap
+23 URLs.

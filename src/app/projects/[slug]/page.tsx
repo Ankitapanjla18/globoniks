@@ -276,7 +276,7 @@ export default function ProjectDetail({ params }: Props) {
           >
             {project.whiteLabel?.stage === "offered"
               ? "Ask about a white-label deployment"
-              : "Request a Technical Quote"}
+              : "Talk to us"}
           </Link>
         </div>
       </div>

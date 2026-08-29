@@ -86,7 +86,7 @@ export function ProjectCard({ project }: { project: Project }) {
         )}
 
         <span className="mt-auto flex items-center text-sm font-semibold text-foreground">
-          Read the case study
+          Case study
           <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
         </span>
         </div>

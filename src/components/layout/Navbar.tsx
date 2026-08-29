@@ -10,9 +10,8 @@ export function Navbar() {
 
   const navLinks = [
     { name: "Services", href: "/services" },
-    { name: "Products", href: "/products" },
     { name: "Mentorship", href: "/mentorship" },
-    { name: "Projects", href: "/projects" },
+    { name: "Work", href: "/projects" },
     { name: "About", href: "/about" },
   ];
 
@@ -54,7 +53,7 @@ export function Navbar() {
               href="/contact"
               className="brand-cta px-5 py-2.5 rounded-md text-sm font-semibold inline-flex items-center justify-center"
             >
-              Get a Quote &rarr;
+              Let&apos;s talk
             </Link>
           </div>
 
@@ -88,7 +87,7 @@ export function Navbar() {
               onClick={() => setIsMobileMenuOpen(false)}
               className="block mt-4 w-full text-center brand-cta px-5 py-3 rounded-md text-base font-semibold"
             >
-              Get a Quote
+              Let&apos;s talk
             </Link>
           </div>
         </div>
