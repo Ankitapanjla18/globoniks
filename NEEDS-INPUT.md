@@ -289,13 +289,10 @@ salary increase, 2 weeks average job hunt, 95% satisfaction rating, 30% faster
 delivery, 35% production cost reduction, 15+ projects delivered (only 4 are
 shown), 50+ technologies mastered.
 
-### 2.2b Contact response time (added 2026-08-30)
+### 2.2b Contact response time -- resolved 2026-08-30
 
-The overhaul brief asks for a response-time expectation on the contact
-page. The redesigned page says only "you'll hear back from Ankita" -- no
-timeframe, because none has been confirmed. If you are comfortable
-committing to one ("within one working day"), say so and it goes in;
-a stated window you then miss is worse than none.
+Owner committed to "within one working day". Stated in the contact intro,
+the meta description and the post-send note. Keep it true.
 
 ### 2.3 Do you actually offer 24/7 support?
 

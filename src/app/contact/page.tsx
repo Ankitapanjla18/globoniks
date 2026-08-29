@@ -11,7 +11,7 @@ import {
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Tell Globoniks what you're building. Office in Sector 68, Mohali, Punjab — info@globoniks.com or +91-9988-909-556. You'll hear back from a founder.",
+    "Tell Globoniks what you're building. Office in Sector 68, Mohali, Punjab — info@globoniks.com or +91-9988-909-556. You'll hear back from a founder within one working day.",
   alternates: { canonical: "/contact/" },
 };
 
@@ -39,8 +39,8 @@ export default function ContactPage() {
             </h1>
             <p className="text-lg leading-relaxed text-muted-foreground">
               A few lines is enough. You&apos;ll hear back from Ankita — not a
-              sales team — and the first conversation is just that: a
-              conversation.
+              sales team — within one working day, and the first conversation
+              is just that: a conversation.
             </p>
           </div>
 

@@ -828,3 +828,12 @@ and matching canonicals, /products/ 404s as intended, /projects/ heading
 order h1 > h2 > h3 across both strips, contact page carries the new form
 and no budget/quote wording, zero stale CTA strings across out/, sitemap
 23 URLs.
+
+---
+
+## Contact response time (2026-08-30)
+
+Owner confirmed a reply within one working day. Stated in the contact
+intro, the contact meta description and the post-send note -- the
+response-time expectation the overhaul brief asked for, now with a real
+commitment behind it.

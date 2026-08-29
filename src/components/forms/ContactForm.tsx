@@ -119,8 +119,8 @@ export function ContactForm() {
       {handedOff && (
         <p className="text-sm text-muted-foreground" role="status">
           {handedOff === "email" ? "Your email app" : "WhatsApp"} should have
-          opened with the message ready. If nothing opened, write to{" "}
-          {BUSINESS.email} directly.
+          opened with the message ready. We reply within one working day.
+          If nothing opened, write to {BUSINESS.email} directly.
         </p>
       )}
 
