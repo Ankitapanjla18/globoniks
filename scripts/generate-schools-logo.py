@@ -40,19 +40,21 @@ def load(cands, size):
 def mark(d, x, y, size):
     """Rounded violet square with a white mortarboard."""
     d.rounded_rectangle([x, y, x + size, y + size], radius=size * 0.22, fill=VIOLET)
-    cx, cy = x + size / 2, y + size * 0.47
-    hw, hh = size * 0.34, size * 0.17          # diamond half-width / half-height
-    # mortarboard top (diamond)
+    cx, cy = x + size / 2, y + size * 0.45
+    hw, hh = size * 0.34, size * 0.17          # board half-width / half-height
+    # board (diamond)
     d.polygon([(cx, cy - hh), (cx + hw, cy), (cx, cy + hh), (cx - hw, cy)], fill=WHITE)
-    # cap body (band below the diamond)
-    bw, bt = size * 0.19, size * 0.09
-    d.polygon([(cx - bw, cy + hh * 0.35), (cx + bw, cy + hh * 0.35),
-               (cx + bw, cy + hh * 0.35 + bt), (cx, cy + hh * 0.35 + bt + size * 0.06),
-               (cx - bw, cy + hh * 0.35 + bt)], fill=WHITE)
-    # tassel
-    tx = cx + hw * 0.92
-    d.line([(tx, cy), (tx, cy + size * 0.22)], fill=WHITE, width=max(3, int(size * 0.035)))
-    d.ellipse([tx - size * 0.035, cy + size * 0.20, tx + size * 0.035, cy + size * 0.27], fill=WHITE)
+    # cap body: a clean band with rounded bottom corners, no point
+    bw, top, bt = size * 0.20, cy + hh * 0.30, size * 0.12
+    d.rounded_rectangle([cx - bw, top, cx + bw, top + bt], radius=size * 0.05, fill=WHITE)
+    d.rectangle([cx - bw, top, cx + bw, top + bt * 0.5], fill=WHITE)  # square off the top edge
+    # tassel: attached at the board's right tip, draped slightly outward, ending in a bead
+    w = max(3, int(size * 0.03))
+    x0, y0 = cx + hw - size * 0.02, cy
+    x1, y1 = x0 + size * 0.03, cy + size * 0.20
+    d.line([(x0, y0), (x1, y1)], fill=WHITE, width=w)
+    r = size * 0.032
+    d.ellipse([x1 - r, y1 - r * 0.4, x1 + r, y1 + r * 1.6], fill=WHITE)
 
 
 def render(text_color, sub_color, out):

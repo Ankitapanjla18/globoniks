@@ -19,8 +19,10 @@ export function ProductCard({ project }: { project: Project }) {
 
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:border-violet-500/40 hover:shadow-lg">
-      {project.logo && (
-        <div className="flex h-36 items-center justify-center border-b border-border bg-muted/20 p-6">
+      {/* Every product card carries the same band so a grid of them lines
+          up; without a logo it shows a monogram tile rather than nothing. */}
+      <div className="flex h-36 items-center justify-center border-b border-border bg-muted/20 p-6">
+        {project.logo ? (
           <Image
             src={project.logo.src}
             alt={project.logo.alt}
@@ -29,8 +31,19 @@ export function ProductCard({ project }: { project: Project }) {
             unoptimized
             className="max-h-20 w-auto"
           />
-        </div>
-      )}
+        ) : (
+          <span
+            aria-hidden="true"
+            className="flex h-16 w-16 items-center justify-center rounded-2xl bg-violet-500 font-heading text-2xl font-black text-white"
+          >
+            {project.title
+              .split(/\s+/)
+              .slice(0, 2)
+              .map((w) => w[0])
+              .join("")}
+          </span>
+        )}
+      </div>
       <div className="flex flex-grow flex-col p-6">
         <div className="mb-4 flex flex-wrap items-center gap-2">
           <WhiteLabelPill stage={wl.stage} />
