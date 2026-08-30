@@ -3,6 +3,7 @@ import { AudienceSplitSection } from "@/components/sections/AudienceSplitSection
 import { SocialProofBar } from "@/components/sections/SocialProofBar";
 import { FeaturedProjectsSection } from "@/components/sections/FeaturedProjectsSection";
 import { ProductsStrip } from "@/components/sections/ProductsStrip";
+import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { MentorshipTeaser } from "@/components/sections/MentorshipTeaser";
 import { StructuredData } from "@/components/seo/StructuredData";
 import { organizationSchema } from "@/lib/site";
@@ -23,6 +24,7 @@ export default function Home() {
       <SocialProofBar />
       <FeaturedProjectsSection />
       <ProductsStrip />
+      <TestimonialsSection />
       <MentorshipTeaser />
     </div>
   );

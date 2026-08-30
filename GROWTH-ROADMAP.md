@@ -36,10 +36,10 @@ before shortlisting a small studio — and where Globoniks stands.
 
 ### P0 — Foundation (next 4 weeks)
 
-1. **Client reviews live** — EduMapping, Homekrafted, Tricity Life Insurance. Verbatim, attributed, with permission. Surface one on the homepage. *(S, High)*
+1. **Client reviews live** — EduMapping, Homekrafted, Tricity Life Insurance. Verbatim, attributed, with permission. Surface one on the homepage. *(S, High)* — **in progress 2026-08-30:** homepage section built (renders only real quotes); three requests ready in TESTIMONIAL-REQUESTS.md.
 2. **Team credibility** — photos, LinkedIn, one line each on what you personally own. *(S, High)*
-3. **`/how-we-work`** — process, cadence, tools, what a client receives at each stage, time-zone overlap, who they talk to. This page alone answers most first-call questions from larger companies. *(M, High)*
-4. **Engagement models + discovery sprint** — a `/pricing` or "ways to work with us" section: fixed scope, monthly retainer, maintenance plans, and a paid discovery sprint with a defined deliverable. Larger companies buy a small first step, not a big bet. *(M, High)*
+3. **`/how-we-work`** — process, cadence, tools, what a client receives at each stage, time-zone overlap, who they talk to. This page alone answers most first-call questions from larger companies. *(M, High)* — **shipped 2026-08-30** with FAQ schema; two policy lines pending confirmation (NEEDS-INPUT 2.1g).
+4. **Engagement models + discovery sprint** — a `/pricing` or "ways to work with us" section: fixed scope, monthly retainer, maintenance plans, and a paid discovery sprint with a defined deliverable. Larger companies buy a small first step, not a big bet. *(M, High)* — **shipped 2026-08-30** as part of /how-we-work (no prices published).
 5. **Privacy, Terms, Security** — real pages, drafted with a template you review. IP ownership and white-label licensing terms stated plainly. *(M, High)*
 6. **Analytics + Search Console + Bing + contact conversions** — you cannot improve what you do not measure. *(S, Med)*
 7. **Products on real subdomains** — schools.globoniks.com is fine; jewellery needs one. Kills the 30-60 s cold start and the "demo" feel. *(S, High)*
@@ -118,7 +118,7 @@ before shortlisting a small studio — and where Globoniks stands.
 
 ## 4. Cross-cutting visibility moves
 
-- **"Built by Globoniks" on every live product and client site** (with permission) — backlinks plus attribution, the highest-leverage cheap move on this list.
+- **"Built by Globoniks" on every live product and client site** (with permission) — backlinks plus attribution, the highest-leverage cheap move on this list. — **kit ready 2026-08-30:** CREDITS-KIT.md + public/badge/.
 - **Google Business Profile** for Globoniks (Mohali local search) and reviews routed there.
 - **Structured data on the products themselves** (`Organization`, `Product`, `SoftwareApplication`) so the products and the studio connect as entities.
 - **Consistent naming** everywhere: Globoniks (brand), product names, founder names — same spelling on LinkedIn, GBP, Clutch, product footers.

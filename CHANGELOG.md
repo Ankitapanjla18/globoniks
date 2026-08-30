@@ -900,3 +900,25 @@ Also in this pass:
   from inside form controls). Tablets (>= 768px, coarse pointer) get the
   slow ambient drift back instead of a dead-static field; phones stay
   static for Core Web Vitals.
+
+---
+
+## Roadmap P0: how-we-work, testimonials surface, credits kit (2026-08-30)
+
+Owner asked to start the three cheapest high-impact roadmap items.
+
+- **/how-we-work/** -- the page larger buyers read first: five stages
+  (first conversation, two-week fixed-price discovery sprint, milestone
+  build with weekly demos, launch and handover, maintenance), what the
+  client receives at each, five engagement models, communication and
+  time-zone facts, and a six-question FAQ with FAQPage JSON-LD. Written
+  from confirmed facts; two policy defaults (ownership, NDAs) flagged for
+  confirmation. No prices anywhere. In nav, footer, sitemap; linked from
+  contact and services; the contact form gains "A two-week discovery
+  sprint".
+- **Testimonials**: a homepage "In their words" section that renders only
+  real quotes from projects.ts (none exist yet, so it renders nothing);
+  TESTIMONIAL-REQUESTS.md holds three ready-to-send requests.
+- **Credits kit**: CREDITS-KIT.md with paste-ready followed-link snippets
+  per site (UTM-tagged for analytics, root-canonical for backlink value)
+  and two badge SVGs in public/badge/.

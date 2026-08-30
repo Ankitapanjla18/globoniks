@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { StructuredData } from "@/components/seo/StructuredData";
 import {
@@ -40,7 +41,10 @@ export default function ContactPage() {
             <p className="text-lg leading-relaxed text-muted-foreground">
               A few lines is enough. You&apos;ll hear back from Ankita — not a
               sales team — within one working day, and the first conversation
-              is just that: a conversation.
+              is just that: a conversation.{" "}
+              <Link href="/how-we-work/" className="font-medium text-violet-500 hover:text-violet-400 transition-colors">
+                Here is how a project runs.
+              </Link>
             </p>
           </div>
 

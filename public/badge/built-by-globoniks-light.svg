@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="168" height="36" viewBox="0 0 168 36" role="img" aria-label="Built by Globoniks">
+  <rect x="0.5" y="0.5" width="167" height="35" rx="17.5" fill="#ffffff" stroke="#7c3aed" stroke-opacity="0.35"/>
+  <circle cx="18" cy="18" r="6" fill="#7c3aed"/>
+  <text x="32" y="22.5" font-family="Inter, Segoe UI, system-ui, sans-serif" font-size="12.5" fill="#17131f">Built by <tspan font-weight="700">Globoniks</tspan></text>
+</svg>

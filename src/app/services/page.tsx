@@ -33,7 +33,10 @@ export default function ServicesPage() {
           <p className="text-xl text-muted-foreground leading-relaxed">
             Every service below is backed by a system we have delivered — most
             of them live right now for you to open and judge. No capability
-            slides, no hypotheticals.
+            slides, no hypotheticals.{" "}
+            <Link href="/how-we-work/" className="font-medium text-violet-500 hover:text-violet-400 transition-colors">
+              See how a project runs.
+            </Link>
           </p>
         </div>
 

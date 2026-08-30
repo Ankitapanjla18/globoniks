@@ -14,6 +14,7 @@ const WHATSAPP_DIGITS = BUSINESS.telephone.replace(/[^\d]/g, "");
  */
 
 const INTERESTS = [
+  "A two-week discovery sprint",
   "A marketplace or e-commerce platform",
   "A SaaS / multi-tenant platform",
   "An operations or compliance system",

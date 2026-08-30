@@ -259,6 +259,31 @@ automated reporting & dashboards, B2B workflow automation, mobile apps,
 plus the general WhatsApp item). Remove anything you would not want a
 prospect to ask for tomorrow; add anything missing.
 
+### 2.1g How-we-work page: two policy lines to confirm (added 2026-08-30)
+
+The new /how-we-work/ page states two sensible defaults that are policy,
+not observed fact. Confirm or correct them:
+- **Ownership**: "for custom builds, normally the code is yours on final
+  payment; white-label products stay ours, you get your own instance and
+  your data."
+- **NDAs**: "Yes -- send yours, or ask for ours, before the first detailed
+  conversation."
+Also states: the discovery sprint is two weeks at a fixed price quoted after
+the first call (no number published); calls scheduled in the client's hours.
+
+### 2.1h Client quotes -- three requests ready to send (added 2026-08-30)
+
+TESTIMONIAL-REQUESTS.md has ready-to-send messages for Subhash Panjla,
+EduMapping and Homekrafted. When a reply arrives, paste it verbatim into
+the project's `quote` field; the homepage "In their words" section and the
+case study render it automatically. Nothing is shown until then.
+
+### 2.1i "Built by Globoniks" credits (added 2026-08-30)
+
+CREDITS-KIT.md + public/badge/ carry paste-ready snippets and badge SVGs
+for all six live sites. Client-owned sites need a yes first; Schools and
+Jewellery can be done now. Tell me when each is live and I will note it.
+
 ### 2.1c Mobile apps nearing launch
 
 Recorded from you (2026-08-23): companion apps for TricityMatch and
