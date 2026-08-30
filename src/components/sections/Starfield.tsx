@@ -17,10 +17,14 @@ import { useEffect, useRef } from "react";
  * Core Web Vitals, and the first cut did exactly that):
  * - Nothing is painted until the page has loaded and gone idle; the field
  *   then fades in. First paint and hydration never compete with it.
- * - Small screens (< 768px) or touch devices: a static field, drawn once.
- * - Otherwise: DPR 1, stars as pre-rendered sprites (drawImage, not path
- *   fills), 10 fps at rest and 30 fps only while the pointer moves or a
- *   ripple runs, paused when scrolled away or the tab is hidden.
+ * - Phones (< 768px): a static field, drawn once. A tap anywhere fires the
+ *   ripple from the fingertip -- touch has no hover, so the tap is the
+ *   discoverable interaction there.
+ * - Tablets (touch, >= 768px): slow ambient drift at 10 fps, tap ripple,
+ *   no constellations (there is no cursor to draw them around).
+ * - Mouse/trackpad: DPR 1, stars as pre-rendered sprites (drawImage, not
+ *   path fills), 10 fps at rest and 30 fps only while the pointer moves or
+ *   a ripple runs, paused when scrolled away or the tab is hidden.
  * - prefers-reduced-motion: a static field, no constellations, no ripple.
  * aria-hidden and pointer-events: none -- page content never depends on it.
  */
@@ -57,10 +61,8 @@ export function Starfield() {
     if (!ctx) return;
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const isStatic =
-      reduce ||
-      window.matchMedia("(pointer: coarse)").matches ||
-      window.innerWidth < 768;
+    const touch = window.matchMedia("(pointer: coarse)").matches;
+    const isStatic = reduce || window.innerWidth < 768;
     const TONES = ["139, 92, 246", "168, 85, 247"]; // #8B5CF6, #A855F7
     const SPRITE = 24;
     const sprites = TONES.map((rgb) => {
@@ -246,6 +248,7 @@ export function Starfield() {
     }
 
     const onMove = (e: PointerEvent) => {
+      if (e.pointerType === "touch") return;
       mouse.x = e.clientX;
       mouse.y = e.clientY;
       mouse.on = !isStatic;
@@ -263,6 +266,16 @@ export function Starfield() {
     const onRipple = (e: Event) => {
       const d = (e as CustomEvent<{ x: number; y: number }>).detail;
       startRipple(d?.x ?? w / 2, d?.y ?? h / 3);
+    };
+    let lastTap = -1e9;
+    const onTap = (e: MouseEvent) => {
+      if (!touch) return;
+      const tag = (e.target as HTMLElement | null)?.tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
+      const now = performance.now();
+      if (now - lastTap < 800) return;
+      lastTap = now;
+      startRipple(e.clientX, e.clientY);
     };
     const onScroll = () => {
       paused = window.scrollY > window.innerHeight * 1.5;
@@ -286,6 +299,7 @@ export function Starfield() {
     window.addEventListener("pointermove", onMove, { passive: true });
     window.addEventListener("pointerleave", onLeave);
     window.addEventListener("keydown", onKey);
+    window.addEventListener("click", onTap);
     window.addEventListener(RIPPLE_EVENT, onRipple);
     window.addEventListener("scroll", onScroll, { passive: true });
     document.addEventListener("visibilitychange", onVisibility);
@@ -320,6 +334,7 @@ export function Starfield() {
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerleave", onLeave);
       window.removeEventListener("keydown", onKey);
+      window.removeEventListener("click", onTap);
       window.removeEventListener(RIPPLE_EVENT, onRipple);
       window.removeEventListener("scroll", onScroll);
       document.removeEventListener("visibilitychange", onVisibility);

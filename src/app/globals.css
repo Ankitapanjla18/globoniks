@@ -124,42 +124,8 @@
   }
 }
 
-/*
- * Slow drift for the hero's background mesh, standing in for the old site's
- * floating particles. The animate-blob classes were already in the markup
- * but had no keyframes defined, so the mesh was static.
- */
-/* The blurred hero blobs only drift on wider screens: re-rasterising
-   three 128px-blurred layers every frame is a measurable main-thread
-   cost on phones and on Lighthouse's throttled emulation. */
-@media (min-width: 768px) {
-  .animate-blob {
-    animation: blobDrift 16s ease-in-out infinite;
-  }
-}
-.animation-delay-2000 {
-  animation-delay: -5s;
-}
-.animation-delay-4000 {
-  animation-delay: -10s;
-}
-
-@keyframes blobDrift {
-  0%,
-  100% {
-    transform: translate(0, 0) scale(1);
-  }
-  33% {
-    transform: translate(4vw, -3vh) scale(1.08);
-  }
-  66% {
-    transform: translate(-3vw, 3vh) scale(0.94);
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .gradient-text-hero,
-  .animate-blob {
+  .gradient-text-hero {
     animation: none;
   }
   .brand-cta,

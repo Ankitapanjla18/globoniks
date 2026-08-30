@@ -883,3 +883,20 @@ Also in this pass:
 - **GROWTH-ROADMAP.md** added (also published as an artifact page): the
   buyer's checklist, prioritised site/business features, and per-project
   visibility moves for international and larger clients.
+
+---
+
+## Hero mesh removed; starfield on touch (2026-08-30)
+
+- **"Light box" dropped** (owner feedback): the hero's blurred-blob mesh
+  was clipped by the hero's own rectangle and, with the starfield behind it,
+  read as a tinted panel with edges. Mesh, its noise overlay, its animation
+  and the bleed-glow under it (which only existed to soften that edge) are
+  all gone. The hero is now the black field and the gradient headline.
+- **Touch devices** (owner feedback: constellations don't work on mobile or
+  iPad): there is no cursor on touch, so constellations are pointer-only by
+  design. Touch now gets its own interaction -- a tap anywhere fires the
+  ripple from the fingertip (a click, never a scroll start; throttled; not
+  from inside form controls). Tablets (>= 768px, coarse pointer) get the
+  slow ambient drift back instead of a dead-static field; phones stay
+  static for Core Web Vitals.

@@ -5,12 +5,6 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 export function AudienceSplitSection() {
   return (
     <section className="relative py-24">
-      {/* No hard border here: the hero's purple glow bleeds down into this
-          section instead of being cut by a line (owner feedback 2026-08-30). */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 -top-48 h-96 bg-[radial-gradient(ellipse_at_top,rgba(139,92,246,0.22),transparent_62%)]"
-      />
       <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="sr-only">Who we work with</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">

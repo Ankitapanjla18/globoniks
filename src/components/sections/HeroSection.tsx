@@ -22,15 +22,7 @@ export function HeroSection({
   secondaryCtaLink,
 }: HeroSectionProps) {
   return (
-    <section className="relative min-h-[90vh] flex flex-col justify-center items-center overflow-hidden pt-20">
-      {/* Background Gradient Mesh */}
-      <div className="absolute inset-0 w-full h-full -z-10 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-[40vw] h-[40vw] rounded-full mix-blend-multiply filter blur-[128px] opacity-20 bg-violet-600 animate-blob" />
-        <div className="absolute top-1/3 right-1/4 w-[30vw] h-[30vw] rounded-full mix-blend-multiply filter blur-[128px] opacity-20 bg-purple-500 animate-blob animation-delay-2000" />
-        <div className="absolute -bottom-1/4 left-1/3 w-[50vw] h-[50vw] rounded-full mix-blend-multiply filter blur-[128px] opacity-10 bg-violet-500 animate-blob animation-delay-4000" />
-        <div className="absolute inset-0 bg-[url('/noise.svg')] opacity-5 mix-blend-overlay pointer-events-none" />
-      </div>
-
+    <section className="relative min-h-[90vh] flex flex-col justify-center items-center pt-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
