@@ -5,6 +5,7 @@ import { StructuredData } from "@/components/seo/StructuredData";
 import {
   ADDRESS_LINES,
   BUSINESS,
+  ISO,
   MAPS_DIRECTIONS_URL,
   organizationSchema,
 } from "@/lib/site";
@@ -101,13 +102,26 @@ export default function ContactPage() {
 
               <div>
                 <h2 className={label}>Registered</h2>
-                <p className="text-sm leading-relaxed text-muted-foreground">
-                  {/* ISO claim retained pending certificate number and
-                      issuing registrar. See NEEDS-INPUT.md. */}
-                  ISO 9001:2015 Certified Company
-                  <br />
-                  GSTIN {BUSINESS.gstin}
-                </p>
+                <div className="space-y-1.5 text-sm leading-relaxed text-muted-foreground">
+                  <p>
+                    <span className="text-foreground">
+                      {ISO.standard} {ISO.system}
+                    </span>
+                    <br />
+                    Certificate {ISO.certNumber}, issued by {ISO.registrar}
+                    <br />
+                    Valid to {ISO.expiresOnLabel} ·{" "}
+                    <a
+                      href={ISO.verifyUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-violet-500 transition-colors hover:text-violet-400"
+                    >
+                      verify with {ISO.registrarShort}
+                    </a>
+                  </p>
+                  <p>GSTIN {BUSINESS.gstin}</p>
+                </div>
               </div>
             </aside>
           </div>

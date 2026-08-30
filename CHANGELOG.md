@@ -922,3 +922,31 @@ Owner asked to start the three cheapest high-impact roadmap items.
 - **Credits kit**: CREDITS-KIT.md with paste-ready followed-link snippets
   per site (UTM-tagged for analytics, root-canonical for backlink value)
   and two badge SVGs in public/badge/.
+
+---
+
+## ISO 9001:2015 verified and published (2026-08-30)
+
+The owner supplied the certificate, closing the oldest open item in
+NEEDS-INPUT: the claim had been on the site since the archived version
+with nothing behind it, and the site had been carrying it under an
+explicit "pending certificate number and registrar" note.
+
+Certificate 305026031682Q, ISO 9001:2015 Quality Management System,
+issued by QRO Certification LLP on 16 March 2026, valid to 15 March
+2029. Values live in `ISO` in src/lib/site.ts and render in four
+places: the footer credential block (every page), the contact page
+with a verify-with-the-registrar link, a new How-we-work FAQ entry,
+and the Organization schema as `hasCertification` (with
+certificationStatus, dates and scope) plus a certificate-number
+`identifier` alongside the GSTIN.
+
+The bare "ISO 9001:2015 Certified Company" string is gone from the
+build: every appearance now carries the certificate number, so the
+claim is checkable rather than asserted.
+
+Flagged in NEEDS-INPUT: the first surveillance audit is due 15 March
+2027 and the certificate is suspended if it is not completed within
+365 days -- the site now asserts active certification, so that date
+matters. Offering to host the PDF at public/iso-9001-certificate.pdf
+if the owner wants it linked.

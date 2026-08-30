@@ -22,7 +22,7 @@ before shortlisting a small studio — and where Globoniks stands.
 | How you work | Not stated anywhere | `/how-we-work` page: discovery → build → handover, weekly demos, comms channels, time-zone overlap | M | **High** |
 | Engagement models and pricing signals | None | Fixed-scope, retainer, and a **2-week paid discovery sprint** as the low-risk entry for bigger companies | M | **High** |
 | Legal pages | None (removed rather than faked) | Privacy, Terms; NDA- and MSA-ready; IP assignment stated (matters more now that you sell white-label products) | M | **High** |
-| Security & data posture | ISO claim without certificate; nothing on data | Certificate number + registrar or drop the claim; a `/security` page: access control, backups, incident handling, DPDP/GDPR data-processing statement | M | **High** |
+| Security & data posture | **ISO 9001:2015 now verified and published** (cert 305026031682Q, QRO, valid to Mar 2029); nothing on data handling yet | A `/security` page: access control, backups, incident handling, DPDP/GDPR data-processing statement | M | **High** |
 | Third-party proof | No Clutch/GoodFirms, no Google Business Profile | Clutch + GoodFirms profiles; Google Business Profile with reviews | S | **High** |
 | Product demos | Demo tenants exist; no credentials offered | "Try the demo" with sandbox logins for Schools and Jewellery; 60-90 s walkthrough videos | M | **High** |
 | International payments & contracts | Not addressed | USD/GBP/EUR invoicing via Stripe or Wise; SOW template; payment schedule | S | Med |

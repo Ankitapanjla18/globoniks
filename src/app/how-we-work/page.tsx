@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CheckCircle2 } from "lucide-react";
 import { StructuredData } from "@/components/seo/StructuredData";
-import { BUSINESS, breadcrumbSchema } from "@/lib/site";
+import { BUSINESS, ISO, breadcrumbSchema } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "How we work",
@@ -94,6 +94,10 @@ const FAQ = [
   {
     q: "How quickly do you reply?",
     a: "Within one working day, from a founder.",
+  },
+  {
+    q: "Are you certified or formally registered?",
+    a: `Yes. Globoniks holds ${ISO.standard} ${ISO.system} certification from ${ISO.registrar}, certificate ${ISO.certNumber}, issued ${ISO.certifiedOnLabel} and valid to ${ISO.expiresOnLabel}; its validity can be checked with the registrar directly. The certified scope covers software and applications development, web development, digital marketing, and content and brand work. We are also a GST-registered business, GSTIN ${BUSINESS.gstin}.`,
   },
 ];
 
@@ -190,6 +194,7 @@ export default function HowWeWorkPage() {
             <li className="flex items-start"><CheckCircle2 className="w-5 h-5 text-violet-500 mr-3 mt-0.5 flex-shrink-0" /><span>A shared channel for the project — WhatsApp or email, whichever your team already lives in — plus video calls scheduled in your working hours.</span></li>
             <li className="flex items-start"><CheckCircle2 className="w-5 h-5 text-violet-500 mr-3 mt-0.5 flex-shrink-0" /><span>A weekly written update and a demo on the staging environment during the build.</span></li>
             <li className="flex items-start"><CheckCircle2 className="w-5 h-5 text-violet-500 mr-3 mt-0.5 flex-shrink-0" /><span>Replies within one working day, from a founder. We are in Mohali, Punjab (IST, UTC+5:30); {BUSINESS.legalName} is a GST-registered business ({BUSINESS.gstin}).</span></li>
+            <li className="flex items-start"><CheckCircle2 className="w-5 h-5 text-violet-500 mr-3 mt-0.5 flex-shrink-0" /><span>Our quality management system is {ISO.standard} certified by {ISO.registrar} (certificate {ISO.certNumber}, valid to {ISO.expiresOnLabel}) — <a href={ISO.verifyUrl} target="_blank" rel="noopener noreferrer" className="text-violet-500 hover:text-violet-400 transition-colors">verifiable with the registrar</a>. The certified scope covers software and applications development, web development, and content and brand work.</span></li>
           </ul>
         </section>
 

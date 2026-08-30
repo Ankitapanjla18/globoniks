@@ -37,6 +37,31 @@ export const BUSINESS = {
 } as const;
 
 /**
+ * ISO 9001:2015 certification. Verified against the certificate supplied by
+ * the owner on 2026-08-30; until then the site carried the claim with no
+ * evidence, which was the oldest open item in NEEDS-INPUT.
+ *
+ * Every value below is read off the certificate. `verifyUrl` is the
+ * registrar's own validity checker, printed on the certificate -- a claim a
+ * buyer can check beats one they have to trust.
+ */
+export const ISO = {
+  standard: "ISO 9001:2015",
+  system: "Quality Management System",
+  certNumber: "305026031682Q",
+  registrar: "QRO Certification LLP",
+  registrarShort: "QRO",
+  verifyUrl: "https://www.qrocert.org",
+  certifiedOn: "2026-03-16",
+  certifiedOnLabel: "16 March 2026",
+  expiresOn: "2029-03-15",
+  expiresOnLabel: "15 March 2029",
+  /** Scope of activities, as worded on the certificate. */
+  scope:
+    "Providing digital marketing, web development, content development and creation, digital brand management & promotion, software and applications development.",
+} as const;
+
+/**
  * The team. Names supplied by the owner (2026-08-27). Saksham's role, both
  * photos and LinkedIn URLs are still pending -- see NEEDS-INPUT.md 1.2 --
  * so those fields are simply absent until supplied.
@@ -107,6 +132,28 @@ export function organizationSchema() {
       areaServed: "IN",
       availableLanguage: ["en", "hi", "pa"],
     },
+    hasCertification: {
+      "@type": "Certification",
+      name: `${ISO.standard} ${ISO.system}`,
+      certificationIdentification: ISO.certNumber,
+      issuedBy: { "@type": "Organization", name: ISO.registrar },
+      datePublished: ISO.certifiedOn,
+      expires: ISO.expiresOn,
+      certificationStatus: "CertificationActive",
+      about: ISO.scope,
+    },
+    identifier: [
+      {
+        "@type": "PropertyValue",
+        propertyID: "GSTIN",
+        value: BUSINESS.gstin,
+      },
+      {
+        "@type": "PropertyValue",
+        propertyID: `${ISO.standard} certificate number`,
+        value: ISO.certNumber,
+      },
+    ],
   };
 }
 
