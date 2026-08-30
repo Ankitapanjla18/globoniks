@@ -219,6 +219,100 @@ digital marketing, web development, content development and creation,
 digital brand management and promotion, software and applications
 development. Worth knowing if you ever take on marketing work.
 
+### 2.1b Compliance specifics ("we follow compliance and everything")
+
+The Operations & Compliance service page currently claims only what is
+verifiable: batch tracking / audit trails / regulatory reporting delivered in
+the pharma system, and GST registration. To say more, name the frameworks:
+which regulations did the pharma build satisfy (e.g. specific GxP / audit
+requirements)? Any data-protection posture worth stating (DPDP Act)? Send
+specifics and I will state them; without specifics the site stays general
+rather than inventing certifications.
+
+### 2.1d Client reviews for EduMapping and Homekrafted (offered 2026-08-23)
+
+You offered reviews/feedback from both clients. The site already renders an
+attributed quote on each case study the moment the data exists -- nothing
+needs building. What decides whether a quote builds trust or reads as
+filler is the attribution and the specificity. Send, for each:
+
+1. **The quote, verbatim, in the client's words** -- unpolished beats
+   polished. One concrete detail ("the placement cell stopped using
+   spreadsheets", "vendors onboard themselves now") is worth more than any
+   amount of "great team, highly recommended".
+2. **Name, role, company** -- all three. A quote without a person attached
+   is decoration, not evidence.
+3. **Their permission to publish** -- a one-line WhatsApp/email reply from
+   them saying "fine to publish" is enough; keep it on file.
+
+Stronger variants, if the relationship allows (in order of impact):
+- **A LinkedIn recommendation or post** mentioning Globoniks -- publicly
+  verifiable by anyone, which no on-site quote can be. Link it from the
+  case study.
+- **A Google review** on a Globoniks Business Profile -- third-party
+  verifiable AND feeds the Mohali local-search ranking. (Requires the
+  Google Business Profile from 3.1 -- worth setting up first.)
+- **A 30-second phone video** of the client saying the same thing.
+
+One caution: review stars will NOT appear in Google results for
+testimonials on your own site -- Google dropped "self-serving" review rich
+results in 2019. So we will not add Review/aggregateRating schema; quotes
+go in as visible content, where the humans who matter actually read them.
+
+Once real quotes exist, I would also surface one on the homepage (replacing
+nothing -- adding a short attributed line under the featured work). Only
+with real quotes; never before.
+
+### 2.1e Pharma white-label -- ownership confirmed 2026-08-29
+
+You confirmed Globoniks owns the pharma platform codebase. It is presented as
+"White-label planned" (muted pill, "Planned as a white-label platform for
+pharmaceutical manufacturers", "Register interest" link) -- never as
+available, and the pitch never mentions the client. When you are ready to
+take enquiries, flip `stage: "planned"` to `"offered"` in projects.ts and
+every surface updates. Reminder: the NDA outcome line still applies.
+
+### 2.1f Capabilities list -- trim or extend (added 2026-08-29)
+
+The services page now has "What we build -- at a glance": 14 capability
+pills in src/data/capabilities.ts, framed explicitly as things we build,
+not case studies. Nine link to a shipped project as proof; five are plain
+offers you said you can deliver (chatbots & conversational assistants,
+automated reporting & dashboards, B2B workflow automation, mobile apps,
+plus the general WhatsApp item). Remove anything you would not want a
+prospect to ask for tomorrow; add anything missing.
+
+### 2.1g How-we-work page: two policy lines to confirm (added 2026-08-30)
+
+The new /how-we-work/ page states two sensible defaults that are policy,
+not observed fact. Confirm or correct them:
+- **Ownership**: "for custom builds, normally the code is yours on final
+  payment; white-label products stay ours, you get your own instance and
+  your data."
+- **NDAs**: "Yes -- send yours, or ask for ours, before the first detailed
+  conversation."
+Also states: the discovery sprint is two weeks at a fixed price quoted after
+the first call (no number published); calls scheduled in the client's hours.
+
+### 2.1h Client quotes -- three requests ready to send (added 2026-08-30)
+
+TESTIMONIAL-REQUESTS.md has ready-to-send messages for Subhash Panjla,
+EduMapping and Homekrafted. When a reply arrives, paste it verbatim into
+the project's `quote` field; the homepage "In their words" section and the
+case study render it automatically. Nothing is shown until then.
+
+### 2.1i "Built by Globoniks" credits (added 2026-08-30)
+
+CREDITS-KIT.md + public/badge/ carry paste-ready snippets and badge SVGs for
+all six live sites, plus a one-line curl check and a per-site status table.
+
+**Homekrafted: added 2026-08-30, but as plain text.** The footer reads
+"Developed by Globoniks" inside a span with no anchor -- verified, zero `<a>`
+tags to globoniks.com on the page. It gives attribution and no backlink, and
+the backlink is the whole value of the item. Wrap the name in a followed
+`<a href>` (no `nofollow`). Run the same check before ticking off the other
+five sites.
+
 ### 2.2 Statistics removed — restore any you can source
 
 Removed per your decision. Each is listed with what would be needed to bring it
