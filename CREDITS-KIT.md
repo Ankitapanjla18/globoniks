@@ -65,8 +65,36 @@ breaks if globoniks.com changes). Then:
 </a>
 ```
 
-## After adding
+## After adding — check it actually counts
 
-1. Open the site, click the link, confirm it lands on globoniks.com.
-2. Once Google Search Console is set up for globoniks.com, the links appear
-   under Links → Top linking sites within a few weeks.
+**The most common mistake: shipping the credit as plain text.** "Developed by
+Globoniks" in a `<span>` gives attribution and zero SEO value — a crawler
+cannot follow text. It must be an `<a href>`. (This happened on Homekrafted
+on 2026-08-30 and was caught on review.)
+
+Check each site with one command:
+
+```bash
+curl -sL https://SITE | grep -o '<a[^>]*globoniks[^>]*>' | head
+```
+
+- **No output** → the credit is text only, or missing. Wrap the name in an
+  anchor.
+- **Output containing `nofollow`** → the link is there but explicitly
+  discounted. Remove `nofollow` (keep `noopener`).
+- **Output with a plain `href` to globoniks.com** → correct.
+
+Then: open the site, click it, confirm it lands on globoniks.com. Once
+Search Console is set up, the links appear under Links → Top linking sites
+within a few weeks.
+
+## Status
+
+| Site | Credit | Linked |
+|---|---|---|
+| homekrafted.in | ✅ added 2026-08-30 | ❌ plain text — needs the anchor |
+| tricitymatch.com | — | — |
+| edumapping.com | — | — |
+| tricitylifeinsurance.com | — | — |
+| school.globoniks.com | — | — |
+| jewellery demo | — | — |
