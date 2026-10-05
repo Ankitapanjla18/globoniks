@@ -39,6 +39,20 @@ export type Project = {
   stackVerified: boolean;
   liveUrl?: string;
   client?: ProjectClient;
+  /**
+   * A brand Globoniks owns and runs itself (not client work, not a
+   * white-label platform). Rendered as "Our own brand" where a client name
+   * would go. FuzzBall Factory: owner confirmed 2026-10-04.
+   */
+  ownBrand?: true;
+  /**
+   * The public URL is a demo deployment of a platform we offer, not a
+   * business trading on it (Schools runs a demo school, the jewellery
+   * platform a placeholder brand). Demos are counted and badged separately
+   * from live sites everywhere -- before 2026-10-04 the hero counted one
+   * demo as live and left the other out, so pages disagreed on the total.
+   */
+  demo?: true;
   /** The product's own brand mark, served from public/logos/. `mark` is an
    *  optional square-only variant for small tiles (rows), where a wide
    *  wordmark would be illegible. */
@@ -139,7 +153,8 @@ export const projects: Project[] = [
       "A mentor-led recruitment platform for LIC insurance careers in the Chandigarh Tricity — guided application paths for agents, development officers and Bima Sakhi.",
     stack: ["Next.js", "React", "Nginx"],
     stackVerified: true,
-    liveUrl: "https://www.tricitylifeinsurance.com",
+    // Apex, not www: it is the host the site's own canonical tags declare.
+    liveUrl: "https://tricitylifeinsurance.com",
     // Owner confirmed (2026-08-23): client verified, naming and linking allowed.
     client: { kind: "named", name: "Subhash Panjla — LIC Career Mentor" },
     overview:
@@ -154,6 +169,34 @@ export const projects: Project[] = [
       "The platform is live at tricitylifeinsurance.com with the guided career paths and WhatsApp application flow in operation.",
   },
   {
+    slug: "fuzzball-factory",
+    title: "FuzzBall Factory",
+    summary:
+      "Globoniks' own handmade-crochet brand: an online shop with ready-to-ship and made-to-order pieces, custom work orders with a quote-and-deposit flow, and order tracking without an account.",
+    // Observed 2026-10-02: Next.js with ISR behind nginx; Razorpay and
+    // Cloudinary are named in the site's own Content-Security-Policy.
+    // Globoniks' own brand (owner, 2026-10-04). Logo and timeline pending --
+    // NEEDS-INPUT 1.8. The "want a shop like this" offer page is
+    // /build/online-shop/ (src/data/offers.ts).
+    stack: ["Next.js", "React", "Nginx", "Razorpay", "Cloudinary"],
+    stackVerified: true,
+    liveUrl: "https://fuzzballfactory.com",
+    ownBrand: true,
+    overview:
+      "FuzzBall Factory is Globoniks' own handmade-crochet brand — whale keychains, plushies, bouquets, wearables and home pieces, made by a single maker in India — and the studio built and runs its shop. The site is the whole business: a catalogue split into ready-to-ship and made-to-order pieces, a work-order flow for custom commissions, shipping across India and worldwide, and order tracking by order number.",
+    challenge: [
+      "A handmade shop does not behave like ordinary e-commerce. Some pieces are on the shelf and leave in a day or two; others are only crocheted after the order, and take four to ten days. Custom requests are not products at all — they are a conversation about an idea, a price and a date.",
+      "A standard storefront template hides all of that behind one “add to cart” button, and the customer finds out about the wait after paying. The shop needed to state the lead time before checkout, and to give custom work a proper process instead of a chat thread.",
+    ],
+    approach: [
+      "The catalogue separates ready-to-ship from made-to-order, and shows the lead time on the product page, in the cart and at checkout. Custom commissions run as work orders: the customer describes the piece with reference photos, colours and a budget; the maker replies with a quote and a timeline; the customer accepts, counters or declines, pays half to start, follows progress photos, and pays the balance before dispatch.",
+      "Checkout takes UPI, cards and netbanking through Razorpay, with cash on delivery limited to ready-to-ship pieces. Shipping is a flat rate within India and priced by region worldwide, shown before payment, with gift wrap and a handwritten note as an option. Orders are tracked by order number and phone or email, with no account needed.",
+      "The storefront is server-rendered and incrementally regenerated — pages arrive as complete HTML and stay fast while the catalogue changes — and ships with a strict Content-Security-Policy and HSTS.",
+    ],
+    outcome:
+      "FuzzBall Factory is live at fuzzballfactory.com with the shop, custom work orders, worldwide shipping and order tracking in place.",
+  },
+  {
     slug: "globoniks-schools",
     title: "Globoniks Schools",
     summary:
@@ -162,6 +205,7 @@ export const projects: Project[] = [
     stack: ["React", "Nginx"],
     stackVerified: true,
     liveUrl: "https://school.globoniks.com",
+    demo: true,
     // Own product: no client. Interim logo generated 2026-08-30
     // (scripts/generate-schools-logo.py); replace when a designed mark exists.
     logo: {
@@ -210,6 +254,7 @@ export const projects: Project[] = [
     stackVerified: true,
     // Demo storefront deployment; a proper domain is pending (NEEDS-INPUT 1.7).
     liveUrl: "https://luxury-ecommerce-frontend.onrender.com",
+    demo: true,
     overview:
       "A jewellery e-commerce platform running as a demo storefront under the demo brand “ECOM Fine Jewelry”. The demo shows the full shopper journey a jeweller would get under their own name: an editorial homepage, curated departments, collections filtered by category, product pages, wishlist, cart and customer login, plus a bespoke-commissions section.",
     challenge:
@@ -302,6 +347,18 @@ export function getProject(slug: string): Project | undefined {
 /** Projects a prospect can click through to and verify for themselves. */
 export const liveProjects = projects.filter((p) => p.liveUrl);
 
+/** Live sites with a real business on them -- the number the site quotes. */
+export const liveSites = liveProjects.filter((p) => !p.demo);
+
+/** Live demo deployments of our own platforms. */
+export const liveDemos = liveProjects.filter((p) => p.demo);
+
+/** Badge text for a project's public URL. */
+export function liveLabel(p: { liveUrl?: string; demo?: true }): string | null {
+  if (!p.liveUrl) return null;
+  return p.demo ? "Live demo" : "Live";
+}
+
 /** Platforms the studio can put under a customer's own name (the Products section). */
 export const whiteLabelProjects = projects.filter((p) => p.whiteLabel);
 
@@ -310,7 +367,8 @@ export function whiteLabelLabel(stage: "offered" | "planned"): string {
 }
 
 /** Renders a client as display text, or null when we cannot name one. */
-export function clientLabel(client?: ProjectClient): string | null {
+export function clientLabel(client?: ProjectClient, ownBrand?: true): string | null {
+  if (ownBrand) return "Our own brand";
   if (!client) return null;
   return client.kind === "named"
     ? client.name

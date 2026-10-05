@@ -1,123 +1,129 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ISO } from "@/lib/site";
+import { ADDRESS_LINES, BUSINESS, ISO } from "@/lib/site";
+import { services } from "@/data/services";
+import { tracks } from "@/data/mentorship";
 
+/*
+ * Footer: a closing statement, then the index. Link columns are generated
+ * from the same data files as the routes, so a renamed service cannot leave
+ * a stale footer link behind. Credentials sit in the mono instrument voice.
+ */
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
-  const footerLinks = {
-    services: [
-      { name: "Marketplace & E-Commerce", href: "/services/marketplace-platforms" },
-      { name: "SaaS & Multi-Tenant", href: "/services/saas-platforms" },
-      { name: "Operations & Compliance", href: "/services/operations-compliance" },
-      { name: "Mobile App Development", href: "/services/mobile-apps" },
-      { name: "Maintenance & Support", href: "/services/maintenance" },
-    ],
-    mentorship: [
-      { name: "Full-Stack Web Track", href: "/mentorship/fullstack-track" },
-      { name: "Mobile Development Track", href: "/mentorship/mobile-track" },
-      { name: "Leadership & Architecture", href: "/mentorship/leadership" },
-      { name: "Apply Now", href: "/mentorship/apply" },
-    ],
-    company: [
-      { name: "About Us", href: "/about" },
-      { name: "How we work", href: "/how-we-work" },
-      { name: "Work — projects & products", href: "/projects" },
-      { name: "Contact", href: "/contact" },
-    ],
-  };
+  const company = [
+    { name: "About", href: "/about/" },
+    { name: "How we work", href: "/how-we-work/" },
+    { name: "Work", href: "/projects/" },
+    { name: "Contact", href: "/contact/" },
+  ];
 
   return (
-    <footer className="border-t border-border mt-20">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
-          <div className="lg:col-span-2 space-y-6">
-            <Link href="/" className="flex items-center gap-2 font-heading font-bold text-2xl tracking-tighter text-foreground">
+    <footer className="mt-20 border-t rule">
+      <div className="container mx-auto px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-5">
+            <Link href="/" className="inline-flex items-center gap-3 text-foreground">
               <Image
                 src="/logo.svg"
                 alt=""
-                width={40}
-                height={40}
-                className="h-10 w-10 [filter:drop-shadow(0_0_8px_rgba(139,92,246,0.6))]"
+                width={36}
+                height={36}
+                className="h-9 w-9 [filter:drop-shadow(0_0_10px_rgba(139,92,246,0.55))]"
               />
-              GLOBONIKS
+              <span className="font-heading text-[1.65rem] leading-none tracking-tight">Globoniks</span>
             </Link>
-            <p className="text-muted-foreground text-sm max-w-sm leading-relaxed">
-              We build what others only pitch. Marketplaces, SaaS platforms and business systems — live in production — from Mohali, Punjab.
+            <p className="mt-6 max-w-sm font-heading text-3xl leading-[1.05] tracking-tight text-foreground">
+              Software you can open, <span className="ink">not slides you have to trust.</span>
             </p>
-            <div className="p-4 border border-border/60 rounded-xl bg-muted/20 backdrop-blur-sm max-w-xs space-y-2">
-              <div className="flex items-center space-x-2 text-xs font-semibold text-foreground/90">
-                <svg className="w-4 h-4 text-violet-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                </svg>
-                <span>
-                  {ISO.standard} certified · {ISO.registrarShort} {ISO.certNumber}
+            <ul className="mt-8 space-y-1 text-sm text-muted-foreground">
+              <li>
+                <a href={`mailto:${BUSINESS.email}`} className="inline-block py-1.5 transition-colors hover:text-foreground">
+                  {BUSINESS.email}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={`tel:${BUSINESS.telephone.replace(/[^+\d]/g, "")}`}
+                  className="inline-block py-1.5 transition-colors hover:text-foreground"
+                >
+                  {BUSINESS.telephone}
+                </a>
+              </li>
+            </ul>
+            <address className="mt-4 font-mono text-[11px] not-italic leading-relaxed text-muted-foreground">
+              {ADDRESS_LINES.map((line) => (
+                <span key={line} className="block">
+                  {line}
                 </span>
-              </div>
-              <div className="text-[11px] text-muted-foreground pl-6 flex items-center space-x-1">
-                <span>GSTIN:</span>
-                <span className="font-mono text-foreground bg-muted-foreground/10 px-1.5 py-0.5 rounded text-[10px] tracking-wider font-semibold">03CZQPA4795R1ZJ</span>
-              </div>
+              ))}
+            </address>
+          </div>
+
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:col-span-7">
+            <div>
+              <h2 className="eyebrow mb-5">Services</h2>
+              <ul className="space-y-3">
+                {services.map((s) => (
+                  <li key={s.slug}>
+                    <Link href={`/services/${s.slug}/`} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+                      {s.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
-            {/* Block-level links with padding: inline links in a <p> failed
-                the touch-target-size audit. */}
-            <ul className="text-sm text-muted-foreground space-y-1">
-              <li>
-                <a href="mailto:info@globoniks.com" className="inline-block py-1.5 hover:text-foreground transition-colors">
-                  info@globoniks.com
-                </a>
-              </li>
-              <li>
-                <a href="tel:+919988909556" className="inline-block py-1.5 hover:text-foreground transition-colors">
-                  +91-9988-909-556
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-foreground mb-4">Services</h3>
-            <ul className="space-y-3">
-              {footerLinks.services.map((link) => (
-                <li key={link.name}>
-                  <Link href={link.href} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                    {link.name}
+            <div>
+              <h2 className="eyebrow mb-5">Mentorship</h2>
+              <ul className="space-y-3">
+                {tracks.map((t) => (
+                  <li key={t.slug}>
+                    <Link href={`/mentorship/${t.slug}/`} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+                      {t.title}
+                    </Link>
+                  </li>
+                ))}
+                <li>
+                  <Link href="/mentorship/apply/" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+                    Apply
                   </Link>
                 </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-foreground mb-4">Mentorship</h3>
-            <ul className="space-y-3">
-              {footerLinks.mentorship.map((link) => (
-                <li key={link.name}>
-                  <Link href={link.href} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-foreground mb-4">Company</h3>
-            <ul className="space-y-3">
-              {footerLinks.company.map((link) => (
-                <li key={link.name}>
-                  <Link href={link.href} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+              </ul>
+            </div>
+            <div>
+              <h2 className="eyebrow mb-5">Company</h2>
+              <ul className="space-y-3">
+                {company.map((link) => (
+                  <li key={link.name}>
+                    <Link href={link.href} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <p className="text-sm text-muted-foreground">
-            &copy; {currentYear} Globoniks. All rights reserved.
+        <div className="mt-14 flex flex-col gap-4 border-t rule pt-6 font-mono text-[11px] text-muted-foreground md:flex-row md:items-center md:justify-between">
+          <p>
+            &copy; {currentYear} {BUSINESS.legalName}. All rights reserved.
+          </p>
+          <p className="flex flex-wrap items-center gap-x-3 gap-y-1">
+            <span>
+              {ISO.standard} · Cert. {ISO.certNumber} ·{" "}
+              <a
+                href={ISO.verifyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline decoration-dotted underline-offset-4 transition-colors hover:text-foreground"
+              >
+                verify with {ISO.registrarShort}
+              </a>
+            </span>
+            <span aria-hidden="true" className="text-violet-500">·</span>
+            <span>GSTIN {BUSINESS.gstin}</span>
           </p>
           {/* Privacy Policy and Terms links removed: both routes 404. The
               pages need real legal copy, not boilerplate. See NEEDS-INPUT.md. */}

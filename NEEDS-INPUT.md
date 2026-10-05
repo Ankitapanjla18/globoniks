@@ -41,12 +41,17 @@ I need one of:
 The four listed post titles and dates (Aug–Oct 2024) are also placeholders and
 are now roughly two years stale.
 
-### 1.2 Team -- resolved 2026-08-27
+### 1.2 Team -- resolved 2026-08-27, Kapila added 2026-10-02
 
-**Ankita — Founder & Director, Client Relations** and **Saksham Panjla —
-Lead Developer** (designation chosen at owner's "give him any designation").
-Still pending: photos for both (cards show initials) and LinkedIn URLs --
-the last step of the credibility layer.
+**Ankita — Founder & Director, Client Relations**, **Kapila — Director,
+Operations** (remit chosen at owner's "operations, or whatever feels right")
+and **Saksham Panjla — Lead Developer** (designation chosen at owner's "give
+him any designation"). Still pending: photos for all three (cards show
+initials) and LinkedIn URLs -- the last step of the credibility layer.
+
+Confirm for Kapila: surname, if it should be shown (the card reads just
+"Kapila", matching "Ankita"); and whether "operations" is right. Saksham was
+left on the site as Lead Developer -- say so if that has changed.
 
 ### 1.3 Case studies — now real pages, but thin on detail
 
@@ -178,10 +183,69 @@ brand "ECOM Fine Jewelry"; the copy says so. Need:
   does not claim it. Confirm and it goes in.
 - Logo, if a product mark exists.
 
+### 1.8 FuzzBall Factory (added 2026-10-02) -- in the portfolio
+
+Verified live at fuzzballfactory.com (Next.js with ISR on nginx/Ubuntu;
+Razorpay and Cloudinary named in its Content-Security-Policy). The case
+study uses only what the site itself shows.
+
+**Update 2026-10-04: Globoniks' own brand.** The card and case study now
+read "Our own brand" where a client name would go, and the case study
+links to the new offer page, **/build/online-shop/** ("Want a shop like
+FuzzBall Factory?"): features as observed, what the customer must
+provide, the five project stages, add-ons, FAQ. Copy in
+src/data/offers.ts. Need:
+- **The footer link on fuzzballfactory.com** -- paste-ready in
+  CREDITS-KIT.md under "Want one like this?". Until it is on the shop,
+  the offer page only gets traffic from globoniks.com itself.
+- **Logo** -- the site exposes only a 64px favicon, so the card has no mark.
+- Any outcome with a source (orders, work orders completed) -- the offer
+  page would carry it well.
+- **Confirm the requirements list** on the offer page, especially the
+  Razorpay line ("PAN, a bank account and a business address; GST
+  optional below the threshold") -- correct it if your onboarding
+  experience differed.
+
+**Three things on fuzzballfactory.com itself, found while reading it:**
+1. **WhatsApp links are a placeholder number** -- every "Chat on WhatsApp"
+   button points to `wa.me/910000000000`. Customers tapping it reach nobody.
+2. **The About page still shows template text** -- "[Maker's name]",
+   "[Maker photo]", "[The maker's story in their own words...]" and "Sample
+   photo. The maker's own pictures go here." are live.
+3. **No Globoniks credit** -- the word does not appear anywhere in the
+   pages checked (home, about, shop, work orders, tracking). See
+   CREDITS-KIT.md for the snippet; ask the client first.
+
+Worth fixing 1 and 2 before pointing prospects at this case study: the
+portfolio links straight to the live site.
 
 ---
 
 ## 2. Claims awaiting evidence
+
+### 2.0 Incorporation as a private limited company (added 2026-10-02)
+
+**Status 2026-10-04:** GST documents in process (owner). Nothing on the
+site changes until the new GSTIN is issued.
+
+The site now names the entity as **Globoniks Technologies Private Limited**
+(name confirmed by the owner): footer copyright, About, the How-we-work
+registration FAQ, and `legalName` in the Organization schema. Values live
+in `BUSINESS` in `src/lib/site.ts`. Need:
+
+- **CIN and date of incorporation.** Not published anywhere yet. A company is
+  required to show its name, CIN and registered office on its business
+  letters and website; send them and they go in the footer and the schema.
+- **Registered office address**, if it differs from the Sector 68 office.
+- **GSTIN -- check this one.** The published GSTIN (03CZQPA4795R1ZJ) was
+  issued before incorporation and is built on an individual's PAN (fourth
+  PAN character "P"). The company gets its own PAN and its own GST
+  registration. The number is still shown on contact, How-we-work and in
+  the schema, attached to the brand "Globoniks" rather than to the company
+  name. Send the company's GSTIN when it is issued, or say if the old
+  registration has been cancelled and it should come down in the meantime.
+- **ISO 9001 certificate** (2.1) was issued before incorporation. Ask QRO
+  whether it needs reissuing in the company's name.
 
 ### 2.1 ISO 9001:2015 -- RESOLVED 2026-08-30
 
@@ -294,6 +358,59 @@ not observed fact. Confirm or correct them:
 Also states: the discovery sprint is two weeks at a fixed price quoted after
 the first call (no number published); calls scheduled in the client's hours.
 
+### 2.1k Added in the consistency audit -- confirm or correct (2026-10-04)
+
+The audit removed every claim it could not trace to the data files or to
+something you confirmed. A few lines stay on the site as reasonable
+defaults; correct any that are wrong:
+
+- **Mentorship reply time: "within one working day"** (was "48 hours",
+  which nothing supported). Same promise as the contact form.
+- **"Monthly retainer"** as an engagement model on /how-we-work/ -- keep
+  only if you will sell engineering days per month.
+- **"For custom builds, your data can live in your own cloud account and
+  region."** Keep only if that is how you deploy custom work.
+- **Removed**, tell me if any should come back with specifics: income
+  share agreements (ISA) on the mentorship page; "senior architects";
+  "Elite"; "Indian clients are covered under the DPDP Act"; "Every live
+  product on this site runs [tests and CI/CD]"; "No juniors learning on
+  your project"; "most software agencies produce unmaintainable code".
+- **Mentorship track outcomes** are now one list per track, written from
+  each track's own description (src/data/mentorship.ts `outcomes`).
+  Replace them with the real syllabus when you have it.
+- **Live sites vs demos.** The site now counts 5 live sites (Homekrafted,
+  TricityMatch, EduMapping, Tricity Life Insurance, FuzzBall Factory) and
+  2 live demos (Globoniks Schools, the jewellery store), from a `demo`
+  flag in projects.ts. When a real school or jeweller goes live on a
+  platform, add it as its own entry -- that is the first live customer
+  of the product, and worth its own case study.
+
+### 2.1j How-we-work for overseas clients -- defaults to confirm (added 2026-10-04)
+
+The rewritten /how-we-work/ page targets clients abroad as well as in
+India. These lines are sensible defaults, not confirmed facts. Correct any
+that are wrong; each lives in one place in src/app/how-we-work/page.tsx
+(OFFICE_START/OFFICE_END in src/components/sections/OfficeHours.tsx).
+
+- **Office hours: 10:00–19:00 IST, Monday to Friday.** Shown on the page
+  and converted to the visitor's own time zone.
+- **Invoicing in INR, USD, GBP or EUR by international bank transfer,
+  milestone billing.** If you only invoice in INR, or use Wise/Payoneer/
+  PayPal, say so.
+- **"Exports of services are invoiced without Indian GST."** True only
+  if the company files a **Letter of Undertaking (LUT)** on the GST
+  portal each financial year; without one, IGST is charged and refunded
+  later. File the LUT under the company's own GSTIN (see 2.0 -- the
+  published one predates incorporation) or tell me to soften the line.
+- **"A data-processing agreement for EU and UK clients on request,
+  aligned with GDPR."** Only keep this if you will actually sign one; a
+  template DPA is a short document and worth having before the first
+  European enquiry.
+- **Communication channel options include Slack.** Remove it if you do
+  not use Slack.
+- **"A short drive from Chandigarh International Airport."** Fine as
+  worded; I deliberately did not state a time.
+
 ### 2.1h Client quotes -- three requests ready to send (added 2026-08-30)
 
 TESTIMONIAL-REQUESTS.md has ready-to-send messages for Subhash Panjla,
@@ -385,9 +502,9 @@ form service (API route, Formspree, Web3Forms, or CRM) would capture
 submissions without depending on the visitor's mail client -- decision
 still yours.
 
-**Confirm: is +91-9988-909-556 WhatsApp-enabled?** The contact form's
-WhatsApp button opens wa.me with that number. If WhatsApp lives on a
-different number, say which.
+**WhatsApp number -- confirmed 2026-10-05.** +91-9988-909-556 is on
+WhatsApp (owner). It is used by the phone action bar on every page, the
+contact form's WhatsApp button and the contact page.
 
 (The blog newsletter question is moot -- the blog is removed.)
 
@@ -397,11 +514,70 @@ different number, say which.
 - Google Search Console verification token
 - Bing Webmaster Tools verification token
 
-### 3.4 Canonical host
+### 3.4 Canonical host -- switched to www 2026-10-04
 
-I have set canonicals to `https://globoniks.com` (no `www`), matching the
-archived site. Both hosts currently resolve — a 301 from `www` to the apex
-needs configuring at your DNS/host, which I cannot do from the repo.
+The live host redirects the other way from what the site assumed: the apex
+`globoniks.com` 301s to `www.globoniks.com` (Cloudflare). Every canonical,
+sitemap URL, og:url and schema `@id` said the apex -- each one pointing at
+a redirect, which search engines treat as no canonical at all. `SITE_URL`
+in src/lib/site.ts is now `https://www.globoniks.com` to match reality. If
+you would rather the apex be canonical, flip the redirect at Cloudflare
+(www -> apex) and change that one constant back; nothing else needs
+touching.
+
+### 3.4b Host behaviour that only you can fix (found 2026-10-04)
+
+Checked against the live host with curl; neither can be changed from the
+repo, both are in Render's Redirects/Rewrites (or Cloudflare rules):
+
+1. **Soft 404s.** `https://www.globoniks.com/anything-made-up/` returns the
+   404 page with HTTP **200**. Search engines then index junk URLs and
+   treat the site's real 404s as thin content. The static export ships
+   `out/404.html`; the host must serve it with a 404 status. Look for a
+   catch-all rewrite (`/* -> /404.html` or `/index.html`) and remove it.
+   Test: `curl -sI https://www.globoniks.com/nope/ | head -1` should say
+   `404`.
+2. **No trailing-slash redirect.** `https://www.globoniks.com/services`
+   (no slash) returns the 404 page, status 200, instead of redirecting to
+   `/services/`. Every internal link carries the slash, but any external
+   link or typed URL without it lands on "This page doesn't exist". Add a
+   301 rule `/:path -> /:path/` for paths without a file extension, or
+   enable the host's trailing-slash option. Test: `curl -sI
+   https://www.globoniks.com/services | head -1` should say `301`.
+
+Also noticed: the deployed HTML dates from 30 August (`last-modified`
+header). Everything since -- ISO details, incorporation, FuzzBall Factory,
+this SEO pass -- is not live until the next deploy.
+
+### 3.4c Off-site SEO, in order of return (2026-10-04)
+
+Nothing below is a repo change. Each is a signal the site cannot give
+itself, and together they outweigh any further on-page work:
+
+1. **Google Search Console** -- verify `www.globoniks.com` (DNS record is
+   simplest, covers both hosts), submit `/sitemap.xml`. Without this there
+   is no way to see what Google indexes or which queries bring visitors.
+   Bing Webmaster Tools takes the same sitemap and feeds Copilot/ChatGPT
+   search.
+2. **Google Business Profile** for Globoniks Technologies Private Limited
+   at the Sector 68 address, category "Software company". This is the
+   single largest factor for "software company in Mohali" searches and the
+   map pack; the site's LocalBusiness schema is already consistent with it
+   (same name, address, phone -- keep them identical).
+3. **Backlinks from the products** -- CREDITS-KIT.md. Homekrafted now
+   links (verified); the other six do not. Six followed links from real,
+   indexed sites is more authority than this domain has today.
+4. **One LinkedIn company page + founder profiles** with the exact legal
+   and brand names, linked from the site once they exist (`sameAs` in the
+   schema is waiting for verified URLs).
+5. **Client reviews on Google and Clutch** rather than on-site quotes --
+   third-party verifiable, and Google reads them.
+6. **Original content with evidence** -- one case-study-depth post per
+   quarter on a real engineering decision (the Homekrafted ISR setup, the
+   TricityMatch verification pipeline, the FuzzBall work-order flow).
+   Search and AI answer engines both now reward first-hand, specific
+   pages and ignore generic "top 10 benefits of" posts. The blog route
+   returns when the first real article exists.
 
 ### 3.5 Clutch.co
 

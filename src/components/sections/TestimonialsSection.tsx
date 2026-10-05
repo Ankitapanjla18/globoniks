@@ -13,34 +13,35 @@ export function TestimonialsSection() {
   if (quoted.length === 0) return null;
 
   return (
-    <section className="py-24 border-t border-border" aria-labelledby="testimonials">
+    <section className="border-t rule py-20 md:py-28" aria-labelledby="testimonials">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <p className="eyebrow mb-5">In their words</p>
         <h2
           id="testimonials"
-          className="text-3xl md:text-5xl font-heading font-black tracking-tight mb-12 text-foreground"
+          className="mb-12 font-heading text-4xl leading-[1.02] tracking-tight text-foreground md:text-5xl"
         >
-          In their <span className="text-violet-600">words.</span>
+          What clients <span className="ink">actually said.</span>
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div data-reveal="" data-reveal-stagger="" className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
           {quoted.map((p) => (
             <figure
               key={p.slug}
-              className="flex h-full flex-col rounded-2xl border border-border bg-card p-8"
+              className="flex h-full flex-col rounded-3xl border rule bg-card/60 p-8"
             >
-              <blockquote className="flex-grow text-lg leading-relaxed text-foreground">
+              <blockquote className="flex-grow font-heading text-2xl leading-snug text-foreground">
                 &ldquo;{p.quote!.text}&rdquo;
               </blockquote>
-              <figcaption className="mt-6 text-sm text-muted-foreground">
-                <span className="font-semibold text-foreground">{p.quote!.name}</span>
-                , {p.quote!.role}, {p.quote!.company}
-                <span className="block mt-1">
-                  <Link
-                    href={`/projects/${p.slug}/`}
-                    className="text-violet-500 hover:text-violet-400 transition-colors"
-                  >
-                    {p.title} case study
-                  </Link>
+              <figcaption className="mt-8 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+                <span className="text-foreground">{p.quote!.name}</span>
+                <span className="block normal-case tracking-normal">
+                  {p.quote!.role}, {p.quote!.company}
                 </span>
+                <Link
+                  href={`/projects/${p.slug}/`}
+                  className="mt-2 inline-block normal-case tracking-normal text-violet-400 transition-colors hover:text-violet-300"
+                >
+                  {p.title} case study
+                </Link>
               </figcaption>
             </figure>
           ))}

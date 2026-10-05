@@ -1,46 +1,47 @@
-import { ShieldCheck, Cpu, Target } from "lucide-react";
-
+/*
+ * Used on the About page. Three commitments, stated as an editorial list
+ * rather than icon cards.
+ */
 export function WhyUsSection() {
   const features = [
     {
-      icon: <Cpu className="w-8 h-8 text-violet-500" />,
-      title: "Senior Engineering Talent",
-      description: "Our core team consists of senior architects and full-stack developers mapping out precise infrastructure before writing a single line of code.",
+      title: "Senior engineering, small team",
+      description:
+        "Architecture is decided before code is written, by the people who will write it.",
     },
     {
-      icon: <Target className="w-8 h-8 text-violet-500" />,
-      title: "Zero Agency Bloat",
-      description: "You speak directly to the engineers building your product. No middle-managers playing telephone with your requirements.",
+      title: "Zero agency bloat",
+      description:
+        "You speak directly to the people building your product. No middle-managers playing telephone with your requirements.",
     },
     {
-      icon: <ShieldCheck className="w-8 h-8 text-violet-500" />,
-      title: "Production-Ready Standards",
-      description: "We enforce strict testing, robust CI/CD pipelines, and scalable architectures as our baseline, never as an upsell.",
+      title: "Production-ready as the baseline",
+      description:
+        "Testing, CI/CD pipelines and scalable architecture are how we work, never an upsell.",
     },
   ];
 
   return (
-    <section className="py-24 bg-muted/20 border-t border-border">
+    <section className="border-t rule bg-muted/20 py-20 md:py-28" aria-labelledby="why-heading">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-5xl font-heading font-black tracking-tight text-foreground mb-6">
-            The Globoniks Difference
-          </h2>
-          <p className="text-lg text-muted-foreground">
-            We operate as your dedicated engineering arm, combining startup velocity with enterprise stability.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-          {features.map((feature, index) => (
-            <div key={index} className="flex flex-col items-center text-center p-6 lg:p-8 rounded-2xl bg-card border border-border hover:border-violet-500/30 transition-colors shadow-sm">
-              <div className="w-16 h-16 rounded-full bg-violet-500/10 flex items-center justify-center mb-6">
-                {feature.icon}
-              </div>
-              <h3 className="text-xl font-semibold text-foreground mb-3">{feature.title}</h3>
-              <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
-            </div>
-          ))}
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-4">
+            <p className="eyebrow mb-5">How we differ</p>
+            <h2 id="why-heading" className="font-heading text-4xl leading-[1.02] tracking-tight text-foreground md:text-5xl">
+              Startup velocity, <span className="ink">production discipline.</span>
+            </h2>
+          </div>
+          <ol data-reveal="" data-reveal-stagger="" className="lg:col-span-8">
+            {features.map((feature, index) => (
+              <li key={feature.title} className="grid grid-cols-[2.5rem_1fr] gap-x-4 border-t rule py-7 last:border-b md:grid-cols-[3rem_1fr] md:gap-x-8">
+                <span className="pt-1.5 font-mono text-xs text-muted-foreground">{String(index + 1).padStart(2, "0")}</span>
+                <div>
+                  <h3 className="font-heading text-2xl leading-tight text-foreground md:text-3xl">{feature.title}</h3>
+                  <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted-foreground md:text-[15px]">{feature.description}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
         </div>
       </div>
     </section>

@@ -7,15 +7,19 @@ import {
   BUSINESS,
   ISO,
   MAPS_DIRECTIONS_URL,
-  organizationSchema,
+  pageMetadata,
+  webPageSchema,
 } from "@/lib/site";
+import { PageHeader } from "@/components/ui/page";
 
-export const metadata: Metadata = {
-  title: "Contact",
+const PAGE = {
+  title: "Contact — start a software project in Mohali",
   description:
-    "Tell Globoniks what you're building. Office in Sector 68, Mohali, Punjab — info@globoniks.com or +91-9988-909-556. You'll hear back from a founder within one working day.",
-  alternates: { canonical: "/contact/" },
+    "Tell Globoniks what you're building. Sector 68, Mohali, Punjab · info@globoniks.com · +91-9988-909-556. The founder replies within one working day.",
+  path: "/contact/",
 };
+
+export const metadata: Metadata = pageMetadata(PAGE);
 
 /*
  * Calmer contact page (owner feedback 2026-08-30: the old one felt pushy).
@@ -28,26 +32,30 @@ export default function ContactPage() {
   const waDigits = BUSINESS.telephone.replace(/[^\d]/g, "");
   const telHref = `tel:${BUSINESS.telephone.replace(/[^+\d]/g, "")}`;
   const label =
-    "mb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground";
+    "eyebrow mb-3";
 
   return (
     <div className="min-h-screen pt-32 pb-24">
-      <StructuredData data={organizationSchema()} />
+      <StructuredData
+        data={webPageSchema({ type: "ContactPage", name: PAGE.title, ...PAGE })}
+      />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <div className="mb-14 max-w-2xl">
-            <h1 className="mb-5 font-heading text-4xl font-black tracking-tight text-foreground lg:text-5xl">
-              Tell us what you&apos;re <span className="text-violet-600">building.</span>
-            </h1>
-            <p className="text-lg leading-relaxed text-muted-foreground">
-              A few lines is enough. You&apos;ll hear back from Ankita — not a
-              sales team — within one working day, and the first conversation
-              is just that: a conversation.{" "}
-              <Link href="/how-we-work/" className="font-medium text-violet-500 hover:text-violet-400 transition-colors">
-                Here is how a project runs.
-              </Link>
-            </p>
-          </div>
+          <PageHeader
+            eyebrow="Contact"
+            title="Tell us what you're"
+            accent="building."
+            lead={
+              <>
+                A few lines is enough. You&apos;ll hear back from Ankita — not
+                a sales team — within one working day, and the first
+                conversation is just that: a conversation.{" "}
+                <Link href="/how-we-work/" className="text-violet-400 transition-colors hover:text-violet-300">
+                  Here is how a project runs.
+                </Link>
+              </>
+            }
+          />
 
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
             <div className="lg:col-span-7">
@@ -94,7 +102,7 @@ export default function ContactPage() {
                   href={MAPS_DIRECTIONS_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-3 inline-flex text-sm font-medium text-violet-500 transition-colors hover:text-violet-400"
+                  className="mt-3 inline-flex text-sm font-medium text-violet-400 transition-colors hover:text-violet-300"
                 >
                   Get directions
                 </a>
@@ -115,7 +123,7 @@ export default function ContactPage() {
                       href={ISO.verifyUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-violet-500 transition-colors hover:text-violet-400"
+                      className="text-violet-400 transition-colors hover:text-violet-300"
                     >
                       verify with {ISO.registrarShort}
                     </a>

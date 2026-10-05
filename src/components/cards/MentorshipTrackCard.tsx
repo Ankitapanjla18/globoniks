@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { Clock, Code } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+import { ArrowRight } from "lucide-react";
 
 interface MentorshipTrackCardProps {
   title: string;
@@ -18,43 +17,37 @@ export function MentorshipTrackCard({
   tags,
 }: MentorshipTrackCardProps) {
   return (
-    <div className="bg-card border border-border rounded-2xl p-8 flex flex-col h-full hover:border-purple-500/50 hover:shadow-lg transition-all">
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="text-2xl font-bold font-heading text-foreground">{title}</h3>
-      </div>
-      
-      <div className="flex items-center text-muted-foreground text-sm mb-6">
-        <Clock className="w-4 h-4 mr-2 text-purple-500" />
-        <span className="font-medium">{duration}</span>
-      </div>
+    <article className="relative flex h-full flex-col overflow-hidden rounded-3xl border rule bg-card/60 p-8 transition-colors hover:border-purple-500/40">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-20 -top-20 h-48 w-48 rounded-full bg-purple-600/0 blur-3xl transition-colors duration-500 hover:bg-purple-600/20"
+      />
+      <p className="eyebrow-accent relative">{duration}</p>
+      <h3 className="relative mt-4 font-heading text-3xl leading-[1.05] tracking-tight text-foreground">{title}</h3>
 
-      <p className="text-muted-foreground leading-relaxed flex-grow mb-8">
+      <p className="relative mt-4 flex-grow text-sm leading-relaxed text-muted-foreground md:text-[15px]">
         {description}
       </p>
 
-      <div className="flex flex-wrap gap-2 mb-8">
-        {tags.map((tag) => (
-          <Badge key={tag} variant="secondary" className="bg-muted text-muted-foreground hover:bg-muted/80">
-            <Code className="w-3 h-3 mr-1" />
-            {tag}
-          </Badge>
-        ))}
-      </div>
+      <p className="relative mt-6 font-mono text-[11px] leading-relaxed text-muted-foreground">
+        {tags.join(" · ")}
+      </p>
 
-      <div className="flex flex-col sm:flex-row gap-4 mt-auto">
-        <Link 
-          href={`/mentorship/${slug}`}
-          className="flex-1 text-center py-3 px-4 border border-border rounded-lg text-sm font-semibold hover:bg-muted transition-colors"
+      <div className="relative mt-7 flex flex-col gap-3 border-t rule pt-5 sm:flex-row">
+        <Link
+          href={`/mentorship/${slug}/`}
+          className="ghost-cta inline-flex flex-1 items-center justify-center px-4 py-3 text-sm font-medium"
         >
-          View Syllabus
+          Syllabus<span className="sr-only">: {title}</span>
         </Link>
-        <Link 
-          href={`/mentorship/apply?track=${slug}`}
-          className="flex-1 text-center py-3 px-4 brand-cta rounded-lg text-sm font-semibold shadow-md shadow-purple-500/10"
+        <Link
+          href={`/mentorship/apply/?track=${slug}`}
+          className="brand-cta inline-flex flex-1 items-center justify-center px-4 py-3 text-sm font-medium"
         >
-          Apply for Cohort
+          Apply<span className="sr-only">: {title}</span>
+          <ArrowRight className="ml-1.5 h-4 w-4" />
         </Link>
       </div>
-    </div>
+    </article>
   );
 }

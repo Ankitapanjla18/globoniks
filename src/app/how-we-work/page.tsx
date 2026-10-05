@@ -1,66 +1,31 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CheckCircle2 } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { StructuredData } from "@/components/seo/StructuredData";
-import { BUSINESS, ISO, breadcrumbSchema } from "@/lib/site";
+import { OfficeHours } from "@/components/sections/OfficeHours";
+import { BUSINESS, ISO, TEAM, breadcrumbSchema, pageMetadata } from "@/lib/site";
+import { STAGES } from "@/data/process";
+import { getProject, liveSites } from "@/data/projects";
 
-export const metadata: Metadata = {
-  title: "How we work",
+export const metadata: Metadata = pageMetadata({
+  title: "How we work — with clients in India and abroad",
   description:
-    "How a project runs at Globoniks: a first conversation, a paid two-week discovery sprint with deliverables you keep, milestone builds with weekly demos, and support after launch. Direct access to the founder throughout.",
-  alternates: { canonical: "/how-we-work/" },
-};
+    "How a project runs at Globoniks, from first call to launch: fixed-price discovery, weekly demos, and how we handle time zones, contracts and IP abroad.",
+  path: "/how-we-work/",
+});
 
 /*
- * Written from confirmed facts: founder-led, Ankita runs client relations,
- * Saksham leads development, replies within one working day, IST office,
- * GST-registered. Two policy statements (ownership of deliverables, NDAs)
- * are sensible defaults flagged for the owner's confirmation in
- * NEEDS-INPUT -- no prices anywhere.
+ * Rewritten 2026-10-04 for clients outside India as well as inside. The
+ * structure answers what an overseas buyer checks before a first call:
+ * who we are and that we are real, how the work runs, how we communicate
+ * across time zones, how contracts, payment and IP work, and what we have
+ * actually learned from shipping.
+ *
+ * Facts come from src/lib/site.ts and src/data/*. Policy statements that
+ * are sensible defaults rather than confirmed facts -- office hours,
+ * invoicing currencies, payment terms, DPA on request -- are listed in
+ * NEEDS-INPUT 2.1g/2.1j for the owner to confirm or correct. No prices.
  */
-
-const STAGES = [
-  {
-    name: "First conversation",
-    when: "Free · 30 minutes",
-    body: "You describe what you are building and where it stands; we ask the questions that decide the shape of the work. No proposal theatre — you leave knowing whether we are the right fit and what the next step costs.",
-    receive: ["A straight answer on fit", "A recommended next step and its fixed price"],
-  },
-  {
-    name: "Discovery sprint",
-    when: "Two weeks · fixed price",
-    body: "A short, paid engagement that turns an idea into a plan you can act on — with us or with anyone else. We interview the people involved, map the system, and settle the architecture before a line of production code is written. Larger companies use it as the low-risk first step; so should you.",
-    receive: [
-      "A written scope: what is in, what is out, and why",
-      "An architecture outline and the stack we recommend",
-      "A milestone plan with an estimate for the full build",
-      "A risk list — the things most likely to bite, and how we would handle them",
-      "Where it helps, a clickable prototype of the core flow",
-    ],
-  },
-  {
-    name: "Build",
-    when: "Milestones · weekly demos",
-    body: "Work ships in milestones you can open, not slide decks you have to trust. Every week you get a demo on a staging environment and a short written update. Testing and CI/CD are part of the baseline, never an upsell.",
-    receive: [
-      "A staging environment you can open at any time",
-      "A weekly demo and written progress note",
-      "Automated tests and a deployment pipeline from the first milestone",
-    ],
-  },
-  {
-    name: "Launch and handover",
-    when: "Deployment · documentation",
-    body: "We deploy, we document, and we hand over — the code, the infrastructure access, and the runbook your team needs to operate it. Nothing is held hostage.",
-    receive: ["Production deployment", "Handover documentation and runbooks", "Source code and access, per the agreement"],
-  },
-  {
-    name: "After launch",
-    when: "Maintenance plans",
-    body: "Software is not finished at launch. Maintenance plans cover dependency and security updates, performance work, scaling, and the small changes every live product needs — from the people who built it.",
-    receive: ["Scheduled updates and monitoring", "A named engineer who knows the codebase", "Replies within one working day"],
-  },
-];
 
 const MODELS = [
   { name: "Discovery sprint", body: "Two weeks, fixed price, deliverables you keep. The right first step for anything larger than a small site." },
@@ -70,18 +35,103 @@ const MODELS = [
   { name: "White-label instance", body: "Your own instance of a platform we already built and run, under your name. See our products." },
 ];
 
+/** Working across borders: the practical answers, grouped. */
+const ABROAD = [
+  {
+    title: "Communication",
+    items: [
+      "One shared channel per project — Slack, WhatsApp or email, whichever your team already lives in.",
+      "A written update every week: what shipped, what is next, what we need from you. Readable in your morning, no call required.",
+      "A demo on the staging environment every week; a video call whenever one is useful, scheduled in your hours.",
+      "Replies within one working day, from Ankita, the founder — not a ticket queue.",
+    ],
+  },
+  {
+    title: "Contracts and payment",
+    items: [
+      `You contract with ${BUSINESS.legalName}, a company incorporated in India, under a written agreement that fixes scope, price, milestones and ownership before work starts.`,
+      "Invoices in INR, USD, GBP or EUR, paid by international bank transfer; milestone billing, with nothing due until you accept a quote.",
+      "The discovery sprint is always fixed-price, quoted after the first conversation. Larger builds are quoted after it.",
+      "We are GST-registered; exports of services are invoiced accordingly, so overseas clients are not charged Indian GST.",
+    ],
+  },
+  {
+    title: "Ownership and confidentiality",
+    items: [
+      "NDAs: send yours or ask for ours before the first detailed conversation.",
+      "For custom builds, the code, infrastructure access and documentation are yours on final payment, written into the agreement.",
+      "For custom builds, your data can live in your own cloud account and region. We hold access only for as long as the work needs it.",
+      "A data-processing agreement for EU and UK clients on request, aligned with GDPR.",
+    ],
+  },
+  {
+    title: "Engineering standards",
+    items: [
+      "A staging environment you can open at any time, from the first milestone.",
+      "Automated tests and a deployment pipeline as the baseline, never an upsell.",
+      "Server-rendered front ends where search matters; strict security headers; dependency updates under maintenance.",
+      "Handover with runbooks, so a team you hire later can run it without us.",
+    ],
+  },
+];
+
+/**
+ * What shipping has taught us. Each lesson names the project it came from,
+ * so a prospect can open the product and check. Copy matches projects.ts.
+ */
+const LESSONS = [
+  {
+    slug: "homekrafted",
+    lesson: "A storefront that search engines can read is not optional.",
+    detail:
+      "Homekrafted is server-rendered and incrementally regenerated: category and product pages arrive as complete HTML and stay fast while vendors change listings. A location picker shows only food that can actually reach the customer, while gifts ship nationwide — the business rule became the architecture.",
+  },
+  {
+    slug: "tricitymatch",
+    lesson: "When trust is the product, the verification pipeline is the build.",
+    detail:
+      "TricityMatch publishes no profile without a live selfie check and a human review, and flagged profiles go to people rather than an algorithm. Privacy is engineered rather than promised: numbers are never shared between members.",
+  },
+  {
+    slug: "fuzzball-factory",
+    lesson: "Tell the customer the wait before they pay, not after.",
+    detail:
+      "FuzzBall Factory separates ready-to-ship from made-to-order and shows the lead time on the product page, in the cart and at checkout. Custom commissions run as work orders with a quote, a deposit and progress photos — a process, not a chat thread.",
+  },
+  {
+    slug: "pharma-supply",
+    lesson: "Compliance has to be in the schema, not in a report.",
+    detail:
+      "The pharmaceutical supply-chain platform tracks every batch end to end and leaves an audit trail from quality control through packaging, so a compliance review queries records instead of reconstructing them.",
+  },
+  {
+    slug: "globoniks-schools",
+    lesson: "Build it once, multi-tenant, when every customer needs the same modules.",
+    detail:
+      "Globoniks Schools runs each school as its own tenant on shared infrastructure, with role-based access for admin, teachers, parents and students, installable on a phone as a progressive web app — no app-store release per school.",
+  },
+];
+
 const FAQ = [
   {
     q: "Who will I actually talk to?",
-    a: "Ankita, the founder, runs every client relationship; Saksham Panjla, who leads development, joins the engineering conversations. There is no account manager layer between you and the people doing the work.",
+    a: "Ankita, the founder, runs every client relationship; Saksham Panjla, who leads development, joins the engineering conversations; Kapila, our second director, runs operations. There is no account manager layer between you and the people doing the work.",
   },
   {
     q: "Do we need to be in India to work with you?",
-    a: "No. We are based in Mohali, Punjab (IST, UTC+5:30) and schedule calls in your working hours. Written updates, demos on a staging environment and a shared channel keep the work visible across time zones.",
+    a: "No. We are based in Mohali, Punjab (IST, UTC+5:30) and schedule calls in your working hours. A weekly written update, demos on a staging environment and a shared channel keep the work visible across time zones, and most of our communication is asynchronous by design.",
+  },
+  {
+    q: "How do you handle time zones?",
+    a: "Our working day is 10:00 to 19:00 IST. That overlaps a UK or European morning fully. North American mornings fall after our working day, so we take those calls in our evening. Calls go in your hours; everything else — updates, demos, the staging environment — waits for you in writing.",
   },
   {
     q: "What does the discovery sprint cost?",
     a: "A fixed price, quoted after the first conversation once we know the scale of what you are building. The deliverables are yours whether or not you continue with us.",
+  },
+  {
+    q: "How do you invoice overseas clients?",
+    a: `Invoices are issued by ${BUSINESS.legalName} in INR, USD, GBP or EUR and paid by international bank transfer, per milestone. Exports of services are invoiced without Indian GST.`,
   },
   {
     q: "Who owns the code?",
@@ -92,14 +142,29 @@ const FAQ = [
     a: "Yes — send yours, or ask for ours, before the first detailed conversation.",
   },
   {
-    q: "How quickly do you reply?",
-    a: "Within one working day, from a founder.",
+    q: "What about data protection?",
+    a: "For custom builds, your data can live in your own cloud account and region. For EU and UK clients we sign a data-processing agreement aligned with GDPR on request.",
   },
   {
     q: "Are you certified or formally registered?",
-    a: `Yes. Globoniks holds ${ISO.standard} ${ISO.system} certification from ${ISO.registrar}, certificate ${ISO.certNumber}, issued ${ISO.certifiedOnLabel} and valid to ${ISO.expiresOnLabel}; its validity can be checked with the registrar directly. The certified scope covers software and applications development, web development, digital marketing, and content and brand work. We are also a GST-registered business, GSTIN ${BUSINESS.gstin}.`,
+    a: `Yes. Globoniks is incorporated in India as ${BUSINESS.legalName}. Globoniks holds ${ISO.standard} ${ISO.system} certification from ${ISO.registrar}, certificate ${ISO.certNumber}, issued ${ISO.certifiedOnLabel} and valid to ${ISO.expiresOnLabel}; its validity can be checked with the registrar directly. The certified scope covers software and applications development, web development, digital marketing, and content and brand work. Globoniks is also GST-registered, GSTIN ${BUSINESS.gstin}.`,
+  },
+  {
+    q: "Can we visit?",
+    a: `Yes. The office is at ${BUSINESS.streetAddress}, ${BUSINESS.locality}, ${BUSINESS.region}, India, a short drive from Chandigarh International Airport. Tell us when you are coming.`,
   },
 ];
+
+function SectionHeading({ eyebrow, id, children }: { eyebrow: string; id: string; children: React.ReactNode }) {
+  return (
+    <div className="mb-10 max-w-2xl">
+      <p className="eyebrow mb-4">{eyebrow}</p>
+      <h2 id={id} className="font-heading text-4xl leading-[1.02] tracking-tight text-foreground md:text-5xl">
+        {children}
+      </h2>
+    </div>
+  );
+}
 
 export default function HowWeWorkPage() {
   const faqSchema = {
@@ -111,9 +176,10 @@ export default function HowWeWorkPage() {
       acceptedAnswer: { "@type": "Answer", text: f.a },
     })),
   };
+  const live = liveSites.length;
 
   return (
-    <div className="min-h-screen pt-32 pb-24">
+    <div className="min-h-screen pb-24 pt-32 md:pt-40">
       <StructuredData data={faqSchema} />
       <StructuredData
         data={breadcrumbSchema([
@@ -122,41 +188,62 @@ export default function HowWeWorkPage() {
         ])}
       />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mb-16">
-          <h1 className="text-5xl md:text-6xl font-heading font-black tracking-tight text-foreground mb-6">
-            How we <span className="text-violet-600">work.</span>
-          </h1>
-          <p className="text-xl text-muted-foreground leading-relaxed">
-            Small studio, direct access. {BUSINESS.legalName} is founder-led:
-            Ankita runs every client relationship and Saksham Panjla leads
-            development, so the person you talk to sits at the same table as
-            the person building your system. Here is what a project looks like,
-            stage by stage, and what you receive at each one.
-          </p>
-        </div>
-
-        <section aria-labelledby="stages" className="mb-24">
-          <h2 id="stages" className="sr-only">Stages</h2>
-          <ol className="space-y-6 max-w-4xl">
-            {STAGES.map((s, i) => (
-              <li
-                key={s.name}
-                className="rounded-2xl border border-border bg-card p-6 md:p-8 md:grid md:grid-cols-[64px_1fr] md:gap-6"
-              >
-                <div className="mb-3 md:mb-0 font-heading text-3xl font-black text-violet-500 tabular-nums">
-                  {String(i + 1).padStart(2, "0")}
+        {/* Hero */}
+        <section className="reveal grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-7" style={{ "--i": 0 } as React.CSSProperties}>
+            <p className="eyebrow mb-7">How we work · India and abroad</p>
+            <h1 className="reveal-lcp font-heading text-[2.9rem] leading-[0.98] tracking-tight text-foreground sm:text-6xl md:text-7xl">
+              Small studio. Direct access. <span className="ink">Nothing you have to take on trust.</span>
+            </h1>
+            <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground md:text-xl">
+              {BUSINESS.name} is founder-led: Ankita runs every client
+              relationship and Saksham Panjla leads development, so the person
+              you talk to sits at the same table as the person building your
+              system. Here is how a project runs, how we work with clients in
+              other countries, and what shipping has taught us.
+            </p>
+            <dl className="mt-10 grid grid-cols-2 gap-x-8 gap-y-6 border-t rule pt-6 sm:grid-cols-4">
+              {[
+                { k: "Founded", v: String(BUSINESS.foundingYear) },
+                { k: "Live sites", v: String(live).padStart(2, "0") },
+                { k: "Quality system", v: ISO.standard },
+                { k: "Reply time", v: "≤ 1 working day" },
+              ].map((f) => (
+                <div key={f.k}>
+                  <dt className="eyebrow">{f.k}</dt>
+                  <dd className="mt-1 font-heading text-2xl text-foreground">{f.v}</dd>
                 </div>
-                <div>
-                  <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-2">
-                    <h3 className="font-heading text-2xl font-bold text-foreground">{s.name}</h3>
-                    <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{s.when}</span>
-                  </div>
-                  <p className="text-muted-foreground leading-relaxed mb-4">{s.body}</p>
-                  <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">You receive</p>
-                  <ul className="space-y-1.5">
+              ))}
+            </dl>
+          </div>
+          <div className="lg:col-span-5 lg:pt-6" style={{ "--i": 2 } as React.CSSProperties}>
+            <OfficeHours />
+          </div>
+        </section>
+
+        {/* Stages */}
+        <section data-reveal="" aria-labelledby="stages" className="mt-28 md:mt-36">
+          <SectionHeading eyebrow="A project, stage by stage" id="stages">
+            Five stages. <span className="ink">What you receive at each.</span>
+          </SectionHeading>
+          <ol className="divide-y divide-[hsl(var(--hairline))] border-y rule">
+            {STAGES.map((s, i) => (
+              <li key={s.name} className="grid grid-cols-1 gap-6 py-8 md:grid-cols-12 md:gap-10">
+                <div className="md:col-span-4">
+                  <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-violet-400">
+                    {String(i + 1).padStart(2, "0")} · {s.when}
+                  </p>
+                  <h3 className="mt-3 font-heading text-3xl leading-tight text-foreground">{s.name}</h3>
+                </div>
+                <div className="md:col-span-5">
+                  <p className="text-sm leading-relaxed text-muted-foreground md:text-[15px]">{s.body}</p>
+                </div>
+                <div className="md:col-span-3">
+                  <p className="eyebrow mb-3">You receive</p>
+                  <ul className="space-y-2">
                     {s.receive.map((r) => (
-                      <li key={r} className="flex items-start text-sm text-foreground">
-                        <CheckCircle2 className="w-4 h-4 text-violet-500 mr-2 mt-0.5 flex-shrink-0" />
+                      <li key={r} className="flex items-start gap-2 text-sm text-foreground">
+                        <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-violet-400" />
                         {r}
                       </li>
                     ))}
@@ -167,62 +254,171 @@ export default function HowWeWorkPage() {
           </ol>
         </section>
 
-        <section aria-labelledby="models" className="mb-24">
-          <h2 id="models" className="font-heading text-3xl font-black tracking-tight text-foreground mb-3">
-            Ways to work with us
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mb-8">
-            Every engagement is priced per project and agreed in writing before
-            it starts. The discovery sprint is the only thing with a standing
-            price, and it is fixed.
+        {/* Abroad */}
+        <section data-reveal="" aria-labelledby="abroad" className="mt-28 md:mt-36">
+          <SectionHeading eyebrow="Working with us from another country" id="abroad">
+            Built to work with clients <span className="ink">we may never meet in person.</span>
+          </SectionHeading>
+          <p className="-mt-4 mb-12 max-w-2xl text-base leading-relaxed text-muted-foreground">
+            Most of our communication is written and asynchronous by design,
+            which is what makes a time difference of four to thirteen hours workable.
+            The practical answers, by topic:
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {MODELS.map((m) => (
-              <div key={m.name} className="rounded-2xl border border-border bg-card p-6">
-                <h3 className="font-heading text-lg font-bold text-foreground mb-2">{m.name}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{m.body}</p>
+          <div className="grid grid-cols-1 gap-x-12 gap-y-10 md:grid-cols-2">
+            {ABROAD.map((g, i) => (
+              <div key={g.title} className="border-t rule pt-6">
+                <h3 className="flex items-baseline gap-4 font-heading text-2xl leading-tight text-foreground md:text-3xl">
+                  <span className="font-mono text-xs text-muted-foreground">{String(i + 1).padStart(2, "0")}</span>
+                  {g.title}
+                </h3>
+                <ul className="mt-5 space-y-3">
+                  {g.items.map((item) => (
+                    <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-muted-foreground md:text-[15px]">
+                      <span aria-hidden="true" className="mt-[9px] h-1 w-1 shrink-0 rounded-full bg-violet-400" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
             ))}
           </div>
         </section>
 
-        <section aria-labelledby="comms" className="mb-24 max-w-3xl">
-          <h2 id="comms" className="font-heading text-3xl font-black tracking-tight text-foreground mb-3">
-            Communication
-          </h2>
-          <ul className="space-y-3 text-muted-foreground">
-            <li className="flex items-start"><CheckCircle2 className="w-5 h-5 text-violet-500 mr-3 mt-0.5 flex-shrink-0" /><span>A shared channel for the project — WhatsApp or email, whichever your team already lives in — plus video calls scheduled in your working hours.</span></li>
-            <li className="flex items-start"><CheckCircle2 className="w-5 h-5 text-violet-500 mr-3 mt-0.5 flex-shrink-0" /><span>A weekly written update and a demo on the staging environment during the build.</span></li>
-            <li className="flex items-start"><CheckCircle2 className="w-5 h-5 text-violet-500 mr-3 mt-0.5 flex-shrink-0" /><span>Replies within one working day, from a founder. We are in Mohali, Punjab (IST, UTC+5:30); {BUSINESS.legalName} is a GST-registered business ({BUSINESS.gstin}).</span></li>
-            <li className="flex items-start"><CheckCircle2 className="w-5 h-5 text-violet-500 mr-3 mt-0.5 flex-shrink-0" /><span>Our quality management system is {ISO.standard} certified by {ISO.registrar} (certificate {ISO.certNumber}, valid to {ISO.expiresOnLabel}) — <a href={ISO.verifyUrl} target="_blank" rel="noopener noreferrer" className="text-violet-500 hover:text-violet-400 transition-colors">verifiable with the registrar</a>. The certified scope covers software and applications development, web development, and content and brand work.</span></li>
-          </ul>
+        {/* Lessons */}
+        <section data-reveal="" aria-labelledby="lessons" className="mt-28 md:mt-36">
+          <SectionHeading eyebrow="What shipping has taught us" id="lessons">
+            Five lessons, <span className="ink">each with a case study.</span>
+          </SectionHeading>
+          <ol className="divide-y divide-[hsl(var(--hairline))] border-y rule">
+            {LESSONS.map((l, i) => {
+              const p = getProject(l.slug);
+              if (!p) return null;
+              const host = p.liveUrl ? new URL(p.liveUrl).hostname.replace(/^www\./, "") : null;
+              return (
+                <li key={l.slug} className="grid grid-cols-1 gap-5 py-8 md:grid-cols-12 md:gap-10">
+                  <div className="md:col-span-5">
+                    <p className="font-mono text-xs text-muted-foreground">{String(i + 1).padStart(2, "0")}</p>
+                    <h3 className="mt-3 font-heading text-3xl leading-[1.05] tracking-tight text-foreground">{l.lesson}</h3>
+                  </div>
+                  <div className="md:col-span-7">
+                    <p className="text-sm leading-relaxed text-muted-foreground md:text-[15px]">{l.detail}</p>
+                    <p className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-[11px] uppercase tracking-[0.14em]">
+                      <Link href={`/projects/${p.slug}/`} className="text-violet-400 transition-colors hover:text-violet-300">
+                        {p.title} case study
+                      </Link>
+                      {host && (
+                        <a href={p.liveUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-muted-foreground transition-colors hover:text-foreground">
+                          <span className="live-dot" aria-hidden="true" />
+                          {host}
+                        </a>
+                      )}
+                    </p>
+                  </div>
+                </li>
+              );
+            })}
+          </ol>
         </section>
 
-        <section aria-labelledby="faq" className="mb-20 max-w-3xl">
-          <h2 id="faq" className="font-heading text-3xl font-black tracking-tight text-foreground mb-6">
-            Questions we get asked
-          </h2>
-          <dl className="divide-y divide-border border-y border-border">
+        {/* Models */}
+        <section data-reveal="" aria-labelledby="models" className="mt-28 md:mt-36">
+          <SectionHeading eyebrow="Ways to work with us" id="models">
+            Priced per project, <span className="ink">agreed in writing.</span>
+          </SectionHeading>
+          <p className="-mt-4 mb-10 max-w-2xl text-base leading-relaxed text-muted-foreground">
+            Every engagement is agreed before it starts. The discovery sprint
+            is always fixed-price, quoted after the first conversation.
+          </p>
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {MODELS.map((m, i) => (
+              <div key={m.name} className="rounded-3xl border rule bg-card/60 p-6">
+                <p className="font-mono text-xs text-muted-foreground">{String(i + 1).padStart(2, "0")}</p>
+                <h3 className="mt-3 font-heading text-2xl leading-tight text-foreground">{m.name}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{m.body}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* People + credentials */}
+        <section data-reveal="" aria-labelledby="people" className="mt-28 md:mt-36">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
+            <div className="lg:col-span-5">
+              <SectionHeading eyebrow="Who signs, who answers" id="people">
+                The whole <span className="ink">chain of command.</span>
+              </SectionHeading>
+              <ul className="-mt-4 divide-y divide-[hsl(var(--hairline))] border-y rule">
+                {TEAM.map((person) => (
+                  <li key={person.name} className="flex items-center gap-5 py-4">
+                    <span aria-hidden="true" className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-violet-500/30 bg-violet-500/10 font-heading text-lg text-violet-300">
+                      {person.initials}
+                    </span>
+                    <span>
+                      <span className="block font-heading text-2xl leading-tight text-foreground">{person.name}</span>
+                      <span className="block font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">{person.role}</span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="lg:col-span-7">
+              <div className="rounded-3xl border rule bg-card/60 p-6 sm:p-8">
+                <p className="eyebrow mb-5 !text-foreground">On the record</p>
+                <dl className="divide-y divide-[hsl(var(--hairline))] text-sm">
+                  {[
+                    { k: "Legal entity", v: `${BUSINESS.legalName}, incorporated in India` },
+                    { k: "Office", v: `${BUSINESS.streetAddress}, ${BUSINESS.localityOfficial} (${BUSINESS.locality}), ${BUSINESS.region} ${BUSINESS.postalCode}, India` },
+                    { k: ISO.standard, v: `${ISO.system}, certificate ${ISO.certNumber}, ${ISO.registrar}, valid to ${ISO.expiresOnLabel}` },
+                    { k: "GSTIN", v: BUSINESS.gstin },
+                    { k: "Hours", v: "10:00 – 19:00 IST, Monday to Friday" },
+                  ].map((row) => (
+                    <div key={row.k} className="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-6">
+                      <dt className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground sm:pt-0.5">{row.k}</dt>
+                      <dd className="text-foreground sm:col-span-2">{row.v}</dd>
+                    </div>
+                  ))}
+                </dl>
+                <p className="mt-5 border-t rule pt-4 font-mono text-[11px] leading-relaxed text-muted-foreground">
+                  Certificate validity can be checked with the registrar at{" "}
+                  <a href={ISO.verifyUrl} target="_blank" rel="noopener noreferrer" className="underline decoration-dotted underline-offset-4 transition-colors hover:text-foreground">
+                    {ISO.verifyUrl.replace("https://", "")}
+                  </a>
+                  .
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section data-reveal="" aria-labelledby="faq" className="mt-28 max-w-3xl md:mt-36">
+          <SectionHeading eyebrow="Questions we get asked" id="faq">
+            Before the <span className="ink">first call.</span>
+          </SectionHeading>
+          <dl className="divide-y divide-[hsl(var(--hairline))] border-y rule">
             {FAQ.map((f) => (
-              <div key={f.q} className="py-5">
-                <dt className="font-semibold text-foreground mb-1.5">{f.q}</dt>
-                <dd className="text-muted-foreground leading-relaxed">{f.a}</dd>
+              <div key={f.q} className="py-6">
+                <dt className="font-heading text-2xl leading-tight text-foreground">{f.q}</dt>
+                <dd className="mt-2 text-sm leading-relaxed text-muted-foreground md:text-[15px]">{f.a}</dd>
               </div>
             ))}
           </dl>
         </section>
 
-        <div className="max-w-3xl rounded-2xl border border-border bg-muted/30 p-8 lg:p-12 text-center">
-          <h2 className="text-2xl font-bold font-heading text-foreground mb-4">
-            Start with the conversation.
+        {/* CTA */}
+        <section data-reveal="" className="mt-24 rounded-3xl border rule bg-card/60 p-8 text-center md:p-14">
+          <h2 className="font-heading text-4xl leading-[1.02] tracking-tight text-foreground md:text-5xl">
+            Start with <span className="ink">the conversation.</span>
           </h2>
-          <p className="text-muted-foreground mb-8">
-            Thirty minutes, no preparation needed. Tell us what you are building.
+          <p className="mx-auto mt-5 max-w-lg text-base leading-relaxed text-muted-foreground">
+            Thirty minutes, in your hours, no preparation needed. Tell us what
+            you are building and where it stands.
           </p>
-          <Link href="/contact/" className="brand-cta px-8 py-4 rounded-full text-base font-semibold inline-flex">
-            Talk to us
+          <Link href="/contact/" className="brand-cta mt-8 inline-flex items-center justify-center px-7 py-3.5 text-base font-medium">
+            Start a project
+            <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
-        </div>
+        </section>
       </div>
     </div>
   );

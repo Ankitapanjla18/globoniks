@@ -1,13 +1,18 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { WhyUsSection } from "@/components/sections/WhyUsSection";
-import { BUSINESS, TEAM } from "@/lib/site";
+import { StructuredData } from "@/components/seo/StructuredData";
+import { ADDRESS_LINES, BUSINESS, ISO, SITE_URL, TEAM, pageMetadata, webPageSchema } from "@/lib/site";
+import { CtaPanel, PageHeader, SectionTitle } from "@/components/ui/page";
 
-export const metadata: Metadata = {
-  title: "About",
+const PAGE = {
+  title: "About — a founder-led software studio in Mohali",
   description:
-    "Globoniks is a founder-led software studio in Mohali, Punjab, established in 2024, building web, mobile and custom software alongside a tech mentorship programme.",
-  alternates: { canonical: "/about/" },
+    "Globoniks Technologies Private Limited is a founder-led software studio in Mohali, Punjab, founded in 2024: web, mobile and custom software, and mentorship.",
+  path: "/about/",
 };
+
+export const metadata: Metadata = pageMetadata(PAGE);
 
 /*
  * The team grid used to render three placeholder cards -- "[Founder Name]",
@@ -16,82 +21,105 @@ export const metadata: Metadata = {
  * confirmed story: a deliberately small, founder-led studio. (Owner note
  * 2026-08-27: the earlier copy leaned too hard on the family angle; the
  * framing is now studio-first.)
- * Named cards return when names, photos and LinkedIn URLs are supplied --
- * see NEEDS-INPUT.md 1.2.
+ * 2026-10-02: incorporated as a private limited company; Kapila joins as
+ * the second director. Photos and LinkedIn URLs still pending -- see
+ * NEEDS-INPUT.md 1.2.
  */
 export default function AboutPage() {
   return (
-    <div className="min-h-screen pt-32 pb-0">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-24">
-        <div className="max-w-4xl mx-auto text-center mb-16">
-          <h1 className="text-5xl md:text-6xl font-heading font-black tracking-tight text-foreground mb-6">
-            Building software with <span className="text-violet-600">conviction.</span>
-          </h1>
-          <p className="text-xl text-muted-foreground leading-relaxed">
-            Globoniks was founded on a simple premise: most software agencies produce unmaintainable code. We exist to build production systems businesses can run on — and to mentor the next generation of architects.
-          </p>
-        </div>
+    <div className="min-h-screen pb-0 pt-32 md:pt-40">
+      <StructuredData
+        data={webPageSchema({
+          type: "AboutPage",
+          name: PAGE.title,
+          ...PAGE,
+          extra: {
+            mainEntity: { "@id": `${SITE_URL}/#organization` },
+          },
+        })}
+      />
+      <div className="container mx-auto mb-24 px-4 sm:px-6 lg:px-8">
+        <PageHeader
+          eyebrow={`About · ${BUSINESS.locality}, est. ${BUSINESS.foundingYear}`}
+          title="Building software with"
+          accent="conviction."
+          lead="Globoniks was founded to build production systems businesses can run on — maintainable, documented and handed over properly — and to mentor the next generation of engineers."
+        />
 
-        <div className="max-w-3xl mx-auto">
-          <section
-            aria-labelledby="the-studio"
-            className="bg-card border border-border rounded-3xl p-8 md:p-12"
-          >
-            <h2
-              id="the-studio"
-              className="text-3xl font-heading font-bold text-foreground mb-6"
-            >
-              Small by design.
-            </h2>
-            <div className="space-y-5 text-lg text-muted-foreground leading-relaxed">
+        <div className="grid grid-cols-1 gap-14 lg:grid-cols-12 lg:gap-16">
+          <section data-reveal="" aria-labelledby="the-studio" className="lg:col-span-7">
+            <SectionTitle eyebrow="The studio" id="the-studio">
+              Small <span className="ink">by design.</span>
+            </SectionTitle>
+            <div className="space-y-5 text-base leading-[1.75] text-muted-foreground md:text-[17px]">
               <p>
                 Globoniks was founded in {BUSINESS.foundingYear} in Mohali,
-                Punjab. The studio is deliberately small, with clear
-                ownership: Ankita runs every client relationship, and
-                Saksham Panjla leads development.
+                Punjab, and is now incorporated as {BUSINESS.legalName}.
+                The studio is deliberately small, with clear ownership:
+                Ankita runs every client relationship, Kapila runs
+                operations, and Saksham Panjla leads development.
               </p>
               <p>
                 That structure is the product. There is no account layer
                 and no handoff chain — scope, architecture and delivery all
-                answer to the two names below, and the person you talk to
+                answer to the people listed here, and the person you talk to
                 sits at the same table as the person building your system.
               </p>
               <p>
-                You can see what that produces — the work page links to live
-                products you can open and judge for yourself.
+                You can see what that produces —{" "}
+                <Link href="/projects/" className="text-violet-400 transition-colors hover:text-violet-300">
+                  the work page
+                </Link>{" "}
+                links to live products you can open and judge for yourself.
               </p>
             </div>
+          </section>
 
-            <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <aside data-reveal="" aria-label="The team" className="lg:col-span-5">
+            <ul className="divide-y divide-[hsl(var(--hairline))] border-y rule">
               {TEAM.map((person) => (
-                <div
-                  key={person.name}
-                  className="flex items-center gap-4 rounded-2xl border border-border bg-muted/20 p-5"
-                >
+                <li key={person.name} className="flex items-center gap-5 py-5">
                   <span
                     aria-hidden="true"
-                    className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-violet-500/15 font-heading text-lg font-bold text-violet-400"
+                    className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-violet-500/30 bg-violet-500/10 font-heading text-lg text-violet-300"
                   >
                     {person.initials}
                   </span>
-                  <div>
-                    <p className="font-heading font-bold text-foreground">
-                      {person.name}
-                    </p>
-                    {"role" in person && person.role && (
-                      <p className="text-sm text-muted-foreground">
-                        {person.role}
-                      </p>
-                    )}
-                  </div>
+                  <span>
+                    <span className="block font-heading text-2xl leading-tight text-foreground">{person.name}</span>
+                    <span className="block font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+                      {person.role}
+                    </span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <dl className="mt-8 divide-y divide-[hsl(var(--hairline))] text-sm">
+              {[
+                { k: "Company", v: BUSINESS.legalName },
+                { k: "Office", v: ADDRESS_LINES.join(", ") },
+                { k: ISO.standard, v: `Certificate ${ISO.certNumber}, ${ISO.registrar}` },
+              ].map((row) => (
+                <div key={row.k} className="grid grid-cols-[7rem_1fr] gap-4 py-3">
+                  <dt className="pt-0.5 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">{row.k}</dt>
+                  <dd className="text-foreground">{row.v}</dd>
                 </div>
               ))}
-            </div>
-          </section>
+            </dl>
+          </aside>
         </div>
       </div>
 
       <WhyUsSection />
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <CtaPanel
+          title="Talk to the people"
+          accent="who build it."
+          body="Ankita reads every message and replies within one working day."
+          secondary={{ href: "/how-we-work/", label: "How we work" }}
+        />
+      </div>
     </div>
   );
 }

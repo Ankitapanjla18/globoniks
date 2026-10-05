@@ -1,71 +1,65 @@
-"use client";
-
 import Link from "next/link";
-import { ArrowRight, Terminal } from "lucide-react";
-import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import { tracks } from "@/data/mentorship";
 
+/*
+ * Mentorship, stated plainly: the three tracks with their real durations,
+ * from src/data/mentorship.ts. The previous version showed a mock terminal
+ * running an invented "npx create-senior-dev" -- a joke that read as a
+ * fake product on a site whose whole pitch is that nothing is faked.
+ */
 export function MentorshipTeaser() {
   return (
-    <section className="py-24 overflow-hidden relative border-t border-border">
-      {/* Decorative background grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
-      <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-purple-500 opacity-20 blur-[100px]" />
-      
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="bg-card border border-border rounded-3xl p-8 md:p-12 lg:p-16 flex flex-col lg:flex-row items-center justify-between gap-12 shadow-2xl">
-          
-          <div className="lg:w-1/2 space-y-6">
-            <div className="inline-flex items-center rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-1 text-sm text-purple-500 font-medium mb-2">
-              <Terminal className="w-4 h-4 mr-2" /> Applications open
-            </div>
-            <h2 className="text-3xl md:text-5xl font-heading font-black tracking-tight text-foreground">
-              Level up your engineering career.
-            </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Stop watching generic tutorials. Join our rigorous, mentor-led programs in full-stack web, mobile development, or software architecture. We teach you how to build production-grade systems.
-            </p>
-            
-            <div className="pt-4 flex flex-col sm:flex-row gap-4">
+    <section className="border-t rule py-20 md:py-28" aria-labelledby="mentorship-heading">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div data-reveal="" className="relative overflow-hidden rounded-3xl border rule bg-card/60 p-8 md:p-12 lg:p-16">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -bottom-32 -right-20 h-80 w-80 rounded-full bg-purple-600/20 blur-[120px]"
+          />
+          <div className="relative grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
+            <div className="lg:col-span-6">
+              <p className="eyebrow-accent mb-5">Mentorship · 1-on-1, remote</p>
+              <h2 id="mentorship-heading" className="font-heading text-4xl leading-[1.02] tracking-tight text-foreground md:text-5xl">
+                Learn from the people <span className="ink">who ship the work above.</span>
+              </h2>
+              <p className="mt-6 max-w-lg text-base leading-relaxed text-muted-foreground md:text-lg">
+                Mentor-led, 1-on-1 and remote. You write production-grade code
+                under review from working engineers, not tutorials.
+              </p>
               <Link
-                href="/mentorship"
-                className="inline-flex items-center justify-center brand-cta px-6 py-3 rounded-md text-base font-semibold shadow-lg shadow-purple-500/20"
+                href="/mentorship/"
+                className="brand-cta mt-8 inline-flex items-center justify-center px-7 py-3.5 text-base font-medium"
               >
-                View Mentorship Tracks
-                <ArrowRight className="ml-2 w-5 h-5" />
+                Mentorship tracks
+                <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </div>
-          </div>
 
-          <div className="lg:w-1/2 w-full">
-            <motion.div 
-              initial={{ rotate: 2, y: 20, opacity: 0 }}
-              whileInView={{ rotate: -2, y: 0, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="bg-[#0A0A0A] border border-violet-500/20 rounded-xl overflow-hidden shadow-2xl"
-            >
-              <div className="flex items-center gap-2 px-4 py-3 bg-slate-900 border-b border-slate-800">
-                <div className="flex gap-1.5">
-                  <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
-                  <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-                  <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
-                </div>
-                <div className="ml-4 text-xs font-mono text-slate-400">~/globoniks/mentorship</div>
-              </div>
-              <div className="p-6 font-mono text-sm">
-                <div className="text-green-400 mb-2">$ npx create-senior-dev</div>
-                <div className="text-slate-300 mb-1">&gt; Initializing advanced curriculum...</div>
-                <div className="text-slate-300 mb-1">&gt; Installing system design patterns...</div>
-                <div className="text-slate-300 mb-4">&gt; Setting up 1-on-1 code reviews...</div>
-                <div className="text-violet-400 font-semibold mb-1">✔ Setup Complete</div>
-                <div className="text-slate-300">Run <span className="text-purple-400">`npm run start-career`</span> to begin.</div>
-                <div className="mt-4 flex animate-pulse">
-                  <div className="w-2 h-4 bg-slate-400"></div>
-                </div>
-              </div>
-            </motion.div>
+            <ol className="divide-y divide-[hsl(var(--hairline))] border-y rule lg:col-span-6 lg:self-center">
+              {tracks.map((t, i) => (
+                <li key={t.slug}>
+                  <Link
+                    href={`/mentorship/${t.slug}/`}
+                    className="group flex items-baseline gap-5 py-5 transition-colors"
+                  >
+                    <span className="w-6 shrink-0 font-mono text-[11px] text-muted-foreground">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="min-w-0 flex-grow">
+                      <span className="block font-heading text-2xl leading-tight text-foreground transition-colors group-hover:text-violet-300">
+                        {t.title}
+                      </span>
+                      <span className="mt-1 block font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+                        {t.duration}
+                      </span>
+                    </span>
+                    <ArrowRight className="h-4 w-4 shrink-0 self-center text-muted-foreground transition-all group-hover:translate-x-1 group-hover:text-violet-300" />
+                  </Link>
+                </li>
+              ))}
+            </ol>
           </div>
-
         </div>
       </div>
     </section>

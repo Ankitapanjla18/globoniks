@@ -35,7 +35,7 @@ export const services: Service[] = [
     description:
       "Multi-vendor marketplaces and e-commerce platforms: vendor onboarding, catalogues, commissions, payments and order flows — proven live on homekrafted.in.",
     detail:
-      "We build marketplaces end to end: vendor onboarding and management, product catalogues, commission handling, payments, subscriptions and bulk-order flows. Homekrafted — our multi-vendor marketplace for home kitchens and makers — is live, server-rendered for search, and taking orders right now.",
+      "We build marketplaces end to end: vendor onboarding and management, product catalogues, commission handling, payments, subscriptions and bulk-order flows. Homekrafted, a multi-vendor marketplace we built for home kitchens and makers, is live, server-rendered for search, and taking orders right now.",
     useCases: [
       "A multi-vendor marketplace connecting independent sellers to customers",
       "A direct-to-consumer storefront with subscriptions or meal plans",
@@ -56,7 +56,7 @@ export const services: Service[] = [
     description:
       "Multi-tenant SaaS products and consumer platforms: roles and permissions, verification workflows, analytics and commission engines.",
     detail:
-      "We design and build software-as-a-service products: multi-tenant architectures where many organisations share one platform safely, and consumer platforms where trust workflows — verification, human review, moderation — are the product. TricityMatch, our matrimonial platform built around photo-verified, human-reviewed profiles, is live.",
+      "We design and build software-as-a-service products: multi-tenant architectures where many organisations share one platform safely, and consumer platforms where trust workflows — verification, human review, moderation — are the product. TricityMatch, a matrimonial platform we built around photo-verified, human-reviewed profiles, is live.",
     useCases: [
       "A B2B tool serving many client organisations from one codebase",
       "A consumer platform where profile verification and trust are central",
@@ -92,15 +92,15 @@ export const services: Service[] = [
     ],
     proofSlugs: ["pharma-supply", "edumapping"],
     compliance:
-      "Compliance is treated as a build requirement, not an afterthought: batch tracking, audit trails and regulatory reporting are designed in from the schema up. Globoniks itself operates as a GST-registered company (GSTIN 03CZQPA4795R1ZJ).",
+      "Compliance is treated as a build requirement, not an afterthought: batch tracking, audit trails and regulatory reporting are designed in from the schema up. Globoniks itself is GST-registered (GSTIN 03CZQPA4795R1ZJ).",
   },
   {
     slug: "mobile-apps",
     title: "Mobile App Development",
     description:
-      "Cross-platform mobile apps built with React Native — companion apps for our own live platforms are in final testing ahead of launch.",
+      "Cross-platform mobile apps built with React Native — companion apps for TricityMatch and Homekrafted, platforms we built, are in final testing.",
     detail:
-      "We build cross-platform mobile apps that share one codebase across Android and iOS without feeling generic. We are currently finishing our own: companion apps for TricityMatch and Homekrafted are in final testing ahead of launch — the same product thinking as the web platforms, built for the pocket.",
+      "We build cross-platform mobile apps that share one codebase across Android and iOS without feeling generic. Our first are nearly done: companion apps for TricityMatch and Homekrafted are in final testing ahead of launch — the same product thinking as the web platforms, built for the pocket.",
     useCases: [
       "A mobile companion to an existing web platform",
       "A consumer app that must ship on Android and iOS simultaneously",

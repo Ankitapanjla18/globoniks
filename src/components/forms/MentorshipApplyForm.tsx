@@ -1,135 +1,147 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
-import { ArrowLeft, Mail } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Mail } from "lucide-react";
 import { BUSINESS } from "@/lib/site";
+import { tracks } from "@/data/mentorship";
+import { PageHeader } from "@/components/ui/page";
 
 /*
  * Honest no-backend submission, same approach as ContactForm: the previous
  * version faked an "Application Received" state on a timer while discarding
  * the data. Submit now composes the application into the applicant's email
  * app. Swaps to a real POST once a backend is chosen (NEEDS-INPUT 3.2).
+ *
+ * Track options come from src/data/mentorship.ts, and `?track=<slug>` (the
+ * track cards link here with it) preselects one. Before 2026-10-04 the
+ * options were typed out by hand and the parameter was ignored.
  */
 export function MentorshipApplyForm() {
   const [handedOff, setHandedOff] = useState(false);
+  const [track, setTrack] = useState("");
+
+  useEffect(() => {
+    const slug = new URLSearchParams(window.location.search).get("track");
+    const match = tracks.find((t) => t.slug === slug);
+    if (match) setTrack(match.title);
+  }, []);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
     const get = (k: string) => String(data.get(k) ?? "").trim();
-    const track = get("track");
     const body = [
       `Name: ${get("firstName")} ${get("lastName")}`,
       `Email: ${get("email")}`,
-      `GitHub / Portfolio: ${get("github")}`,
-      `Track: ${track}`,
+      `GitHub / portfolio: ${get("github")}`,
+      `Track: ${get("track")}`,
       `Experience: ${get("experience")}`,
       "",
       "Goals:",
       get("goals"),
     ].join("\n");
     window.location.href = `mailto:${BUSINESS.email}?subject=${encodeURIComponent(
-      `Mentorship application — ${track}`
+      `Mentorship application — ${get("track")}`
     )}&body=${encodeURIComponent(body)}`;
     setHandedOff(true);
   };
 
-  const inputCls =
-    "w-full flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500";
+  const field =
+    "w-full rounded-xl border border-input bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500";
+  const lbl = "mb-2 block text-sm font-medium text-foreground";
 
   return (
-    <div className="min-h-screen pt-32 pb-24">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-2xl">
-        <Link
-          href="/mentorship"
-          className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-foreground transition-colors mb-8"
-        >
-          <ArrowLeft className="w-4 h-4 mr-2" />
-          Back to mentorship
-        </Link>
+    <div className="min-h-screen pb-24 pt-32 md:pt-40">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <PageHeader
+          back={{ href: "/mentorship/", label: "All tracks" }}
+          eyebrow="Mentorship"
+          title="Apply for"
+          accent="a track."
+          lead="Tell us your current stack, your experience, and what you want to be able to build when the track ends. Every application gets a reply within one working day."
+        />
 
-        <div className="mb-10">
-          <h1 className="text-4xl lg:text-5xl font-heading font-black tracking-tight text-foreground mb-4">
-            Mentorship Application
-          </h1>
-          <p className="text-lg text-muted-foreground">
-            Tell us about your current stack, experience level, and what you hope to achieve during the cohort.
-          </p>
-        </div>
-
-        <form onSubmit={handleSubmit} className="space-y-6 bg-card border border-border p-8 rounded-2xl">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div className="space-y-2">
-              <label htmlFor="firstName" className="text-sm font-medium text-foreground">First Name</label>
-              <input required type="text" id="firstName" name="firstName" className={inputCls} placeholder="First name" />
+        <form onSubmit={handleSubmit} className="max-w-2xl space-y-6 rounded-3xl border rule bg-card/60 p-6 sm:p-8">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <div>
+              <label htmlFor="firstName" className={lbl}>First name</label>
+              <input required type="text" id="firstName" name="firstName" autoComplete="given-name" className={field} placeholder="First name" />
             </div>
-            <div className="space-y-2">
-              <label htmlFor="lastName" className="text-sm font-medium text-foreground">Last Name</label>
-              <input required type="text" id="lastName" name="lastName" className={inputCls} placeholder="Last name" />
+            <div>
+              <label htmlFor="lastName" className={lbl}>Last name</label>
+              <input required type="text" id="lastName" name="lastName" autoComplete="family-name" className={field} placeholder="Last name" />
             </div>
           </div>
 
-          <div className="space-y-2">
-            <label htmlFor="email" className="text-sm font-medium text-foreground">Email Address</label>
-            <input required type="email" id="email" name="email" className={inputCls} placeholder="you@example.com" />
+          <div>
+            <label htmlFor="email" className={lbl}>Email</label>
+            <input required type="email" id="email" name="email" autoComplete="email" className={field} placeholder="you@example.com" />
           </div>
 
-          <div className="space-y-2">
-            <label htmlFor="github" className="text-sm font-medium text-foreground">GitHub Profile (or Portfolio URL)</label>
-            <input required type="url" id="github" name="github" className={inputCls} placeholder="https://github.com/username" />
+          <div>
+            <label htmlFor="github" className={lbl}>GitHub profile or portfolio</label>
+            <input required type="url" id="github" name="github" className={field} placeholder="https://github.com/username" />
           </div>
 
-          <div className="space-y-2">
-            <label htmlFor="track" className="text-sm font-medium text-foreground">Desired Track</label>
-            <select required id="track" name="track" className={inputCls}>
-              <option value="">Select a mentorship track...</option>
-              <option value="Full-Stack Web Mastery">Full-Stack Web Mastery</option>
-              <option value="Mobile Development">Mobile Development</option>
-              <option value="Leadership & Architecture">Leadership &amp; Architecture</option>
-            </select>
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <div>
+              <label htmlFor="track" className={lbl}>Track</label>
+              <select required id="track" name="track" value={track} onChange={(e) => setTrack(e.target.value)} className={field}>
+                <option value="" disabled>Choose a track</option>
+                {tracks.map((t) => (
+                  <option key={t.slug} value={t.title}>
+                    {t.title} · {t.duration}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label htmlFor="experience" className={lbl}>Experience</label>
+              <select required id="experience" name="experience" defaultValue="" className={field}>
+                <option value="" disabled>Choose one</option>
+                <option value="Beginner (1-2 projects)">Beginner (1–2 projects)</option>
+                <option value="Intermediate (1-3 years)">Intermediate (1–3 years)</option>
+                <option value="Advanced (3+ years)">Advanced (3+ years)</option>
+              </select>
+            </div>
           </div>
 
-          <div className="space-y-2">
-            <label htmlFor="experience" className="text-sm font-medium text-foreground">Current Experience Level</label>
-            <select required id="experience" name="experience" className={inputCls}>
-              <option value="">Select your experience...</option>
-              <option value="Beginner (1-2 projects)">Beginner (1-2 projects)</option>
-              <option value="Intermediate (1-3 years)">Intermediate (1-3 years)</option>
-              <option value="Advanced (3+ years)">Advanced (3+ years)</option>
-            </select>
+          <div>
+            <label htmlFor="goals" className={lbl}>What do you want to be able to build?</label>
+            <textarea
+              required
+              id="goals"
+              name="goals"
+              rows={5}
+              className={`${field} min-h-[140px]`}
+              placeholder="A few lines on where you are now and where you want to get to."
+            />
           </div>
 
-          <div className="space-y-2">
-            <label htmlFor="goals" className="text-sm font-medium text-foreground">What do you want to achieve?</label>
-            <textarea required id="goals" name="goals" rows={4} className="w-full flex min-h-[80px] rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500" placeholder="Briefly describe your technical goals..."></textarea>
-          </div>
-
-          <button
-            type="submit"
-            className="inline-flex w-full items-center justify-center rounded-full bg-violet-500 px-7 py-3 text-sm font-semibold text-white transition-colors hover:bg-violet-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-          >
-            <Mail className="w-5 h-5 mr-2" /> Send Application via Email
+          <button type="submit" className="brand-cta inline-flex w-full items-center justify-center px-7 py-3.5 text-base font-medium">
+            <Mail className="mr-2 h-4 w-4" /> Send application by email
           </button>
 
+          <p className="text-xs text-muted-foreground">
+            Sending opens your email app with the application ready to go — it
+            reaches us when you hit send there. Tuition and cohort dates come
+            with our reply.
+          </p>
+
           {handedOff && (
-            <p className="text-sm text-muted-foreground text-center" role="status">
-              Your email app should have opened with the application ready to
-              send — it reaches us once you hit send there. We respond within
-              48 hours. If nothing opened, write to {BUSINESS.email}.
+            <p className="text-sm text-muted-foreground" role="status">
+              Your email app should have opened with the application ready. We
+              reply within one working day. If nothing opened, write to{" "}
+              {BUSINESS.email}.
             </p>
           )}
 
           <noscript>
-            <p className="text-sm text-center text-muted-foreground">
+            <p className="text-sm text-muted-foreground">
               This form needs JavaScript. Without it, email your application
               to {BUSINESS.email}.
             </p>
           </noscript>
-
-          <p className="text-xs text-center text-muted-foreground mt-4">
-            Pricing details will be sent upon review.
-          </p>
         </form>
       </div>
     </div>

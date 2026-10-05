@@ -1,30 +1,29 @@
 import { HeroSection } from "@/components/sections/HeroSection";
-import { AudienceSplitSection } from "@/components/sections/AudienceSplitSection";
-import { SocialProofBar } from "@/components/sections/SocialProofBar";
+import { ServicesIndex } from "@/components/sections/ServicesIndex";
 import { FeaturedProjectsSection } from "@/components/sections/FeaturedProjectsSection";
+import { ProcessStrip } from "@/components/sections/ProcessStrip";
 import { ProductsStrip } from "@/components/sections/ProductsStrip";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
+import { FoundersBand } from "@/components/sections/FoundersBand";
 import { MentorshipTeaser } from "@/components/sections/MentorshipTeaser";
-import { StructuredData } from "@/components/seo/StructuredData";
-import { organizationSchema } from "@/lib/site";
 
+/*
+ * Landing page (redesign 2026-10-04). The order is an argument:
+ * claim + live proof (hero) -> what we build, each with proof -> the work,
+ * open it -> how a project runs -> our own platforms -> client words (when
+ * they exist) -> who you deal with -> mentorship. Organization and WebSite
+ * schema come from the root layout.
+ */
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen">
-      <StructuredData data={organizationSchema()} />
-      <HeroSection 
-        headline="We build what others only pitch."
-        subhead="Marketplaces, SaaS platforms and business systems — web and mobile."
-        primaryCtaText="Start a project &rarr;"
-        primaryCtaLink="/contact"
-        secondaryCtaText="Join mentorship"
-        secondaryCtaLink="/mentorship"
-      />
-      <AudienceSplitSection />
-      <SocialProofBar />
+    <div className="flex min-h-screen flex-col">
+      <HeroSection />
+      <ServicesIndex />
       <FeaturedProjectsSection />
+      <ProcessStrip />
       <ProductsStrip />
       <TestimonialsSection />
+      <FoundersBand />
       <MentorshipTeaser />
     </div>
   );

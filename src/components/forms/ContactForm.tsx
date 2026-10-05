@@ -1,7 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BUSINESS } from "@/lib/site";
+import { readVisitSource } from "@/components/seo/VisitSource";
+import { ABOUT_TO_INTEREST } from "@/lib/interests";
 
 const WHATSAPP_DIGITS = BUSINESS.telephone.replace(/[^\d]/g, "");
 
@@ -15,6 +17,7 @@ const WHATSAPP_DIGITS = BUSINESS.telephone.replace(/[^\d]/g, "");
 
 const INTERESTS = [
   "A two-week discovery sprint",
+  "An online shop like FuzzBall Factory",
   "A marketplace or e-commerce platform",
   "A SaaS / multi-tenant platform",
   "An operations or compliance system",
@@ -27,15 +30,43 @@ const INTERESTS = [
 function readForm(form: HTMLFormElement) {
   const data = new FormData(form);
   const get = (k: string) => String(data.get(k) ?? "").trim();
-  return { name: get("name"), email: get("email"), interest: get("interest"), message: get("message") };
+  return { name: get("name"), email: get("email"), interest: get("interest"), message: get("message"), via: get("via") };
 }
 
 function compose(v: ReturnType<typeof readForm>) {
-  return [`Name: ${v.name}`, `Email: ${v.email}`, `Looking for: ${v.interest}`, "", v.message].join("\n");
+  return [
+    `Name: ${v.name}`,
+    `Email: ${v.email}`,
+    `Looking for: ${v.interest}`,
+    ...(v.via ? [`Found us via: ${v.via}`] : []),
+    "",
+    v.message,
+  ].join("\n");
 }
 
 export function ContactForm() {
   const [handedOff, setHandedOff] = useState<"email" | "whatsapp" | null>(null);
+  const [interest, setInterest] = useState("");
+  const [via, setVia] = useState("");
+
+  /*
+   * `?about=<offer slug>` preselects the matching interest -- the "want a
+   * shop like this?" page links here with it. `utm_source` (set on links
+   * from our own products, see CREDITS-KIT.md) is appended to the message
+   * as "Found us via", so enquiries from FuzzBall Factory and the other
+   * sites are attributable before any analytics exists. Read after mount:
+   * the site is a static export, so no server sees the query string.
+   */
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search);
+    const preset = ABOUT_TO_INTEREST[q.get("about") ?? ""];
+    if (preset) setInterest(preset);
+    // Captured on landing by <VisitSource /> in the root layout, so a
+    // visitor who arrives on /build/online-shop/ and clicks through to
+    // here still carries it.
+    const source = q.get("utm_source") ?? readVisitSource();
+    if (source) setVia(source.slice(0, 60));
+  }, []);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -76,13 +107,22 @@ export function ContactForm() {
 
       <div>
         <label htmlFor="interest" className={lbl}>What are you looking for?</label>
-        <select required id="interest" name="interest" defaultValue="" className={field}>
+        <select
+          required
+          id="interest"
+          name="interest"
+          value={interest}
+          onChange={(e) => setInterest(e.target.value)}
+          className={field}
+        >
           <option value="" disabled>Choose one</option>
           {INTERESTS.map((i) => (
             <option key={i} value={i}>{i}</option>
           ))}
         </select>
       </div>
+
+      {via && <input type="hidden" name="via" value={via} />}
 
       <div>
         <label htmlFor="message" className={lbl}>A few lines about it</label>

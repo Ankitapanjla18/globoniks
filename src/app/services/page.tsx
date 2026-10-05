@@ -5,13 +5,18 @@ import Link from "next/link";
 import { services, roadmap } from "@/data/services";
 import { capabilities } from "@/data/capabilities";
 import { getProject } from "@/data/projects";
+import { StructuredData } from "@/components/seo/StructuredData";
+import { SITE_URL, pageMetadata, webPageSchema } from "@/lib/site";
+import { PageHeader } from "@/components/ui/page";
 
-export const metadata: Metadata = {
-  title: "Services",
+const PAGE = {
+  title: "Software development services — web and mobile",
   description:
-    "Use-case-based software services backed by shipped work: marketplaces, SaaS platforms, operations & compliance systems, mobile apps and long-term support.",
-  alternates: { canonical: "/services/" },
+    "Software development services backed by shipped work: marketplaces, SaaS platforms, operations & compliance systems, mobile apps and long-term support.",
+  path: "/services/",
 };
+
+export const metadata: Metadata = pageMetadata(PAGE);
 
 // Icons stay in the component so the data file remains serializable.
 const icons: Record<string, React.ReactNode> = {
@@ -25,20 +30,40 @@ const icons: Record<string, React.ReactNode> = {
 export default function ServicesPage() {
   return (
     <div className="min-h-screen pt-32 pb-24">
+      <StructuredData
+        data={webPageSchema({
+          type: "CollectionPage",
+          name: PAGE.title,
+          ...PAGE,
+          extra: {
+            mainEntity: {
+              "@type": "ItemList",
+              itemListElement: services.map((s, i) => ({
+                "@type": "ListItem",
+                position: i + 1,
+                url: `${SITE_URL}/services/${s.slug}/`,
+                name: s.title,
+              })),
+            },
+          },
+        })}
+      />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <h1 className="text-5xl md:text-6xl font-heading font-black tracking-tight text-foreground mb-6">
-            We sell what we&apos;ve already <span className="text-violet-600">shipped.</span>
-          </h1>
-          <p className="text-xl text-muted-foreground leading-relaxed">
-            Every service below is backed by a system we have delivered — most
-            of them live right now for you to open and judge. No capability
-            slides, no hypotheticals.{" "}
-            <Link href="/how-we-work/" className="font-medium text-violet-500 hover:text-violet-400 transition-colors">
-              See how a project runs.
-            </Link>
-          </p>
-        </div>
+        <PageHeader
+          eyebrow="Services"
+          title="We sell what we've"
+          accent="already built."
+          lead={
+            <>
+              Every service below cites a system we built — most of them live
+              right now for you to open and judge. No capability slides, no
+              hypotheticals.{" "}
+              <Link href="/how-we-work/" className="text-violet-400 transition-colors hover:text-violet-300">
+                See how a project runs.
+              </Link>
+            </>
+          }
+        />
 
         <h2 className="sr-only">What we build</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 pt-8">
@@ -59,7 +84,7 @@ export default function ServicesPage() {
         <section aria-labelledby="capabilities" className="mt-24 max-w-5xl mx-auto">
           <h2
             id="capabilities"
-            className="text-3xl font-heading font-bold text-foreground mb-4 text-center"
+            className="mb-4 text-center font-heading text-3xl leading-tight tracking-tight text-foreground md:text-4xl"
           >
             What we build — at a glance
           </h2>
@@ -101,9 +126,9 @@ export default function ServicesPage() {
           <div className="text-center mb-12">
             <h2
               id="roadmap"
-              className="inline-flex items-center rounded-full border border-purple-500/30 bg-purple-500/10 px-4 py-1.5 text-sm text-purple-500 font-semibold mb-6"
+              className="mb-6 inline-flex items-center rounded-full border border-violet-500/30 bg-violet-500/10 px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-violet-300"
             >
-              <Sparkles className="w-4 h-4 mr-2" />
+              <Sparkles className="mr-2 h-3.5 w-3.5" />
               {roadmap.heading}
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
@@ -115,12 +140,12 @@ export default function ServicesPage() {
             {roadmap.items.map((item) => (
               <div
                 key={item.title}
-                className="bg-card border border-border rounded-2xl p-6 flex flex-col"
+                className="flex flex-col rounded-3xl border rule bg-card/60 p-6"
               >
-                <span className="text-xs font-semibold uppercase tracking-wider text-purple-500 mb-3">
+                <span className="eyebrow-accent mb-3">
                   {item.status}
                 </span>
-                <h3 className="font-heading font-bold text-lg text-foreground mb-3">
+                <h3 className="mb-3 font-heading text-2xl leading-tight text-foreground">
                   {item.title}
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed flex-grow">
@@ -129,7 +154,7 @@ export default function ServicesPage() {
                 {"projectSlug" in item && item.projectSlug && (
                   <Link
                     href={`/projects/${item.projectSlug}`}
-                    className="mt-4 inline-flex items-center text-sm font-medium text-violet-500 hover:text-violet-400 transition-colors"
+                    className="mt-4 inline-flex items-center text-sm font-medium text-violet-400 transition-colors hover:text-violet-300"
                   >
                     See the project
                     <ArrowRight className="w-4 h-4 ml-1.5" />

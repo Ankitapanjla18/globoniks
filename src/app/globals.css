@@ -3,18 +3,16 @@
 @tailwind utilities;
 
 /*
- * Brand theme restored from old-site-archive/index.html (:root, line 270).
- * The original Globoniks theme: pure black surfaces, the two brand purples
- * (#8B5CF6 primary / #A855F7 secondary -- exactly Tailwind violet-500 and
- * purple-500), purple-tinted glass card borders, and purple-glow CTAs.
- * The interim rewrite had replaced this with a navy/indigo/amber scheme.
+ * Brand theme: pure black surfaces, the two brand purples (#8B5CF6 primary /
+ * #A855F7 secondary -- exactly Tailwind violet-500 and purple-500), purple-
+ * tinted hairline borders. Restored from the original site; the 2026-10-04
+ * redesign keeps the palette and changes the voice (type, layout, motion).
  */
 @layer base {
   :root {
-    /* Light mode: not part of the original (dark-only) site. Kept as a
-       purple-accented light equivalent so a future theme toggle stays on
+    /* Light mode: a purple-accented equivalent so a theme toggle stays on
        brand. violet-600 is used for accents to hold 4.5:1 on white. */
-    --background: 0 0% 100%;
+    --background: 40 20% 98%;
     --foreground: 260 25% 8%;
     --card: 0 0% 100%;
     --card-foreground: 260 25% 8%;
@@ -24,23 +22,22 @@
     --primary-foreground: 0 0% 100%;
     --secondary: 260 40% 96%;
     --secondary-foreground: 260 25% 8%;
-    --muted: 260 40% 96%;
-    --muted-foreground: 258 10% 42%;
+    --muted: 260 30% 95%;
+    --muted-foreground: 258 10% 40%;
     --accent: 262 83% 58%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-    --border: 259 40% 90%;
-    --input: 259 40% 90%;
+    --border: 259 30% 88%;
+    --input: 259 30% 88%;
     --ring: 262 83% 58%;
-    /* Old site cards ran 16-28px radii. */
     --radius: 1rem;
+    /* Redesign tokens */
+    --hairline: 259 30% 86%;
+    --live: 152 60% 40%;
   }
 
   .dark {
-    /* The original theme, mapped from the old site's CSS variables:
-       --dark-bg #000, --dark-secondary #0A0A0A, --dark-tertiary #111,
-       --text-muted #b3b3b3, --border-glass rgba(139,92,246,.2). */
     --background: 0 0% 0%;
     --foreground: 0 0% 100%;
     --card: 0 0% 4%; /* #0A0A0A */
@@ -49,18 +46,19 @@
     --popover-foreground: 0 0% 100%;
     --primary: 258 90% 66%; /* #8B5CF6 */
     --primary-foreground: 0 0% 100%;
-    --secondary: 260 35% 11%; /* purple-tinted dark surface */
+    --secondary: 260 35% 11%;
     --secondary-foreground: 0 0% 100%;
-    --muted: 260 20% 8%; /* ~#111 with the brand tint */
-    --muted-foreground: 0 0% 70%; /* #b3b3b3 */
+    --muted: 260 20% 8%;
+    --muted-foreground: 0 0% 68%;
     --accent: 271 91% 65%; /* #A855F7 */
     --accent-foreground: 0 0% 100%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-    /* rgba(139,92,246,.2) composited on black */
     --border: 259 46% 13%;
     --input: 259 46% 15%;
     --ring: 258 90% 66%;
+    --hairline: 259 40% 16%;
+    --live: 152 70% 55%;
   }
 }
 
@@ -68,50 +66,155 @@
   * {
     @apply border-border;
   }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
-    @apply bg-background text-foreground font-sans selection:bg-violet-500/30 selection:text-violet-200;
+    @apply bg-background text-foreground font-sans antialiased selection:bg-violet-500/30 selection:text-violet-100;
+    font-feature-settings: "ss01", "cv11";
+  }
+  /* Instrument Serif ships one weight. Without this, every `font-bold`
+     heading would get a browser-synthesised bold -- smeared and uneven. */
+  .font-heading {
+    font-synthesis: none;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 999px;
+  }
+}
+
+@layer components {
+  /* Mono eyebrow: the instrument layer. */
+  .eyebrow {
+    @apply font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground;
+  }
+  .eyebrow-accent {
+    @apply font-mono text-[11px] uppercase tracking-[0.18em] text-violet-400;
+  }
+  /* Italic violet accent inside a serif headline. */
+  .ink {
+    @apply italic text-violet-400;
+  }
+  :root:not(.dark) .ink {
+    @apply text-violet-600;
+  }
+  /* Hairline rule used between editorial rows. */
+  .rule {
+    border-color: hsl(var(--hairline));
+  }
+  /* Pulsing live indicator. */
+  .live-dot {
+    @apply relative inline-block h-1.5 w-1.5 rounded-full;
+    background: hsl(var(--live));
+  }
+  .live-dot::after {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    border-radius: 999px;
+    border: 1px solid hsl(var(--live) / 0.6);
+    animation: livePulse 2.4s ease-out infinite;
+  }
+  @keyframes livePulse {
+    0% {
+      transform: scale(0.6);
+      opacity: 0.9;
+    }
+    100% {
+      transform: scale(1.8);
+      opacity: 0;
+    }
   }
 }
 
 /*
- * The old site's .cta-button: purple gradient pill with a purple glow and a
- * lift on hover. Replaces the interim ".amber-cta".
+ * Primary action. Solid violet, sentence case, soft glow -- no gradient,
+ * no uppercase. Same class name as before so every page keeps working.
  */
 .brand-cta {
-  background: linear-gradient(45deg, #8b5cf6, #a855f7);
+  background: #8b5cf6;
   color: #fff;
   border-radius: 9999px;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 0 1px rgba(167, 139, 250, 0.35) inset, 0 12px 32px -12px rgba(139, 92, 246, 0.7);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
 }
 .brand-cta:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 16px 36px rgba(139, 92, 246, 0.4), 0 0 22px rgba(139, 92, 246, 0.3);
+  background: #9d78f8;
+  transform: translateY(-1px);
+  box-shadow: 0 0 0 1px rgba(196, 181, 253, 0.5) inset, 0 16px 40px -12px rgba(139, 92, 246, 0.9);
 }
 .brand-cta:focus-visible {
   outline: none;
   box-shadow: 0 0 0 2px hsl(var(--background)), 0 0 0 4px #8b5cf6;
 }
 
+/* Secondary action: hairline pill. */
+.ghost-cta {
+  border: 1px solid hsl(var(--hairline));
+  border-radius: 9999px;
+  color: hsl(var(--foreground));
+  transition: border-color 0.25s ease, background-color 0.25s ease;
+}
+.ghost-cta:hover {
+  border-color: rgba(139, 92, 246, 0.6);
+  background: rgba(139, 92, 246, 0.08);
+}
+.ghost-cta:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px hsl(var(--background)), 0 0 0 4px #8b5cf6;
+}
+
 /*
- * The old site's hero h1: foreground -> purple -> foreground gradient text,
- * slowly shifting. Uses the foreground token so it also reads in light mode.
+ * Starfield canvas: sized to the *large* viewport, so a phone's address
+ * bar sliding in and out never changes its box. `100vh` is the fallback
+ * (it already means the large viewport on iOS Safari and Chrome Android).
+ */
+.starfield {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100lvh;
+}
+
+/*
+ * Grain: a fixed, barely-there film over the whole page so black is never
+ * flat. Multiplies on dark, screens on light.
+ */
+.grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background-image: url("/noise.svg");
+  background-size: 200px 200px;
+  opacity: 0.05;
+  mix-blend-mode: screen;
+}
+:root:not(.dark) .grain {
+  mix-blend-mode: multiply;
+  opacity: 0.08;
+}
+
+/*
+ * Hero headline: foreground -> violet -> foreground gradient, slow drift.
+ * Kept from the original; now sits on a serif.
  */
 .gradient-text-hero {
-  background: linear-gradient(
-    45deg,
-    hsl(var(--foreground)),
-    #8b5cf6,
-    hsl(var(--foreground))
-  );
-  background-size: 200% 200%;
+  background: linear-gradient(100deg, hsl(var(--foreground)) 0%, #a78bfa 45%, hsl(var(--foreground)) 100%);
+  background-size: 200% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  animation: gradientShift 4s ease-in-out infinite;
+  animation: gradientShift 9s ease-in-out infinite;
 }
 
 @keyframes gradientShift {
@@ -124,9 +227,103 @@
   }
 }
 
+/*
+ * Single orchestrated page-load reveal: children stagger by --i. The LCP
+ * element (hero h1) must not start at opacity 0 -- Chrome does not count a
+ * paint until the element is visible -- so `.reveal-lcp` moves without
+ * fading.
+ */
+.reveal > * {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+  animation-delay: calc(var(--i, 0) * 110ms);
+}
+.reveal > .reveal-lcp {
+  opacity: 1;
+  animation-name: riseOnly;
+}
+@keyframes rise {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes riseOnly {
+  to {
+    transform: none;
+  }
+}
+
+/*
+ * Scroll reveals, driven by <ScrollReveal />. `data-reveal=""` (server
+ * HTML) and "done" carry no styles at all, so content is visible without
+ * JavaScript and keeps its own hover transitions after revealing.
+ */
+[data-reveal="pending"] {
+  opacity: 0;
+  transform: translateY(24px);
+}
+[data-reveal="in"] {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.75s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.75s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+[data-reveal-stagger][data-reveal="pending"] {
+  opacity: 1;
+  transform: none;
+}
+[data-reveal-stagger][data-reveal="pending"] > * {
+  opacity: 0;
+  transform: translateY(20px);
+}
+[data-reveal-stagger][data-reveal="in"] > * {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: calc(var(--ri, 0) * 80ms);
+}
+
+/* Horizontal swipe rows on phones: no scrollbar, momentum, snap. */
+.swipe-row {
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.swipe-row::-webkit-scrollbar {
+  display: none;
+}
+
+/* Editorial row: hairline-separated list item with a hover wash. */
+/* No `display` here: this rule sits after the utilities and would beat
+   the `grid` utility on the same element. */
+.row-link {
+  position: relative;
+}
+.row-link::before {
+  content: "";
+  position: absolute;
+  inset: 0 -1rem;
+  border-radius: 1rem;
+  background: rgba(139, 92, 246, 0.06);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.row-link:hover::before {
+  opacity: 1;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .gradient-text-hero {
+  html {
+    scroll-behavior: auto;
+  }
+  .gradient-text-hero,
+  .live-dot::after {
     animation: none;
+  }
+  .reveal > * {
+    animation: none;
+    opacity: 1;
+    transform: none;
   }
   .brand-cta,
   .brand-cta:hover {

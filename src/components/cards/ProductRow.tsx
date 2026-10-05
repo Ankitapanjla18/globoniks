@@ -3,7 +3,7 @@ import Image from "next/image";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { WhiteLabelPill } from "@/components/cards/WhiteLabelPill";
-import type { Project } from "@/data/projects";
+import { liveLabel, type Project } from "@/data/projects";
 
 /**
  * A Globoniks-owned platform offered under a customer's name, as a
@@ -24,8 +24,8 @@ export function ProductRow({ project }: { project: Project }) {
     .join("");
 
   return (
-    <article className="flex flex-col gap-6 rounded-2xl border border-border bg-card p-6 transition-colors hover:border-violet-500/40 md:flex-row md:items-start md:gap-8">
-      <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-muted/30">
+    <article className="flex flex-col gap-6 rounded-3xl border rule bg-card/60 p-6 transition-colors hover:border-violet-500/40 md:flex-row md:items-start md:gap-8 md:p-7">
+      <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-violet-500/30 bg-violet-500/10">
         {project.logo ? (
           <Image
             src={project.logo.mark ?? project.logo.src}
@@ -38,7 +38,7 @@ export function ProductRow({ project }: { project: Project }) {
         ) : (
           <span
             aria-hidden="true"
-            className="font-heading text-xl font-black text-violet-400"
+            className="font-heading text-2xl text-violet-300"
           >
             {monogram}
           </span>
@@ -49,16 +49,16 @@ export function ProductRow({ project }: { project: Project }) {
         <div className="mb-2 flex flex-wrap items-center gap-2">
           <WhiteLabelPill stage={wl.stage} />
           {host && (
-            <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-500">
-              <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-              Live
+            <span className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+              <span aria-hidden="true" className="live-dot" />
+              {liveLabel(project)}
             </span>
           )}
-          <span className="text-xs font-medium uppercase tracking-wider text-violet-400">
+          <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-violet-400">
             For {wl.audience}
           </span>
         </div>
-        <h3 className="mb-2 font-heading text-xl font-bold text-foreground">
+        <h3 className="mb-2 font-heading text-3xl leading-[1.05] tracking-tight text-foreground">
           {project.title}
         </h3>
         <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
@@ -66,8 +66,9 @@ export function ProductRow({ project }: { project: Project }) {
         </p>
         {wl.modules && wl.modules.length > 0 && (
           <ul className="flex flex-wrap gap-2" aria-label="Included modules">
-            {wl.modules.slice(0, 8).map((m) => (
-              <li key={m}>
+            {wl.modules.slice(0, 8).map((m, i) => (
+              // Phones show four; the rest are a tap away on the case study.
+              <li key={m} className={i >= 4 ? "hidden sm:list-item" : undefined}>
                 <Badge
                   variant="outline"
                   className="border-border bg-muted/50 text-xs text-muted-foreground"
@@ -76,6 +77,13 @@ export function ProductRow({ project }: { project: Project }) {
                 </Badge>
               </li>
             ))}
+            {wl.modules.length > 4 && (
+              <li className="sm:hidden">
+                <Badge variant="outline" className="border-border bg-transparent text-xs text-muted-foreground">
+                  +{Math.min(wl.modules.length, 8) - 4} more
+                </Badge>
+              </li>
+            )}
           </ul>
         )}
       </div>
@@ -85,7 +93,7 @@ export function ProductRow({ project }: { project: Project }) {
           href={`/projects/${project.slug}/`}
           className="inline-flex items-center text-foreground transition-colors hover:text-violet-400"
         >
-          Case study
+          Case study<span className="sr-only">: {project.title}</span>
           <ArrowRight className="ml-1.5 h-4 w-4" />
         </Link>
         {project.liveUrl && (
@@ -93,7 +101,7 @@ export function ProductRow({ project }: { project: Project }) {
             href={project.liveUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center text-violet-500 transition-colors hover:text-violet-400"
+            className="inline-flex items-center text-violet-400 transition-colors hover:text-violet-300"
           >
             <ExternalLink className="mr-1.5 h-4 w-4" />
             {host}
@@ -103,7 +111,7 @@ export function ProductRow({ project }: { project: Project }) {
           href="/contact/"
           className="inline-flex items-center text-muted-foreground transition-colors hover:text-foreground"
         >
-          {wl.stage === "offered" ? "Enquire" : "Register interest"}
+          {wl.stage === "offered" ? "Ask about white-label" : "Register interest"}
         </Link>
       </div>
     </article>

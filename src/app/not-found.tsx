@@ -1,30 +1,24 @@
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen pt-32 pb-24 flex flex-col items-center justify-center text-center px-4">
-      <p className="text-sm font-semibold uppercase tracking-wider text-violet-500 mb-4">
-        404
-      </p>
-      <h1 className="text-4xl md:text-5xl font-heading font-black tracking-tight text-foreground mb-6">
-        This page doesn&apos;t exist.
+    <div className="flex min-h-screen flex-col items-center justify-center px-4 pb-24 pt-32 text-center">
+      <p className="eyebrow-accent mb-6">404 · Lost in space</p>
+      <h1 className="font-heading text-[2.6rem] leading-[1] tracking-tight text-foreground sm:text-5xl md:text-6xl">
+        This page <span className="ink">doesn&apos;t exist.</span>
       </h1>
-      <p className="text-lg text-muted-foreground max-w-md mb-10">
+      <p className="mt-6 max-w-md text-lg leading-relaxed text-muted-foreground">
         The link may be outdated. Everything we&apos;ve built lives on the work
         page, and everything we offer is under services.
       </p>
-      <div className="flex flex-col sm:flex-row gap-4">
-        <Link
-          href="/"
-          className="brand-cta px-6 py-3 rounded-full text-sm font-semibold"
-        >
+      <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+        <Link href="/" className="brand-cta inline-flex items-center justify-center px-7 py-3.5 text-base font-medium">
           Back to home
+          <ArrowRight className="ml-2 h-4 w-4" />
         </Link>
-        <Link
-          href="/projects"
-          className="px-6 py-3 rounded-full text-sm font-semibold border border-border text-foreground hover:bg-muted transition-colors"
-        >
-          See our work
+        <Link href="/projects/" className="ghost-cta inline-flex items-center justify-center px-7 py-3.5 text-base font-medium">
+          See the work
         </Link>
       </div>
     </div>

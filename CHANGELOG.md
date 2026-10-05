@@ -950,3 +950,213 @@ Flagged in NEEDS-INPUT: the first surveillance audit is due 15 March
 365 days -- the site now asserts active certification, so that date
 matters. Offering to host the PDF at public/iso-9001-certificate.pdf
 if the owner wants it linked.
+
+---
+
+## Incorporated as a private limited company (2026-10-02)
+
+Owner: Globoniks has incorporated as Globoniks Technologies Private
+Limited; the directors are Ankita and Kapila.
+
+- **Legal name**: `BUSINESS` in src/lib/site.ts now separates the brand
+  (`name`: "Globoniks") from the registered entity (`legalName`:
+  "Globoniks Technologies Private Limited"). The legal name renders in
+  the footer copyright, the About story and meta description, the
+  How-we-work registration FAQ, and the Organization schema as
+  `legalName`. Running copy keeps the brand.
+- **Directors**: Kapila added to `TEAM` as "Director — Operations" (remit
+  at the owner's "operations, or whatever feels right"), named in the
+  About story and the How-we-work "Who will I talk to?" answer. Ankita
+  and Saksham unchanged. About copy no longer says "the two names below".
+- **Not guessed, flagged in NEEDS-INPUT 2.0**: CIN, incorporation date
+  and registered office. Also flagged: the published GSTIN predates
+  incorporation and sits on an individual's PAN, so the company will
+  have a different one -- it stays on the site attached to the brand,
+  not to the company name, until the owner says.
+
+---
+
+## FuzzBall Factory added to the portfolio (2026-10-02)
+
+Owner: fuzzballfactory.com is a Globoniks build. Fetched and read the
+live site (home, about, shop, work orders, tracking) and added it to
+src/data/projects.ts as `fuzzball-factory`, after Tricity Life
+Insurance. Copy is drawn only from what the site shows: ready-to-ship
+versus made-to-order with stated lead times, custom work orders with a
+quote and 50% deposit, Razorpay checkout with limited COD, India and
+worldwide shipping, account-free order tracking. Stack read from the
+response headers and CSP. No client name, logo or metrics -- none
+supplied.
+
+The site's own "Sold out at ISB" line is not repeated: it is the
+client's claim, unsourced here.
+
+Flagged in NEEDS-INPUT 1.8: the live site's WhatsApp links use a
+placeholder number, its About page still shows template text, and it
+carries no Globoniks credit. CREDITS-KIT.md gains the site's row.
+
+---
+
+## SEO pass: canonical host, per-page metadata, entity graph (2026-10-04)
+
+Audited every built page and the live host the way a crawler sees them.
+
+- **Canonical host was wrong.** The live apex 301s to www; every
+  canonical, sitemap URL, og:url and schema `@id` named the apex. A
+  canonical that points at a redirect is discarded. `SITE_URL` is now
+  `https://www.globoniks.com`; everything derives from it. NEEDS-INPUT
+  3.4 updated; the host-side soft-404 and missing trailing-slash
+  redirect are recorded in 3.4b because they cannot be fixed here.
+- **Per-page metadata.** New `pageMetadata()` in src/lib/site.ts gives
+  every page its own canonical, Open Graph and Twitter card. Before,
+  the static pages (about, services, projects, contact, how-we-work,
+  mentorship) inherited the homepage's og:url and og:title, so sharing
+  /services/ previewed as the homepage. Titles now describe the page
+  ("Software Development Services — Web & Mobile", "About — Founder-Led
+  Software Studio in Mohali") instead of one word; all titles <= 60
+  characters and descriptions <= 160, with `snippet()` trimming the
+  longer case-study summaries at a word boundary.
+- **Entity graph on every page.** Organization (now also typed
+  `Organization`, with `legalName`, `areaServed` cities, `knowsAbout`,
+  and the team as `member`) and a WebSite node render from the root
+  layout rather than on two pages. Page nodes reference them by `@id`:
+  CollectionPage + ItemList on /services/ and /projects/, AboutPage,
+  ContactPage, CreativeWork per case study (with `sameAs` to the live
+  product and `keywords` from the stack), and Service pages now cite
+  their proof projects via `subjectOf`.
+- **Internal linking.** Case studies link to the service(s) that cite
+  them as proof, closing the loop the service pages already opened.
+- **Hero LCP.** The homepage `<h1>` shipped with inline `opacity:0`
+  from Framer Motion and appeared only after hydration. Replaced with a
+  CSS entrance (tailwindcss-animate, `motion-safe:` so reduced-motion
+  users get none); the hero is a server component now.
+- **Sitemap.** `lastModified` is the last git commit touching each
+  route's sources instead of the build time for all 25 URLs; `priority`
+  dropped (Google ignores it).
+- **/llms.txt** generated from the same data as the pages, following
+  the llmstxt.org convention. Flagged honestly in the source as an
+  emerging convention with no committed consumer; it costs nothing and
+  cannot drift.
+- Off-site priorities (Search Console, Google Business Profile, product
+  backlinks, LinkedIn, third-party reviews, first-hand content) are
+  listed in NEEDS-INPUT 3.4c -- they outweigh further on-page work.
+
+---
+
+## Redesign, star links, shop offer page, overseas how-we-work (2026-10-04)
+
+**Visual system.** Same brand (black field, violet #8B5CF6), new voice:
+Instrument Serif for display (one weight; `font-synthesis: none` so no
+fake bolds), Geist for reading, Geist Mono for the "instrument" layer --
+eyebrows, hostnames, numbers, status. Italic violet `.ink` accents inside
+serif headlines; hairline rules; a fixed grain film; a pulsing live dot;
+solid sentence-case CTA (`brand-cta`) plus a hairline `ghost-cta`. Site
+is dark-only (`forcedTheme`), since the starfield is the brand's one
+motif and means nothing on white. Framer Motion removed; the single
+page-load sequence is CSS (`.reveal`), with the hero h1 moving but never
+starting invisible, so it still counts as the LCP paint.
+
+**Star links fixed.** The constellation lines only drew inside a 160px
+cursor radius between stars under 90px apart -- with ~300 stars that was
+about one pair, so the effect was effectively invisible. Links are now
+found with a uniform spatial grid (each cell checks only forward
+neighbours), the whole field is faintly linked at all times, and links
+and stars brighten and swell within 240px of the cursor. Phones keep the
+static field, now with its links.
+
+**Landing page.** Order is an argument: hero (claim left, a "live right
+now" board of every product a visitor can open right), services as a
+numbered index with the shipped proof for each, selected work (one lead
+tile, two beside), the five project stages (shared with /how-we-work/
+via new src/data/process.ts), own platforms, client words (when they
+exist), who you deal with (team + certificate), mentorship (real tracks
+and durations; the fake `npx create-senior-dev` terminal is gone).
+AudienceSplitSection and SocialProofBar removed. Navbar transparent over
+the hero, current section marked; footer link columns generated from
+the data files.
+
+**FuzzBall Factory is Globoniks' own brand.** `ownBrand` on the project;
+cards and case study say "Our own brand".
+
+**/build/online-shop/ -- "Want a shop like FuzzBall Factory?"** New
+data-driven route (src/data/offers.ts, src/app/build/[offer]). Sections:
+what you are looking at (features, all observed on the live shop), what
+it takes from you (requirements), the complete steps, what else can be
+added (add-ons marked "shipped in <project>" where we have built one, "on
+request" otherwise), FAQ, CTA. Service + FAQPage + Breadcrumb schema; in
+the sitemap and llms.txt; linked from the FuzzBall case study. Its CTAs
+open /contact/?about=online-shop, which preselects the matching interest.
+CREDITS-KIT.md has the footer line for fuzzballfactory.com.
+
+**Enquiry attribution.** New VisitSource stores `utm_source` on landing
+(sessionStorage, first touch wins); the contact form adds "Found us via:
+<source>" to the message. Enquiries from FuzzBall and the other product
+sites are attributable before any analytics exists.
+
+**/how-we-work/ rewritten for clients abroad.** Hero with facts row and
+an office-hours card that converts 10:00-19:00 IST into the visitor's own
+time zone; the five stages with deliverables; "working with us from
+another country" (communication, contracts and payment, ownership and
+confidentiality, engineering standards); five lessons from shipping,
+each tied to a project you can open; engagement models; who signs and
+the company on the record; ten-question FAQ including time zones,
+overseas invoicing and data protection. Policy defaults flagged in
+NEEDS-INPUT 2.1j -- notably the zero-GST export line, which needs a
+filed LUT.
+
+---
+
+## Phone experience and site-wide consistency audit (2026-10-04)
+
+**Phones are no longer static.** The starfield animates on touch devices
+(it was a single still frame below 768px): drift and twinkle, scroll
+parallax by star size, constellations that light up under the finger
+while it scrolls, occasional shooting stars, tap ripple. Canvas at up to
+2x device pixels; sized to 100lvh so the address bar never reseeds the
+field; low-end devices (<= 4 cores / <= 3 GB) get fewer stars, 1x pixels
+and lower frame rates; reduced motion and Data Saver get a still field.
+Links are batched into 16 alpha bands (one stroke each) with reused grid
+arrays -- measured on an emulated phone at 4x CPU slowdown, starfield
+frames run p50 ~5 ms, p95 ~11 ms, max 25 ms. The remaining long tasks
+during scripted scrolling occur with the field switched off too.
+
+Also on phones: scroll reveals (ScrollReveal; only below-the-fold
+elements are ever hidden, so no flicker and nothing hidden without JS);
+a bottom action bar with WhatsApp and Start a project (offer-aware,
+carries the visit source, hidden near the footer and on form pages,
+rAF-throttled); a full-screen menu (rendered outside the header -- the
+header's backdrop-filter had made it the containing block and collapsed
+the sheet to 72px); selected work as a swipe row; a vertical thread
+through the process stages; module pills trimmed to four.
+
+**Consistency audit.** Scripted checks over all 28 built pages (links,
+trailing slashes, h1 count, heading order, duplicate ids, aria
+references, alt text, title/description length, canonical vs og:url)
+plus an independent read of every line of copy against site.ts, the
+data files and NEEDS-INPUT. Fixed:
+- Client builds called "ours" (Homekrafted, TricityMatch); FuzzBall,
+  the only own brand, still summarised as a client's "studio".
+- Live count: 06 on two pages, 7 badged Live on another. New `demo`
+  flag; 5 live sites + 2 live demos everywhere, demos badged "Live demo".
+- Time zones: "a North American morning in our evening" (no overlap
+  exists) and "six-to-ten-hour difference" (actual: 4.5-13.5 h).
+- Discovery sprint "the only engagement with a standing price" vs
+  "quoted after the first call"; offer page "fixed price after a free
+  conversation" vs the discovery-first process.
+- Unbacked claims removed (ISA financing, DPDP coverage, "senior
+  architects", "Elite", "every live product runs CI/CD", agencies
+  "produce unmaintainable code"); "registered office" -> "Office"; GST
+  and ISO kept with the brand, not the new company.
+- Mentorship: identical hard-coded syllabus on all three tracks ->
+  per-track `outcomes`; cohort vs 1-on-1 contradiction; 48 h vs one
+  working day; apply form ignored `?track=` -> now preselects.
+- One CTA vocabulary ("Start a project"; "Ask about white-label"), one
+  name for /projects/ ("Work"), sentence-case titles and headings,
+  maintenance promises -> "an agreed response window".
+- Inner pages (about, services, service detail, case study, mentorship
+  hub and tracks, apply, contact, 404) rebuilt on shared components in
+  src/components/ui/page.tsx; the case study no longer depends on the
+  uninstalled typography plugin (its paragraphs had no spacing).
+- Footer column headings h3 -> h2 (the apply page jumped h1 -> h3);
+  sr-only context on repeated "Case study" / "Syllabus" / "Apply" links;
+  two over-long meta descriptions trimmed.

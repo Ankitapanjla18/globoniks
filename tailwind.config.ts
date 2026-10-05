@@ -19,8 +19,11 @@ const config = {
     },
     extend: {
       fontFamily: {
-        heading: ["var(--font-inter)", "sans-serif"],
-        sans: ["var(--font-inter)", "sans-serif"],
+        // Editorial serif for display, Geist for reading, Geist Mono for
+        // the "instrument" layer: labels, hostnames, numbers, status.
+        heading: ["var(--font-display)", "Georgia", "serif"],
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
       colors: {
         border: "hsl(var(--border))",

@@ -3,16 +3,20 @@ import Link from "next/link";
 import { projects, liveProjects, whiteLabelProjects } from "@/data/projects";
 import { ProjectCard } from "@/components/cards/ProjectCard";
 import { ProductRow } from "@/components/cards/ProductRow";
+import { StructuredData } from "@/components/seo/StructuredData";
+import { SITE_URL, pageMetadata, webPageSchema } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Our work",
+const PAGE = {
+  title: "Our work — live products and case studies",
   // Capped to three live titles so the description stays under ~160 chars.
-  description: `Client projects and Globoniks products: ${liveProjects
+  description: `Software built by Globoniks: ${liveProjects
     .slice(0, 3)
     .map((p) => p.title)
     .join(", ")} and more — most live for you to open, plus platforms offered under your own name.`,
-  alternates: { canonical: "/projects/" },
+  path: "/projects/",
 };
+
+export const metadata: Metadata = pageMetadata(PAGE);
 
 /**
  * One page, two strips: client projects (a card grid, logos where they
@@ -28,18 +32,36 @@ export default function ProjectsIndex() {
   const offered = whiteLabelProjects.filter((p) => p.whiteLabel?.stage === "offered");
   const planned = whiteLabelProjects.filter((p) => p.whiteLabel?.stage === "planned");
   const clientProjects = projects.filter((p) => p.whiteLabel?.stage !== "offered");
-  const liveClient = clientProjects.filter((p) => p.liveUrl).length;
+  const liveClient = clientProjects.filter((p) => p.liveUrl && !p.demo).length;
 
   return (
     <div className="min-h-screen pb-24 pt-32">
+      <StructuredData
+        data={webPageSchema({
+          type: "CollectionPage",
+          name: PAGE.title,
+          ...PAGE,
+          extra: {
+            mainEntity: {
+              "@type": "ItemList",
+              itemListElement: projects.map((p, i) => ({
+                "@type": "ListItem",
+                position: i + 1,
+                url: `${SITE_URL}/projects/${p.slug}/`,
+                name: p.title,
+              })),
+            },
+          },
+        })}
+      />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-16 max-w-3xl">
-          <h1 className="mb-6 font-heading text-5xl font-black tracking-tight text-foreground md:text-6xl">
-            Our <span className="text-violet-600">work.</span>
+          <h1 className="mb-6 font-heading text-5xl tracking-tight text-foreground md:text-6xl">
+            Our <span className="ink">work.</span>
           </h1>
           <p className="text-xl leading-relaxed text-muted-foreground">
-            Two kinds of work: systems we built for clients — most of them
-            live for you to open and judge — and our own platforms, offered
+            Systems we built for clients and a brand of our own — most of
+            them live for you to open and judge — plus platforms offered
             under your name.
           </p>
         </div>
@@ -48,9 +70,9 @@ export default function ProjectsIndex() {
           <div className="mb-10">
             <h2
               id="client-projects-heading"
-              className="font-heading text-3xl font-black tracking-tight text-foreground md:text-4xl"
+              className="font-heading text-3xl tracking-tight text-foreground md:text-4xl"
             >
-              Client projects
+              Projects
             </h2>
             <p className="mt-2 text-muted-foreground">
               {liveClient} of {clientProjects.length} are live right now.
@@ -71,9 +93,9 @@ export default function ProjectsIndex() {
           <div className="mb-10 max-w-3xl">
             <h2
               id="products-heading"
-              className="font-heading text-3xl font-black tracking-tight text-foreground md:text-4xl"
+              className="font-heading text-3xl tracking-tight text-foreground md:text-4xl"
             >
-              Our products, <span className="text-violet-600">under your name.</span>
+              Our products, <span className="ink">under your name.</span>
             </h2>
             <p className="mt-3 text-lg text-muted-foreground">
               Platforms we built and run, offered as your own instance — your
@@ -92,7 +114,7 @@ export default function ProjectsIndex() {
                 <span key={p.slug}>
                   <Link
                     href={`/projects/${p.slug}/`}
-                    className="font-medium text-violet-500 transition-colors hover:text-violet-400"
+                    className="font-medium text-violet-400 transition-colors hover:text-violet-300"
                   >
                     {p.title}
                   </Link>

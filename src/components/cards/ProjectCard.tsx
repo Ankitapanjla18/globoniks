@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { clientLabel, type Project } from "@/data/projects";
 import { WhiteLabelPill } from "@/components/cards/WhiteLabelPill";
 
@@ -13,82 +12,61 @@ import { WhiteLabelPill } from "@/components/cards/WhiteLabelPill";
  */
 export function ProjectCard({ project }: { project: Project }) {
   const { slug, title, summary, stack, liveUrl, logo } = project;
-  const client = clientLabel(project.client);
+  const client = clientLabel(project.client, project.ownBrand);
   const host = liveUrl ? new URL(liveUrl).hostname.replace(/^www\./, "") : null;
 
   return (
     <Link
-      href={`/projects/${slug}`}
-      className="group block rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+      href={`/projects/${slug}/`}
+      className="group block rounded-3xl focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
     >
-      <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:border-violet-500/40 hover:shadow-lg">
-        {logo && (
-          <div className="flex h-36 items-center justify-center border-b border-border bg-muted/20 p-6">
-            <Image
-              src={logo.src}
-              alt={logo.alt}
-              width={160}
-              height={80}
-              unoptimized
-              className="max-h-20 w-auto"
-            />
+      <article className="relative flex h-full flex-col overflow-hidden rounded-3xl border rule bg-card/60 p-7 transition-colors hover:border-violet-500/40">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-20 -top-20 h-48 w-48 rounded-full bg-violet-600/0 blur-3xl transition-colors duration-500 group-hover:bg-violet-600/20"
+        />
+        <div className="relative mb-8 flex items-start justify-between gap-4">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+            {host ? (
+              <>
+                <span className="live-dot" aria-hidden="true" />
+                <span className="normal-case tracking-normal">{host}</span>
+              </>
+            ) : (
+              <span>Case study</span>
+            )}
+            {project.whiteLabel && <WhiteLabelPill stage={project.whiteLabel.stage} />}
           </div>
-        )}
-        <div className="flex flex-grow flex-col p-6">
-        <div className="mb-5 flex items-center gap-3">
-          {host ? (
-            <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-500">
-              <span
-                aria-hidden="true"
-                className="h-1.5 w-1.5 rounded-full bg-emerald-500"
-              />
-              Live
-            </span>
-          ) : (
-            <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-              Case study
-            </span>
+          {logo && (
+            <Image
+              src={logo.mark ?? logo.src}
+              alt={logo.alt}
+              width={88}
+              height={44}
+              unoptimized
+              className="max-h-9 w-auto opacity-90"
+            />
           )}
-          {host && (
-            <span className="min-w-0 truncate font-mono text-xs text-muted-foreground">
-              {host}
-            </span>
-          )}
-          {project.whiteLabel && <WhiteLabelPill stage={project.whiteLabel.stage} />}
         </div>
 
-        <h3 className="mb-2 font-heading text-xl font-bold text-foreground transition-colors group-hover:text-violet-500">
+        <h3 className="relative font-heading text-3xl leading-[1.05] tracking-tight text-foreground transition-colors group-hover:text-violet-300">
           {title}
         </h3>
 
-        {client && (
-          <p className="mb-3 text-sm font-medium text-muted-foreground">
-            {client}
-          </p>
-        )}
+        {client && <p className="relative mt-2 text-sm text-muted-foreground">{client}</p>}
 
-        <p className="mb-6 flex-grow text-sm leading-relaxed text-muted-foreground">
-          {summary}
-        </p>
+        <p className="relative mt-4 flex-grow text-sm leading-relaxed text-muted-foreground">{summary}</p>
 
-        {stack.length > 0 && (
-        <div className="mb-6 flex flex-wrap gap-2">
-          {stack.map((tech) => (
-            <Badge
-              key={tech}
-              variant="outline"
-              className="border-border bg-muted/50 text-xs text-muted-foreground"
-            >
-              {tech}
-            </Badge>
-          ))}
-        </div>
-        )}
-
-        <span className="mt-auto flex items-center text-sm font-semibold text-foreground">
-          Case study
-          <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-        </span>
+        <div className="relative mt-7 flex items-center justify-between gap-4 border-t rule pt-4">
+          <span className="inline-flex items-center text-sm font-medium text-foreground">
+            Case study
+            <ArrowRight className="ml-1.5 h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </span>
+          {stack.length > 0 && (
+            <span className="truncate font-mono text-[11px] text-muted-foreground">
+              {stack.slice(0, 3).join(" / ")}
+            </span>
+          )}
         </div>
       </article>
     </Link>
